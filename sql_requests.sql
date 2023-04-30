@@ -33,5 +33,14 @@ GROUP BY realisateur.id_realisateur
 ORDER BY COUNT(film.id_film) DESC
 -----------------------------------------------------------------------------------------------------
 
+-- In a precised film, show every actor with name, forename, role 
 
+SELECT personne.nom, personne.prenom, personne.sexe, film.titre_film, role.nom_role FROM personne
+INNER JOIN acteur ON personne.id_personne = acteur.id_personne
+INNER JOIN incarnerrole ON acteur.id_acteur = incarnerrole.id_acteur
+INNER JOIN film ON incarnerrole.id_film = film.id_film
+INNER JOIN role ON incarnerrole.id_role = role.id_role
+WHERE film.titre_film = "Beau is afraid"
+
+------------------------------------------------------------------------------------------
 
