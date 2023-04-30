@@ -44,3 +44,32 @@ WHERE film.titre_film = "Beau is afraid"
 
 ------------------------------------------------------------------------------------------
 
+-- search for directors who are actors too -- 
+SELECT personne.nom, personne.prenom, personne.sexe FROM personne
+INNER JOIN acteur ON personne.id_personne = acteur.id_personne
+INNER JOIN realisateur ON personne.id_personne = realisateur.id_personne
+
+----------------------------------------------------------------------------------------
+
+--  Select films produced in the 5 last year) --
+SELECT film.titre_film  FROM film
+WHERE DATE_FORMAT( CURDATE() , "%Y") - CONVERT(film.dateSortie_film, CHAR) < 5
+
+------------------------------------------------------------------------------------------------
+
+Films actors older than 50
+
+SELECT * FROM personne
+LEFT JOIN acteur ON personne.id_personne = acteur.id_personne
+WHERE ((YEAR(CURDATE()) - YEAR(personne.dateDeNaissance )) > 50) AND acteur.id_acteur IS NOT NULL
+
+
+------------------------------------------
+
+
+SELECT peeps having played in 2 fils 
+SELECT  personne.nom  FROM personne
+INNER JOIN acteur ON acteur.id_personne = personne.id_personne
+INNER JOIN incarnerrole ON acteur.id_acteur=incarnerrole.id_acteur
+GROUP BY incarnerrole.id_acteur
+HAVING COUNT(incarnerrole.id_film) = 2
