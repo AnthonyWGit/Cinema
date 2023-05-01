@@ -57,7 +57,7 @@ WHERE DATE_FORMAT( CURDATE() , "%Y") - CONVERT(film.dateSortie_film, CHAR) < 5
 
 ------------------------------------------------------------------------------------------------
 
-Films actors older than 50
+-- Films actors older than 50 --
 
 SELECT * FROM personne
 LEFT JOIN acteur ON personne.id_personne = acteur.id_personne
@@ -67,9 +67,9 @@ WHERE ((YEAR(CURDATE()) - YEAR(personne.dateDeNaissance )) > 50) AND acteur.id_a
 ------------------------------------------
 
 
-SELECT peeps having played in 2 fils 
+-- SELECT peeps having played in 3 films or more -- 
 SELECT  personne.nom  FROM personne
 INNER JOIN acteur ON acteur.id_personne = personne.id_personne
 INNER JOIN incarnerrole ON acteur.id_acteur=incarnerrole.id_acteur
 GROUP BY incarnerrole.id_acteur
-HAVING COUNT(incarnerrole.id_film) = 2
+HAVING COUNT(incarnerrole.id_film) > 2
