@@ -37,9 +37,9 @@ ORDER BY COUNT(film.id_film) DESC
 
 SELECT personne.nom, personne.prenom, personne.sexe, film.titre_film, role.nom_role FROM personne
 INNER JOIN acteur ON personne.id_personne = acteur.id_personne
-INNER JOIN incarnerrole ON acteur.id_acteur = incarnerrole.id_acteur
-INNER JOIN film ON incarnerrole.id_film = film.id_film
-INNER JOIN role ON incarnerrole.id_role = role.id_role
+INNER JOIN casting ON acteur.id_acteur = casting.id_acteur
+INNER JOIN film ON casting.id_film = film.id_film
+INNER JOIN role ON casting.id_role = role.id_role
 WHERE film.titre_film = "Beau is afraid"
 
 ------------------------------------------------------------------------------------------
@@ -70,6 +70,6 @@ WHERE ((YEAR(CURDATE()) - YEAR(personne.dateDeNaissance )) > 50) AND acteur.id_a
 -- SELECT peeps having played in 3 films or more -- 
 SELECT  personne.nom  FROM personne
 INNER JOIN acteur ON acteur.id_personne = personne.id_personne
-INNER JOIN incarnerrole ON acteur.id_acteur=incarnerrole.id_acteur
-GROUP BY incarnerrole.id_acteur
-HAVING COUNT(incarnerrole.id_film) > 2
+INNER JOIN casting ON acteur.id_acteur=casting.id_acteur
+GROUP BY casting.id_acteur
+HAVING COUNT(casting.id_film) > 2

@@ -179,21 +179,21 @@ INSERT INTO `genrer` (`id_film`, `id_genre`) VALUES
 	(18, 14),
 	(21, 14);
 
--- Dumping structure for table cinema.incarnerrole
-CREATE TABLE IF NOT EXISTS `incarnerrole` (
+-- Dumping structure for table cinema.casting
+CREATE TABLE IF NOT EXISTS `casting` (
   `id_film` int NOT NULL,
   `id_acteur` int NOT NULL,
   `id_role` int NOT NULL,
   PRIMARY KEY (`id_film`,`id_acteur`,`id_role`),
   KEY `id_acteur` (`id_acteur`),
   KEY `id_role` (`id_role`),
-  CONSTRAINT `incarnerrole_ibfk_1` FOREIGN KEY (`id_film`) REFERENCES `film` (`id_film`),
-  CONSTRAINT `incarnerrole_ibfk_2` FOREIGN KEY (`id_acteur`) REFERENCES `acteur` (`id_acteur`),
-  CONSTRAINT `incarnerrole_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`)
+  CONSTRAINT `casting_ibfk_1` FOREIGN KEY (`id_film`) REFERENCES `film` (`id_film`),
+  CONSTRAINT `casting_ibfk_2` FOREIGN KEY (`id_acteur`) REFERENCES `acteur` (`id_acteur`),
+  CONSTRAINT `casting_ibfk_3` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_swedish_ci;
 
--- Dumping data for table cinema.incarnerrole: ~19 rows (approximately)
-INSERT INTO `incarnerrole` (`id_film`, `id_acteur`, `id_role`) VALUES
+-- Dumping data for table cinema.casting: ~19 rows (approximately)
+INSERT INTO `casting` (`id_film`, `id_acteur`, `id_role`) VALUES
 	(0, 0, 0),
 	(14, 2, 1),
 	(14, 3, 2),
