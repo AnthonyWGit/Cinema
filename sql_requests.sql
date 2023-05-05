@@ -54,6 +54,13 @@ INNER JOIN realisateur ON personne.id_personne = realisateur.id_personne
 --  Select films produced in the 5 last year) --
 SELECT film.titre_film  FROM film
 WHERE DATE_FORMAT( CURDATE() , "%Y") - CONVERT(film.dateSortie_film, CHAR) < 5
+-----------------------------------------------------------------------------------------------
+
+--Select total number of Men and Women in acteur --
+
+SELECT COUNT(personne.sexe) AS "nombre", personne.sexe FROM acteur INNER JOIN personne ON acteur.id_personne=personne.id_personne
+WHERE ((personne.sexe LIKE "H%") OR (personne.sexe LIKE "F%")) 
+GROUP BY personne.sexe
 
 ------------------------------------------------------------------------------------------------
 
