@@ -7,6 +7,33 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <header>
+        <?= include "header.php"?>
+    </header>
+    <div class="wrapper">
+        <div class="grille">
+            <div class="card">
+                
+            </div>
+            <div class="card">
+                
+            </div>
+            <div class="card">
+                
+            </div>
+            <div class="card">
+                
+            </div>
+            <div class="card">
+                
+            </div>
+            <div class="card">
+                
+            </div>
+        </div>
+    </div>
+    <footer>
+        <?= include "footer.php" ?>
+    </footer>
 </body>
 </html>
