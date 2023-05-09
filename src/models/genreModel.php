@@ -3,7 +3,7 @@ function connexion()
 {
     try {
         $mySQLconnection = new PDO(                                                     //Connecting to SQL server
-            'mysql:host=127.0.0.1;dbname=landing_page;charset=utf8',
+            'mysql:host=127.0.0.1;dbname=cinema;charset=utf8',
             'root',
             '',
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
