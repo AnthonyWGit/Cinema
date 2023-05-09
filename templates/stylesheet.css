@@ -1,0 +1,43 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper
+{
+    display: flex;
+}
+.banner 
+{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    display: flex;
+    background-color: black;
+    color: white;
+}
+
+.logo
+{
+    display:flex;
+    color:white;
+}
+
+.footer
+{
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 4vh;
+    display: flex;
+    background-color: black;
+    color: white;
+}
+
+.card
+{
+    display: flex;
+    width: 150px;
+    height: 150px;
+}
