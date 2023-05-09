@@ -14,7 +14,7 @@
         <th>Image</th>
     </tr>
     <?php 
-    foreach($filmListing as $film)
+    foreach($filmsList as $film)
     { 
     ?>
     <tr>
