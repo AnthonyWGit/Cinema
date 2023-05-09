@@ -1,7 +1,9 @@
 <?php 
 
-require "../models/filmModel.php";
+require ("src/models/filmModel.php");
+function displayFilms()
+{
+$filmsList = getFilms(); 
+require("views/templates/filmListing.php");
+}
 
-$_GET["films"] = getFilms();
-
-var_dump($_GET["films"]);
