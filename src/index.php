@@ -1,4 +1,5 @@
 <?php
-require_once('models/filmModel.php');
-
+// This page is a test. It will be the controller for a page i'll do later. It's the one for controlview
 require_once('views/templates/homepage.php');
+
+?>
