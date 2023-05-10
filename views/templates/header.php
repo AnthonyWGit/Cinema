@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<header>
+<header class="header">
     <div class="banner">
         <div class="logo">
             <h2>LOGO</h2>
