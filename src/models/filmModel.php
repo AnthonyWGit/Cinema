@@ -18,7 +18,10 @@ function connexion()
 function getFilms() 
 {
     $mySQLconnection = connexion();
-    $sqlQuery = 'SELECT * FROM film'; //priceF means priceFormated
+    $sqlQuery = '   SELECT film.id_film, personne.nom, personne.prenom, film.titre_film, film.duree_film, film.dateSortie_film, film.synopsis, film.image_film, film.note_film FROM personne
+                    INNER JOIN realisateur ON personne.id_personne = realisateur.id_personne
+                    INNER JOIN film ON realisateur.id_realisateur = film.id_realisateur
+                    ORDER BY film.id_film   '; 
     $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
     $stmt->execute();                                                     //The data we retrieve are in array form
     $films = $stmt->fetchAll();

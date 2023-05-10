@@ -22,7 +22,7 @@
         <td><?= $film["synopsis"]?></td>
         <td><?= $film["duree_film"]?></td>
         <td><?= $film["dateSortie_film"]?></td>
-        <td><?= $film["id_realisateur"]?></td>
+        <td><?= $film["nom"]?> <?= $film["prenom"]?></td>
         <td><?= $film["image_film"]?></td>
     </tr>
     <?php
