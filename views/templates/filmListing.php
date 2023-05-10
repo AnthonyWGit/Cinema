@@ -22,7 +22,7 @@
         <td>
             <?= $film["titre_film"]?>
 
-                <input name="test[]" type="text" id="film-title" value="<?= $film["titre_film"]?>">
+                <input name="films[<?= $film["id_film"] ?>][titre_film]" type="text" id="<?=$film["id_film"]?>" value="<?= $film["titre_film"]?>">
 
         </td>
         <td><?= $film["synopsis"]?></td>
