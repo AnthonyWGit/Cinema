@@ -7,3 +7,7 @@ function displayFilms()
     require("views/templates/filmListing.php");
 }
 
+function updateFilms($filmData)
+{
+    updateFilmsModel($filmData);
+}
