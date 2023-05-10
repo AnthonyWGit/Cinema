@@ -18,7 +18,12 @@
     ?>
     <tr>
         <td><?= $film["id_film"]?></td>
-        <td><?= $film["titre_film"]?></td>
+        <td>
+            <?= $film["titre_film"]?>
+            <form method="post" action="index.php?action=updateFilms">
+                <input name="test" value="<?= $film["titre_film"]?>">
+            </form>
+        </td>
         <td><?= $film["synopsis"]?></td>
         <td><?= $film["duree_film"]?></td>
         <td><?= $film["dateSortie_film"]?></td>
