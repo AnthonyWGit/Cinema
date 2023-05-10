@@ -24,3 +24,4 @@ function getCastings()
     $roles = $stmt->fetchAll();
     return $roles;
 }
+
