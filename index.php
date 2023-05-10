@@ -4,6 +4,7 @@ require_once("src/controllers/filmController.php");
 if (isset($_GET["action"]) &&  $_GET["action"] == "updateFilms")
 {
     var_dump($_GET);
+    var_dump($_POST);
 }
 else
 {
