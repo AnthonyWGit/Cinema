@@ -1,6 +1,5 @@
 <?php ob_start(); ?>
 
-<!DOCTYPE html>
 <div class="listFilms">
     <table>
     <tr>
@@ -12,17 +11,19 @@
         <th>Réalisateur</th>
         <th>Image</th>
     </tr>
+    <form method="post" action="index.php?action=updateFilms">    
     <?php 
     foreach($filmsList as $film)
     { 
     ?>
+
     <tr>
         <td><?= $film["id_film"]?></td>
         <td>
             <?= $film["titre_film"]?>
-            <form method="post" action="index.php?action=updateFilms">
-                <input name="test" value="<?= $film["titre_film"]?>">
-            </form>
+
+                <input name="test[]" type="text" id="film-title" value="<?= $film["titre_film"]?>">
+
         </td>
         <td><?= $film["synopsis"]?></td>
         <td><?= $film["duree_film"]?></td>
@@ -34,6 +35,10 @@
     }
     ?>
     </table>
+        <button type="submit">Envoyer</button>
+    </form>   
+
+
 </div>
 
 <?php 
