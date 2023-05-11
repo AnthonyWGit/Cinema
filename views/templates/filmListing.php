@@ -27,14 +27,40 @@
         <td>
             <?= $film["titre_film"]?>
 
-                <input name="titre_film[]" type="text" id="<?=$film["id_film"]?>" value="<?= $film["titre_film"]?>">
+                <input name="titre_film[]" type="text" id="titre_film_<?=$film["id_film"]?>" value="<?= $film["titre_film"]?>">
 
         </td>
-        <td><?= $film["synopsis"]?></td>
-        <td><?= $film["duree_film"]?></td>
-        <td><?= $film["dateSortie_film"]?></td>
-        <td><?= $film["nom"]?> <?= $film["prenom"]?></td>
-        <td><?= $film["image_film"]?></td>
+        <td>
+            <?= $film["synopsis"]?>
+        </td>
+        <td>
+            <?= $film["duree_film"]?>
+
+                <input name="duree_film[]" type="text" id="duree_film_"<?=$film["id_film"]?>" value="<?= $film["duree_film"]?>">
+        </td>
+        <td>
+            <?= $film["dateSortie_film"]?>
+
+            <input name="dateSortie_film[]" type="text" id="dateSortie_<?=$film["id_film"]?>" value="<?= $film["dateSortie_film"]?>">
+
+        </td>
+        <td>
+
+            <?= $film["nom"]?> <?= $film["prenom"]?>
+
+            <input name="nom[]" type="text" id="nom_<?=$film["id_film"]?>" value="<?= $film["nom"]?>">
+            <input name="prenom[]" type="text" id="prenom_<?=$film["id_film"]?>" value="<?= $film["prenom"]?>">
+
+
+
+        </td>
+
+        <td>
+            <?= $film["image_film"]?>
+
+
+
+        </td>
     </tr>
     <?php
     }
