@@ -28,41 +28,56 @@ function getFilms()
     return $films;
 }
 
-function updateFilmsModel($filmData)
+// function updateFilmsModel($filmData)
+// {
+//     $mySQLconnection = connexion();
+//     $fieldNameValues = [];
+
+//     // Iterate over each film : the first foreach loops over all the ids
+//     foreach ($filmData['id_film'] as $index => $id) 
+//     {
+//         $sqlQueryPart = 'SET ';        
+//         // Update each attribute of the current film : this loops over all the items inside the row
+//         foreach ($filmData as $fieldName => $value) 
+//         {
+//             $sqlQueryPart .= $fieldName. " = :". $fieldName. ", ";
+//             //$fieldNameValues["id_film"] = $id;
+//             $fieldNameValues[$fieldName] = $value[$index] ;
+//             // Bind the parameters         ******** Old part before reword were there was a request 
+//             // $statement->bindValue(':id_film', $id); ***On each element of the table that was so un-optimized
+//             // $statement->bindValue($fieldName, $value[$index]);
+//             // Execute the statement
+//         }
+//             $sqlQueryPart = rtrim($sqlQueryPart, ", ");
+//             echo "XXXXXXXXXXX";
+//             $fieldNameValues["id_film"] = $id;
+//             $sqlQuery =     'UPDATE film INNER JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
+//                             INNER JOIN personne ON realisateur.id_personne = personne.id_personne 
+//                               '. $sqlQueryPart .' WHERE id_film = :id_film';
+            
+//             $statement = $mySQLconnection->prepare($sqlQuery);  
+//             var_dump($statement);
+//             echo "</br> </br> </br> </br> </br> </br> ";
+//             var_dump($fieldNameValues);         
+//             echo "XXXXXXX<br/> ";
+//             var_dump($statement);         
+//             $statement->execute($fieldNameValues);       
+//             $sqlQueryPart = "";     
+
+//     }
+// }
+
+function updateFilmsModel($filmData, $idZ)
 {
     $mySQLconnection = connexion();
-    $fieldNameValues = [];
-
-    // Iterate over each film : the first foreach loops over all the ids
-    foreach ($filmData['id_film'] as $index => $id) 
+    foreach ($filmData as $fieldName => $values)
     {
-        $sqlQueryPart = 'SET ';        
-        // Update each attribute of the current film : this loops over all the items inside the row
-        foreach ($filmData as $fieldName => $value) 
-        {
-            $sqlQueryPart .= $fieldName. " = :". $fieldName. ", ";
-            //$fieldNameValues["id_film"] = $id;
-            $fieldNameValues[$fieldName] = $value[$index] ;
-            // Bind the parameters
-            // $statement->bindValue(':id_film', $id);
-            // $statement->bindValue($fieldName, $value[$index]);
-            // Execute the statement
-        }
-            $sqlQueryPart = rtrim($sqlQueryPart, ", ");
-            echo "XXXXXXXXXXX";
-            $fieldNameValues["id_film"] = $id;
-            $sqlQuery =     'UPDATE film INNER JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
-                            INNER JOIN personne ON realisateur.id_personne = personne.id_personne 
-                              '. $sqlQueryPart .' WHERE id_film = :id_film';
-            
-            $statement = $mySQLconnection->prepare($sqlQuery);  
-            var_dump($statement);
-            echo "</br> </br> </br> </br> </br> </br> ";
-            var_dump($fieldNameValues);         
-            echo "XXXXXXX<br/> ";
-            var_dump($statement);         
-            $statement->execute($fieldNameValues);       
-            $sqlQueryPart = "";     
-
-    }
-}
+        $sqlQuery = 'UPDATE film JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
+        INNER JOIN personne ON realisateur.id_personne = personne.id_personne 
+        SET '. $fieldName . ' = :'.$fieldName.' WHERE id_film = :id_film';
+        $stmt = $mySQLconnection->prepare($sqlQuery);
+        $stmt->bindValue($fieldName, $values);
+        $stmt->bindValue('id_film',$idZ);
+        $stmt->execute();
+    }   
+} 
