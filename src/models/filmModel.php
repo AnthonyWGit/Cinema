@@ -39,14 +39,16 @@ function updateFilmsModel($filmData)
         // Update each attribute of the current film : this loops over all the items inside the row
         foreach ($filmData as $fieldName => $value) 
         {
-            $sqlQuery = 'UPDATE film SET ' . $fieldName . ' = :' . $fieldName . ' WHERE id_film = :id_film';
+            $sqlQuery =     'UPDATE film INNER JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
+                            INNER JOIN personne ON realisateur.id_personne = personne.id_personne 
+                            SET ' . $fieldName . ' = :' . $fieldName . ' WHERE id_film = :id_film';
             $statement = $mySQLconnection->prepare($sqlQuery);
 
             // Bind the parameters
             $statement->bindValue(':id_film', $id);
             $statement->bindValue(':' . $fieldName, $value[$index]);
-
             // Execute the statement
+            var_dump($statement);
             $statement->execute();
         }
     }
