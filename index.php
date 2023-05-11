@@ -3,10 +3,6 @@
 require_once("src/controllers/filmController.php");
 if (isset($_GET["action"]) &&  $_GET["action"] == "updateFilms")
 {
-    var_dump($_GET);
-    var_dump($_POST);
-    echo "</br></br>";
-    var_dump($_POST["id_film"]);
     $dataFilm = $_POST;
     updateFilms($dataFilm);
 }
