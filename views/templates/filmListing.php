@@ -11,7 +11,7 @@
         <th>Réalisateur</th>
         <th>Image</th>
     </tr>
-    <form method="post" action="index.php?action=updateFilms">    
+ 
     <?php 
     foreach($filmsList as $film)
     { 
@@ -25,10 +25,12 @@
         </td>
         
         <td>
+        <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">    
             <?= $film["titre_film"]?>
+            <button type="submit">Envoyer</button>
 
-                <input name="titre_film[]" type="text" id="titre_film_<?=$film["id_film"]?>" value="<?= $film["titre_film"]?>">
-
+                <input name="titre_film" type="text" id="titre_film_<?=$film["id_film"]?>" value="<?= $film["titre_film"]?>">
+        </form>
         </td>
         <td>
             <?= $film["synopsis"]?>
@@ -51,14 +53,10 @@
             <input name="nom[]" type="text" id="nom_<?=$film["id_film"]?>" value="<?= $film["nom"]?>">
             <input name="prenom[]" type="text" id="prenom_<?=$film["id_film"]?>" value="<?= $film["prenom"]?>">
 
-
-
         </td>
 
         <td>
             <?= $film["image_film"]?>
-
-
 
         </td>
     </tr>
@@ -66,9 +64,6 @@
     }
     ?>
     </table>
-        <button type="submit">Envoyer</button>
-    </form>   
-
 
 </div>
 
