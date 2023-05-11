@@ -18,10 +18,10 @@ function connexion()
 function getFilms() 
 {
     $mySQLconnection = connexion();
-    $sqlQuery = '   SELECT film.id_film, personne.nom, personne.prenom, film.titre_film, film.duree_film, film.dateSortie_film, film.synopsis, film.image_film, film.note_film FROM personne
-                    INNER JOIN realisateur ON personne.id_personne = realisateur.id_personne
-                    INNER JOIN film ON realisateur.id_realisateur = film.id_realisateur
-                    ORDER BY film.id_film   '; 
+        $sqlQuery = '   SELECT film.id_film, personne.nom, personne.prenom, film.titre_film, film.duree_film, film.dateSortie_film, film.synopsis, film.image_film, film.note_film FROM personne
+                        INNER JOIN realisateur ON personne.id_personne = realisateur.id_personne
+                        INNER JOIN film ON realisateur.id_realisateur = film.id_realisateur
+                        ORDER BY film.id_film   '; 
     $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
     $stmt->execute();                                                     //The data we retrieve are in array form
     $films = $stmt->fetchAll();
@@ -33,13 +33,39 @@ function updateFilmsModel($filmData)
     // TO DO : Build a request to update all data in row then loop over all the table then do the request UPDATE for each row
     $txtSql = "";
     $mySQLconnection = connexion();
+    $sqlQueryRow = "";
+    $sqlQueryCol = "";
     $sqlQuerySetPart = "SET ";
     $fieldsNameValue = [];
     foreach ($filmData as $fieldName=>$value)
     {
-        $txtSql .= $sqlQuerySetPart. $fieldName .'= :'. $value.', ';
-        $fieldsNameValue[$fieldName] = $value;
+        foreach($value as $row2=>$value2)
+        {
+            echo "</br></br></br>";
+            var_dump($row2);
+            echo "</br></br></br>";
+            var_dump($value2);
+            $txtSql .= $sqlQuerySetPart. " ". $fieldName .'= :'. $value2.' ';
+            $fieldsNameValue[$row2] = $value2;         
+
+            $sqlQuery = 'UPDATE film '. $txtSql
+                        . ' WHERE id_film = :id_film ;'; 
+            $sqlQueryRow .= $sqlQuery;
+            $sqlQuery = empty($sqlQuery);
+            $txtSql = empty($txtSql);
+            var_dump($sqlQueryRow);
+            echo "BOUCLE";
+            var_dump($fieldsNameValue);
+        }
+        $sqlQueryCol .= $sqlQueryRow;
+        $sqlQueryRow = empty($sqlQueryRow);
+        echo " </br> </br>";
+        var_dump($sqlQueryCol);
     }
+    var_dump($fieldsNameValue);
+    $persoLieuStatement = $mySQLconnection->prepare($sqlQueryCol);
+    $persoLieuStatement->execute($fieldsNameValue); //This basically does the same thing as bindValue but on multiple ones but 
+                                                                //we can't specify datatype : int by default 
 
 
     /*$sqlQuerySetPart = "SET ";
@@ -85,7 +111,7 @@ function updateFilmsModel($filmData)
             $mySQLconnection = connexion();
             $persoLieuStatement = $mySQLconnection->prepare($sqlQuery);
             $persoLieuStatement->execute($fieldsNameValue); //This basically does the same thing as bindValue but on multiple ones but 
-                                                            //we can't specify datatype : int by default */
+                                                            //we can't specify datatype : int by default 
         }
-    }
+    }*/
 }
