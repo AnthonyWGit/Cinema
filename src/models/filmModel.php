@@ -46,7 +46,7 @@ function updateFilmsModel($filmData)
 
             // Bind the parameters
             $statement->bindValue(':id_film', $id);
-            $statement->bindValue(':' . $fieldName, $value[$index]);
+            $statement->bindValue($fieldName, $value[$index]);
             // Execute the statement
             var_dump($statement);
             $statement->execute();
