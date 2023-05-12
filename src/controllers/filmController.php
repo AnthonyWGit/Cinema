@@ -68,10 +68,11 @@ function updateFilms($filmData, $idZ)
 
 function uploadFile($file, $id)
 {
-
     $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];  // Only picture types allowed
     $maxSize = 100000000; // 100 MB in bytes                   // 100 MB max size
-    if (in_array($file["file"]["type"], $allowedTypes) && $file["file"]["size"] <= $maxSize) 
+
+    // Check if file type and MIME type are allowed
+    if (in_array($file["file"]["type"], $allowedTypes) && in_array(mime_content_type($file["file"]["tmp_name"]), $allowedTypes) && $file["file"]["size"] <= $maxSize) 
     {
         // Sanitize file name and generate new file path
         $fileName = filter_var(basename($file["file"]["name"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -80,11 +81,10 @@ function uploadFile($file, $id)
         $fileName = basename($file["file"]["name"]);
         $filePath = $uploadsDir . $fileName;
         move_uploaded_file($file["file"]["tmp_name"], $uploadsDir . basename($filePath));   //Moving files from local to folder  
-        uploadFileModel($filePath, $id);        
+        uploadFileModel($filePath, $id);
     }
     else    //wrong type or too heavy
     {
         echo "failed";
     }
-
 }
