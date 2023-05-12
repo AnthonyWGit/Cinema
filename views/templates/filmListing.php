@@ -20,45 +20,66 @@
     <tr>
         <td>
             <?= $film["id_film"]?>
-        <input name="id_film[]" type="hidden" value="<?=$film["id_film"]?>">
+
+        </td>
+        <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">           
+            <td>
     
-        </td>
-        
-        <td>
-        <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">    
-            <?= $film["titre_film"]?>
-            <button type="submit">Envoyer</button>
+                <?= $film["titre_film"]?>
+                <button type="submit">Envoyer</button>
 
-                <input name="titre_film" type="text" id="titre_film_<?=$film["id_film"]?>" value="<?= $film["titre_film"]?>">
+                    <input name="titre_film" type="text" id="titre_film_<?=$film["id_film"]?>" value="<?= $film["titre_film"]?>">
+
+
+            </td>
+
+        </form>  
+
+        <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
+            <td>
+                <?= $film["synopsis"]?>
+            </td>
         </form>
-        </td>
-        <td>
-            <?= $film["synopsis"]?>
-        </td>
-        <td>
-            <?= $film["duree_film"]?>
 
-                <input name="duree_film[]" type="text" id="duree_film_"<?=$film["id_film"]?>" value="<?= $film["duree_film"]?>">
-        </td>
-        <td>
-            <?= $film["dateSortie_film"]?>
+        <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
+            <td>
+                <?= $film["duree_film"]?>
+                <button type="submit">Envoyer</button>
 
-            <input name="dateSortie_film[]" type="text" id="dateSortie_<?=$film["id_film"]?>" value="<?= $film["dateSortie_film"]?>">
+                    <input name="duree_film" type="text" id="duree_film_"<?=$film["id_film"]?>" value="<?= $film["duree_film"]?>">
+            </td>
+        </form>
 
-        </td>
-        <td>
+        <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
 
-            <?= $film["nom"]?> <?= $film["prenom"]?>
+            <td>
+                <?= $film["dateSortie_film"]?>
+                <button type="submit">Envoyer</button>
 
-            <input name="nom[]" type="text" id="nom_<?=$film["id_film"]?>" value="<?= $film["nom"]?>">
-            <input name="prenom[]" type="text" id="prenom_<?=$film["id_film"]?>" value="<?= $film["prenom"]?>">
+                <input name="dateSortie_film" type="text" id="dateSortie_<?=$film["id_film"]?>" value="<?= $film["dateSortie_film"]?>">
 
-        </td>
+            </td>
 
-        <td>
-            <?= $film["image_film"]?>
+        </form>
 
-        </td>
+        <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
+            <td>
+
+                <?= $film["nom"]?> <?= $film["prenom"]?>
+                <button type="submit">Envoyer</button>
+
+                <input name="nom" type="text" id="nom_<?=$film["id_film"]?>" value="<?= $film["nom"]?>">
+                <input name="prenom" type="text" id="prenom_<?=$film["id_film"]?>" value="<?= $film["prenom"]?>">
+
+            </td>
+        </form>
+
+        <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
+            <td>
+                <?= $film["image_film"]?>
+
+            </td>
+        </form>
     </tr>
     <?php
     }
