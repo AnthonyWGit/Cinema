@@ -43,10 +43,10 @@
 
         <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
             <td>
-                <?= $film["duree_film"]?>
+                <?= $film["dureeFormat"]?>
                 <button type="submit">Envoyer</button>
 
-                    <input name="duree_film" type="text" id="duree_film_"<?=$film["id_film"]?>" value="<?= $film["duree_film"]?>">
+                    <input name="duree_film" type="text" id="duree_film_"<?=$film["id_film"]?>" value="<?= $film["dureeFormat"]?>">
             </td>
         </form>
 
