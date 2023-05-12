@@ -82,3 +82,17 @@ function updateFilmsModel($filmData, $idZ)
         $stmt->execute();
     }   
 } 
+
+function uploadFileModel($filePath, $id)
+{
+    $mySQLconnection = connexion();
+    $sql = "UPDATE film SET image_film = :filePath WHERE id_film = :id_film";
+    $stmt = $mySQLconnection->prepare($sql);
+    var_dump($stmt);
+    echo "</br></br> UUP </br></br>";
+    var_dump($filePath);
+    echo "</br></br> UUP </br></br>";
+    $stmt->bindValue(':filePath', $filePath);
+    $stmt->bindValue(':id_film', $id);
+    $stmt->execute();
+}

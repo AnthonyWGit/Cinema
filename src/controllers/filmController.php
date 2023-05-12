@@ -65,3 +65,12 @@ function updateFilms($filmData, $idZ)
 
     }
 }
+
+function uploadFile($file, $id)
+{
+    $uploadsDir = 'uploads/';
+    $fileName = basename($file["file"]["name"]);
+    $filePath = $uploadsDir . $fileName;
+    move_uploaded_file($file["file"]["tmp_name"], $uploadsDir . basename($filePath));    
+    uploadFileModel($filePath, $id);
+}

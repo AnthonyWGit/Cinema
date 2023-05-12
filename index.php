@@ -15,7 +15,9 @@ else if ($_GET["action"] == "displayFilms")
 else if ($_GET["action"] == "uploadFile")
 {
     $id = $_GET["id_film"];
-
+    $file = $_FILES;
+    var_dump($_FILES);
+    uploadFile($file,$id);
 }
 else //page when landing on site 
 {
