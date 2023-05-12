@@ -30,7 +30,6 @@
 
                     <input name="titre_film" type="text" id="titre_film_<?=$film["id_film"]?>" value="<?= $film["titre_film"]?>">
 
-
             </td>
 
         </form>  
@@ -74,9 +73,13 @@
             </td>
         </form>
 
-        <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
+        <form method="post" action="index.php?action=uploadFile&id_film=<?=$film["id_film"] ?>" enctype="multipart/form-data">
             <td>
                 <?= $film["image_film"]?>
+
+                <label for="file">Fichier à héberger :</label>
+                <input type="file" name="file" id="file" required />
+                <button type="submit">Upload</button>
 
             </td>
         </form>

@@ -56,7 +56,8 @@ function updateFilms($filmData, $idZ)
         }
         if ($permission)
         {
-            updateFilmsModel($filmData, $idZ);                    
+            updateFilmsModel($filmData, $idZ);
+            header("Location:index.php?action=displayFilms");
         }
     }
     else

@@ -8,7 +8,16 @@ if (isset($_GET["action"]) &&  $_GET["action"] == "updateFilms")
     var_dump($_POST);
     updateFilms($dataFilm, $idZ);
 }
-else
+else if ($_GET["action"] == "displayFilms")
+{
+    displayFilms();
+}
+else if ($_GET["action"] == "uploadFile")
+{
+    $id = $_GET["id_film"];
+
+}
+else //page when landing on site 
 {
     displayFilms();
 }
