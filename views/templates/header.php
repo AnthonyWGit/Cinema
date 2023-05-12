@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <header class="header">
     <div class="banner">
         <div class="logo">
