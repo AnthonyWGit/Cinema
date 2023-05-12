@@ -68,19 +68,22 @@ function updateFilms($filmData, $idZ)
 
 function uploadFile($file, $id)
 {
-    $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];  // Only picture types allowed
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];  // Allowed picture types
     $maxSize = 100000000; // 100 MB in bytes                   // 100 MB max size
 
     // Check if file type and MIME type are allowed
     if (in_array($file["file"]["type"], $allowedTypes) && in_array(mime_content_type($file["file"]["tmp_name"]), $allowedTypes) && $file["file"]["size"] <= $maxSize) 
     {
+        // Generate a unique ID for the file
+        $uniqueId = uniqid('', true); // The second parameter generates a more unique ID
         // Sanitize file name and generate new file path
         $fileName = filter_var(basename($file["file"]["name"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION); // gives .jpg as example 
+        $fileNameWithoutExtension = pathinfo($fileName, PATHINFO_FILENAME); // gives the file name without extension 
+        $newFileName = $fileNameWithoutExtension . '_' . $uniqueId . '.' . $fileExtension; //Building a new file name we add _id behind the name 
         $uploadsDir = 'uploads/'; //uploads dir
-        $filePath = $uploadsDir . $fileName;
-        $fileName = basename($file["file"]["name"]);
-        $filePath = $uploadsDir . $fileName;
-        move_uploaded_file($file["file"]["tmp_name"], $uploadsDir . basename($filePath));   //Moving files from local to folder  
+        $filePath = $uploadsDir . $newFileName;
+        move_uploaded_file($file["file"]["tmp_name"], $uploadsDir . basename($newFileName));   //Moving files from local to folder  
         uploadFileModel($filePath, $id);
     }
     else    //wrong type or too heavy
