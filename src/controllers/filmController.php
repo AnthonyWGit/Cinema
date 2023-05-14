@@ -5,6 +5,18 @@ require ("src/controllers/math.php");
 function displayFilms()
 {
     $filmsList = getFilms(); 
+    $realisateursList = [];
+    foreach ($filmsList as $film) //This will be used for the dropdown too add director when creating new row
+    {
+        $realisateursList[$film["id_realisateur"]] = [
+            "name" => $film["nom"],
+            "forename" => $film["prenom"],
+            "id" => $film["id_realisateur"]
+        ];
+    }
+    $realisateursList = array_unique($realisateursList, SORT_REGULAR); //We don't need duplicates
+    ksort($realisateursList);
+    var_dump($realisateursList);
     require("views/templates/filmListing.php");
 }
 
