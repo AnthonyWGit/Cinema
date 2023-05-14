@@ -21,9 +21,17 @@ else if (isset($_GET["action"]) && $_GET["action"] == "uploadFile")
     uploadFile($file,$id);
 }
 
-else if (isset($_GET["action"]) && $_GET["action"] == "synopsis")
+else if (isset($_GET["action"]) && $_GET["action"] == "goToSynopsis")
 {
-    displaySynopsis();
+    $id = $_GET["id"];
+    displaySynopsis($id);
+}
+
+else if (isset($_GET["action"]) && $_GET["action"] == "editSynopsis")
+{
+    $id = $_GET["id"];
+    $textSynopsis = $_POST["textSynopsis"];
+    editSynopsis($textSynopsis, $id);
 }
 else //page when landing on site 
 {
