@@ -18,7 +18,7 @@ function connexion()
 function getFilms() 
 {
     $mySQLconnection = connexion();
-        $sqlQuery = '   SELECT film.id_film, personne.nom, DATE_FORMAT(SEC_TO_TIME(film.duree_film * 60), "%H:%i") AS "dureeFormat", personne.prenom, film.titre_film, film.duree_film, film.dateSortie_film, film.synopsis, film.image_film, film.note_film FROM personne
+        $sqlQuery = '   SELECT film.id_film, personne.nom, film.synopsis, DATE_FORMAT(SEC_TO_TIME(film.duree_film * 60), "%H:%i") AS "dureeFormat", personne.prenom, film.titre_film, film.duree_film, film.dateSortie_film, film.synopsis, film.image_film, film.note_film FROM personne
                         INNER JOIN realisateur ON personne.id_personne = realisateur.id_personne
                         INNER JOIN film ON realisateur.id_realisateur = film.id_realisateur
                         ORDER BY film.id_film   '; 
@@ -83,6 +83,15 @@ function updateFilmsModel($filmData, $idZ)
     }   
 } 
 
+function updateFilmSynopsis($textSynopsis, $id)
+{
+    $mySQLconnection = connexion();
+    $sql = "UPDATE film SET film.synopsis = :synopsis WHERE id_film = :id_film;";
+    $stmt = $mySQLconnection->prepare($sql);
+    $stmt->bindValue(':synopsis', $textSynopsis);
+    $stmt->bindValue(':id_film', $id);
+    $stmt->execute();
+} 
 function uploadFileModel($filePath, $id)
 {
     $mySQLconnection = connexion();
