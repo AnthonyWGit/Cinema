@@ -38,7 +38,7 @@
             <td>
                 <?= $film["synopsis"]?>
 
-                <button><a href="index.php?action=synopsis&id=<?=$film["id_film"]?>">Go to Example</a></button>
+                <button><a href="index.php?action=goToSynopsis&id=<?=$film["id_film"]?>">Modifier</a></button>
 
             </td>
         </form>
