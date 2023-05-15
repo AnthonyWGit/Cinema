@@ -1,5 +1,6 @@
 <?php
 // This page is a test. It will be the controller for a page i'll do later. It's the one for controlview
+require_once("src/controllers/acteurController.php");
 require_once("src/controllers/filmController.php");
 require_once("src/controllers/synopsisController.php");
 if (isset($_GET["action"]) &&  $_GET["action"] == "updateFilms")
@@ -11,6 +12,10 @@ if (isset($_GET["action"]) &&  $_GET["action"] == "updateFilms")
 else if (isset($_GET["action"]) && $_GET["action"] == "displayFilms")
 {
     displayFilms();
+}
+else if (isset($_GET["action"]) && $_GET["action"] == "displayActeurs")
+{
+    displayActeurs();
 }
 else if (isset($_GET["action"]) && $_GET["action"] == "uploadFile")
 {
