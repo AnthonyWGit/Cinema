@@ -16,7 +16,6 @@ function displayFilms()
     }
     $realisateursList = array_unique($realisateursList, SORT_REGULAR); //We don't need duplicates
     ksort($realisateursList);
-    var_dump($realisateursList);
     require("views/templates/filmListing.php");
 }
 

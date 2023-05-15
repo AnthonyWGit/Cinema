@@ -6,7 +6,6 @@ if (isset($_GET["action"]) &&  $_GET["action"] == "updateFilms")
 {   
     $dataFilm = $_POST;
     $idZ = $_GET["id_film"];
-    var_dump($_POST);
     updateFilms($dataFilm, $idZ);
 }
 else if (isset($_GET["action"]) && $_GET["action"] == "displayFilms")
