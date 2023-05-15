@@ -16,22 +16,37 @@
     ?>
 
     <tr>
+        <form method="post" action="index.php?action=updateActeur&id=<?=$acteur["id_acteur"]?>">
+            <td>  
+                <?=$acteur["nom"]?>
+                <input type="text" name="nom" value="nom">
+                <button type="submit">Envoyer</button>
+            </td>
+        </form>
 
-        <td>  
-            <?=$acteur["nom"]?>
-        </td>
+        <form method="post" action="index.php?action=updateActeur&id=<?=$acteur["id_acteur"]?>">
+            <td>  
+                <?=$acteur["prenom"]?>
+                <input type="text" name="prenom" value="prénom">
+                <button type="submit">Envoyer</button>
+            </td>
+        </form>
 
-        <td>
-            <?=$acteur["prenom"]?>
-        </td>
+        <form method="post" action="index.php?action=updateActeur&id=<?=$acteur["id_acteur"]?>">
+            <td>  
+                <?=$acteur["dateDeNaissance"]?>
+                <input type="text" name="dateDeNaissance" value="DdN">
+                <button type="submit">Envoyer</button>
+            </td>
+        </form>
 
-        <td>
-            <?=$acteur["dateDeNaissance"]?>
-        </td>
-
-        <td>
-            <?=$acteur["sexe"]?>
-        </td>
+        <form method="post" action="index.php?action=updateActeur&id=<?=$acteur["id_acteur"]?>">
+            <td>  
+                <?=$acteur["sexe"]?>
+                <input type="text" name="sexe" value="H/F/Autre">
+                <button type="submit">Envoyer</button>
+            </td>
+        </form>
 
     </tr>
 
