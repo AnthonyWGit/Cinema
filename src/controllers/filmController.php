@@ -2,6 +2,7 @@
 
 require ("src/models/filmModel.php");
 require ("src/controllers/math.php");
+
 function displayFilms()
 {
     $filmsList = getFilms(); 
