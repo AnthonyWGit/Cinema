@@ -106,7 +106,18 @@ function uploadFileModel($filePath, $id)
     $stmt->execute();
 }
 
-function addFilm()
+function addFilmModel($filmData,$fileDate)
 {
+    $fieldNameValues =[];
+    foreach ($filmData as $fieldName => $value)
+    {
+        $fieldNameValues[$fieldName] = $value ;
+    }
+    $mySQLconnection = connexion();
+    $sql = 'INSERT INTO  film (film.id_realisateur, film.titre_film, film.duree_film, film.dateSortie_film)
+            VALUES (:id_realisateur, :titre_film, :duree_film, :dateSortie_film)';
+    $stmt = $mySQLconnection->prepare($sql);
+    var_dump($fieldNameValues);
+    $stmt->execute($fieldNameValues);
 
 }
