@@ -103,3 +103,11 @@ function uploadFile($file, $id)
         echo "failed";
     }
 }
+
+function addFilm($filmData,$fileDate)
+{
+    var_dump($fileDate);
+    var_dump($filmData);
+    $filmData["duree_film"] = filterFourNumbers($filmData["duree_film"]);
+    addFilmModel($filmData,$fileDate);
+}
