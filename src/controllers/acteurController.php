@@ -17,12 +17,23 @@ function updateActeur($dataActeurs,$id)
         $filteredDataActeurs = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         switch ($fieldname)
         {
-            case $fieldname == "ddN":
+            case $fieldname == "dateDeNaissance":
                 $dateObj = DateTime::createFromFormat('Y-m-d', $filteredDataActeurs); //Checking good data format
-                if ($dateObj->format('Y-m-d') === $filteredDataActeurs)
-                $permission = true;
-                break;
-            
+                if ($dateObj) //is true if we created the object it means used has good input 
+                {
+                    var_dump($dateObj);
+                    echo "text Ok";
+                    $permission = true;
+                    break;                    
+                }
+                else        //user trolled 
+                {
+                    var_dump($dateObj);
+                    $permission = false;
+                    echo "test not ok";
+                    break;
+                }
+
             case $fieldname == "sexe";
                 if (in_array(mb_strtolower($filteredDataActeurs),$authorizedSexStrings)) //We get rid of case sensivity problem
                 {
@@ -43,7 +54,7 @@ function updateActeur($dataActeurs,$id)
                 break;
         }
     }
-    $permission==true ? updateActeurModel($filteredDataActeurs,$id,$fieldname) : null ;
+    $permission == true ? updateActeurModel($filteredDataActeurs,$id,$fieldname) : null ;
     echo "---------fieldname-------";
     var_dump($fieldname);
     echo "----------Value---------";
