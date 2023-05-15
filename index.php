@@ -3,11 +3,20 @@
 require_once("src/controllers/acteurController.php");
 require_once("src/controllers/filmController.php");
 require_once("src/controllers/synopsisController.php");
+
 if (isset($_GET["action"]) &&  $_GET["action"] == "updateFilms")
 {   
     $dataFilm = $_POST;
     $idZ = $_GET["id_film"];
     updateFilms($dataFilm, $idZ);
+}
+if (isset($_GET["action"]) &&  $_GET["action"] == "updateActeur")
+{   
+    $dataActeurs = $_POST;
+    var_dump($dataActeurs);
+    $id = $_GET["id"];
+    var_dump($_GET);
+    updateActeur($dataActeurs, $id);
 }
 else if (isset($_GET["action"]) && $_GET["action"] == "displayFilms")
 {
