@@ -33,6 +33,14 @@ else if (isset($_GET["action"]) && $_GET["action"] == "editSynopsis")
     $textSynopsis = $_POST["textSynopsis"];
     editSynopsis($textSynopsis, $id);
 }
+
+else if (isset($_GET["action"]) && $_GET["action"] == "addFilm")
+{
+
+    $filmData = $_POST;
+    $fileData = $_FILES;
+    addFilm($filmData,$fileData);
+}
 else //page when landing on site 
 {
     displayFilms();
