@@ -37,8 +37,7 @@
 
         <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
             <td>
-                <?= $film["synopsis"]?>
-
+                
                 <button><a href="index.php?action=goToSynopsis&id=<?=$film["id_film"]?>">Modifier</a></button>
 
             </td>
