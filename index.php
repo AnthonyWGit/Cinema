@@ -38,8 +38,14 @@ else if (isset($_GET["action"]) && $_GET["action"] == "addFilm")
 {
 
     $filmData = $_POST;
-    $fileData = $_FILES;
-    addFilm($filmData,$fileData);
+    $fileDataa = $_FILES;
+    addFilm($filmData,$fileDataa);
+}
+
+else if (isset($_GET["action"]) && $_GET["action"] == "deleteFilm")
+{
+    $id = $_GET["id"];
+    deleteFilm($id);
 }
 else //page when landing on site 
 {
