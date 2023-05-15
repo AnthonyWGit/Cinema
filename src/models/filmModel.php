@@ -106,8 +106,8 @@ function uploadFileModel($filePath, $id)
     $stmt->execute();
 }
 
-function addFilmModel($filmData,$fileDate)
-{
+function addFilmModel($filmData,$fileData)  //VeryBasic function, $filmData contains 4 fields, $fileData has the path file
+{                                           //Need to add code to use $fileData
     $fieldNameValues =[];
     foreach ($filmData as $fieldName => $value)
     {
@@ -119,5 +119,13 @@ function addFilmModel($filmData,$fileDate)
     $stmt = $mySQLconnection->prepare($sql);
     var_dump($fieldNameValues);
     $stmt->execute($fieldNameValues);
+}
 
+function deleteFilmModel($id)
+{
+    $mySQLconnection = connexion();
+    $sql = 'DELETE FROM film WHERE id_film = :id_film';
+    $stmt = $mySQLconnection->prepare($sql);
+    $stmt->bindValue(':id_film',$id);
+    $stmt->execute();
 }

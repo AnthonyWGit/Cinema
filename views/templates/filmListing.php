@@ -21,7 +21,7 @@
     <tr>
         <td>
             <?= $film["id_film"]?>
-
+                <button><a href="index.php?action=deleteFilm&id=<?=$film["id_film"]?>">DELETE</button>                
         </td>
         <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">           
             <td>

@@ -104,10 +104,17 @@ function uploadFile($file, $id)
     }
 }
 
-function addFilm($filmData,$fileDate)
+function addFilm($filmData,$fileData)
 {
-    var_dump($fileDate);
+    var_dump($fileData);
     var_dump($filmData);
     $filmData["duree_film"] = filterFourNumbers($filmData["duree_film"]);
-    addFilmModel($filmData,$fileDate);
+    addFilmModel($filmData,$fileData);
+    header("Location:index.php?action=displayFilms");
+}
+
+function deleteFilm($id)
+{
+    deleteFilmModel($id);
+    header("Location:index.php?action=displayFilms");
 }
