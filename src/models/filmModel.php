@@ -1,19 +1,6 @@
 <?php
-function connexion()
-{
-    try {
-        $mySQLconnection = new PDO(                                                     //Connecting to SQL server
-            'mysql:host=127.0.0.1;dbname=cinema;charset=utf8',
-            'root',
-            '',
-            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-        );
-        return $mySQLconnection;
-    } catch (\Exception $e) 
-    { 
-        die('Erreur : ' . $e->getMessage());
-    }
-}
+require_once("connexion.php");
+
 
 function getFilms() 
 {
@@ -25,6 +12,7 @@ function getFilms()
     $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
     $stmt->execute();                                                     //The data we retrieve are in array form
     $films = $stmt->fetchAll();
+    unset($mySQLconnection);
     return $films;
 }
 
@@ -80,6 +68,7 @@ function updateFilmsModel($filmData, $idZ)
         $stmt->bindValue('id_film',$idZ);
         var_dump($values);
         $stmt->execute();
+        unset($mySQLconnection);
     }   
 } 
 
@@ -91,6 +80,7 @@ function updateFilmSynopsis($textSynopsis, $id)
     $stmt->bindValue(':synopsis', $textSynopsis);
     $stmt->bindValue(':id_film', $id);
     $stmt->execute();
+    unset($mySQLconnection);
 } 
 function uploadFileModel($filePath, $id)
 {
@@ -104,6 +94,7 @@ function uploadFileModel($filePath, $id)
     $stmt->bindValue(':filePath', $filePath);
     $stmt->bindValue(':id_film', $id);
     $stmt->execute();
+    unset($mySQLconnection);
 }
 
 function addFilmModel($filmData,$fileData)  //VeryBasic function, $filmData contains 4 fields, $fileData has the path file
@@ -119,6 +110,7 @@ function addFilmModel($filmData,$fileData)  //VeryBasic function, $filmData cont
     $stmt = $mySQLconnection->prepare($sql);
     var_dump($fieldNameValues);
     $stmt->execute($fieldNameValues);
+    unset($mySQLconnection);
 }
 
 function deleteFilmModel($id)
@@ -128,4 +120,5 @@ function deleteFilmModel($id)
     $stmt = $mySQLconnection->prepare($sql);
     $stmt->bindValue(':id_film',$id);
     $stmt->execute();
+    unset($mySQLconnection);
 }
