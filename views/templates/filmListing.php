@@ -112,7 +112,7 @@
                 <input name="dateSortie_film" type="text" id="dateSortie_<?=$film["id_film"]?>" value="<?= $film["dateSortie_film"]?>">
             </td>
             <td>
-                <select name="reals" id="real-select">
+                <select name="id_realisateur" id="real-select">
                     <?php 
                     foreach($realisateursList as $real)
                     { var_dump($filmsList);
@@ -123,12 +123,10 @@
                     ?>
                 </select>
             </td>
-        </form>
             <td>
                 <?= $film["image_film"]?>
                 <label for="file">Fichier à héberger :</label>
-                <input type="file" name="file" id="file" required />
-                <button type="submit">Upload</button>
+                <input type="file" name="fileNew" id="fileNew" />
             </td>
         </tr>
     </form>
