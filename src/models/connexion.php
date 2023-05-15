@@ -9,7 +9,8 @@ function connexion()
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
         );
         return $mySQLconnection;
-    } catch (\Exception $e) 
+    } 
+    catch (\Exception $e) 
     { 
         die('Erreur : ' . $e->getMessage());
     }
