@@ -16,7 +16,7 @@
     ?>
 
     <tr>
-        <form method="post" action="index.php?action=updateActeur&id=<?=$acteur["id_acteur"]?>">
+        <form method="post" action="index.php?action=updateActeur&id_acteur=<?=$acteur["id_acteur"]?>">
             <td>  
                 <?=$acteur["nom"]?>
                 <input type="text" name="nom" value="nom">
