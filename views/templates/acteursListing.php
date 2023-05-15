@@ -35,7 +35,7 @@
         <form method="post" action="index.php?action=updateActeur&id=<?=$acteur["id_acteur"]?>">
             <td>  
                 <?=$acteur["dateDeNaissance"]?>
-                <input type="text" name="dateDeNaissance" value="DdN">
+                <input type="text" name="dateDeNaissance" value="ddN">
                 <button type="submit">Envoyer</button>
             </td>
         </form>
