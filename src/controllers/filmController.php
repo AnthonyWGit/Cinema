@@ -108,8 +108,8 @@ function addFilm($filmData,$fileData)
 {
     var_dump($fileData);
     var_dump($filmData);
-    $filmData["duree_film"] = filterFourNumbers($filmData["duree_film"]);
-    addFilmModel($filmData,$fileData);
+    $filmData["duree_film"] = filterFourNumbers($filmData["duree_film"]);  //Converting format
+    addFilmModel($filmData,$fileData);                                      //fileData contains file path
     header("Location:index.php?action=displayFilms");
 }
 
