@@ -59,12 +59,7 @@ function updateActeur($dataActeurs,$id)
         }
     }
     $permission == true ? updateActeurModel($filteredDataActeurs,$id,$fieldname) : null ;
-    echo "---------fieldname-------";
-    var_dump($fieldname);
-    echo "----------Value---------";
-    var_dump($value);
-    echo "--------FILTEREDVALUE--------";
-    var_dump($filteredDataActeurs);
+    header("Location:index.php?action=displayActeurs");
 //We need to keep in mind we are working with a filtered value  comming from a string
                                                             //3 args so we retain the fieldname
 }
