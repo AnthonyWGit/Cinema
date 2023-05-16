@@ -17,7 +17,7 @@
         ?>
 
         <tr>
-            
+
             <td>
                 <button><a href="index.php?action=deleteActeur&id_acteur=<?=$acteur["id_acteur"]?>">Supprimer</a></button>
             </td>
@@ -30,7 +30,7 @@
                 </td>
             </form>
 
-            <form method="post" action="index.php?action=updateActeur&id=<?=$acteur["id_acteur"]?>">
+            <form method="post" action="index.php?action=updateActeur&id_acteur=<?=$acteur["id_acteur"]?>">
                 <td>  
                     <?=$acteur["prenom"]?>
                     <input type="text" name="prenom" value="prénom">
@@ -38,7 +38,7 @@
                 </td>
             </form>
 
-            <form method="post" action="index.php?action=updateActeur&id=<?=$acteur["id_acteur"]?>">
+            <form method="post" action="index.php?action=updateActeur&id_acteur=<?=$acteur["id_acteur"]?>">
                 <td>  
                     <?=$acteur["dateDeNaissance"]?>
                     <input type="text" name="dateDeNaissance" value="ddN">
@@ -46,7 +46,7 @@
                 </td>
             </form>
 
-            <form method="post" action="index.php?action=updateActeur&id=<?=$acteur["id_acteur"]?>">
+            <form method="post" action="index.php?action=updateActeur&id_acteur=<?=$acteur["id_acteur"]?>">
                 <td>  
                     <?=$acteur["sexe"]?>
                     <input type="text" name="sexe" value="H/F/Autre">
