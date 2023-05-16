@@ -55,6 +55,14 @@ else if (isset($_GET["action"]) && $_GET["action"] == "addFilm")
     addFilm($filmData,$fileDataa);
 }
 
+else if (isset($_GET["action"]) && $_GET["action"] == "addActeur")
+{
+
+    $actorData = $_POST;
+    addActeur($actorData);
+}
+
+
 else if (isset($_GET["action"]) && $_GET["action"] == "deleteFilm")
 {
     $id = $_GET["id"];
