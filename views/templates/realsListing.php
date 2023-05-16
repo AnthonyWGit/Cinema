@@ -24,7 +24,7 @@
 
             <form method="post" action="index.php?action=updateRealisateur&id_real=<?=$realisateur["id_realisateur"]?>" id="nom-real-form">
                 <td>  
-                    <?=$realisateur["nom"]?>
+                    <label><?=$realisateur["nom"]?></label>
                     <input type="text" name="nom" value="nom" id="nom-real-input">
                     <button type="submit" id="nom-real-button">Envoyer</button>
                 </td>
@@ -32,7 +32,7 @@
 
             <form method="post" action="index.php?action=updateRealisateur&id_real=<?=$realisateur["id_realisateur"]?>" id="prenom-real-form">
                 <td>  
-                    <?=$realisateur["prenom"]?>
+                    <label><?=$realisateur["prenom"]?></label>
                     <input type="text" name="prenom" value="prénom" id="prenom-real-input">
                     <button type="submit" id="prenom-real-button">Envoyer</button>
                 </td>
@@ -40,7 +40,7 @@
 
             <form method="post" action="index.php?action=updateRealisateur&id_real=<?=$realisateur["id_realisateur"]?>" id="ddN-real-form">
                 <td>  
-                    <?=$realisateur["dateDeNaissance"]?>
+                    <label><?=$realisateur["dateDeNaissance"]?></label>
                     <input type="text" name="dateDeNaissance" value="ddN" id="ddN-real-input">
                     <button type="submit" id="dob-real-button">Envoyer</button>
                 </td>
@@ -48,7 +48,7 @@
 
             <form method="post" action="index.php?action=updateRealisateur&id_real=<?=$realisateur["id_realisateur"]?>" id="sexe-real-form">
                 <td>  
-                    <?=$realisateur["sexe"]?>
+                    <label><?=$realisateur["sexe"]?></label>
                     <input type="text" name="sexe" value="H/F/Autre" id="sexe-real-input">
                     <button type="submit" id="sexe-real-button">Envoyer</button>
                 </td>
@@ -67,22 +67,22 @@
                 </td>
 
                 <td>
-                    Nom
+                    <label>Nom</label>
                     <input type="text" name="nom" id="real-name-new" value="Insérez nom">
                 </td>
 
                 <td>
-                    Prénom
+                    <label>Prénom</label>
                     <input type="text" name="prenom" id="real-forename-new" value="Insérez prénom">
                 </td>
 
                 <td>
-                    Date de naissance
+                    <label>Date de naissance</label>
                     <input type="text" name="dateDeNaissance" id="real-dob-new" value="Insérez prénom">
                 </td>
 
                 <td>
-                    Sexe
+                    <label>Sexe</label>
                     <input type="text" name="sexe" id="real-sex-new" value="Insérez sexe (au bon format)">
                 </td>
             </tr>

@@ -24,7 +24,7 @@
 
             <form method="post" action="index.php?action=updateActeur&id_acteur=<?=$acteur["id_acteur"]?>">
                 <td>  
-                    <?=$acteur["nom"]?>
+                    <label><?=$acteur["nom"]?></label>
                     <input type="text" name="nom" value="nom">
                     <button type="submit">Envoyer</button>
                 </td>
@@ -32,7 +32,7 @@
 
             <form method="post" action="index.php?action=updateActeur&id_acteur=<?=$acteur["id_acteur"]?>">
                 <td>  
-                    <?=$acteur["prenom"]?>
+                    <label><?=$acteur["prenom"]?></label>
                     <input type="text" name="prenom" value="prénom">
                     <button type="submit">Envoyer</button>
                 </td>
@@ -40,7 +40,7 @@
 
             <form method="post" action="index.php?action=updateActeur&id_acteur=<?=$acteur["id_acteur"]?>">
                 <td>  
-                    <?=$acteur["dateDeNaissance"]?>
+                    <label><?=$acteur["dateDeNaissance"]?></label>
                     <input type="text" name="dateDeNaissance" value="ddN">
                     <button type="submit">Envoyer</button>
                 </td>
@@ -48,7 +48,7 @@
 
             <form method="post" action="index.php?action=updateActeur&id_acteur=<?=$acteur["id_acteur"]?>">
                 <td>  
-                    <?=$acteur["sexe"]?>
+                    <label><?=$acteur["sexe"]?></label>
                     <input type="text" name="sexe" value="H/F/Autre">
                     <button type="submit">Envoyer</button>
                 </td>
@@ -67,22 +67,22 @@
                 </td>
 
                 <td>
-                    Nom
+                    <label>Nom</label>
                     <input type="text" name="nom" id="actor-name" value="Insérez nom">
                 </td>
 
                 <td>
-                    Prénom
+                    <label>Prénom</label>
                     <input type="text" name="prenom" id="actor-forename" value="Insérez prénom">
                 </td>
 
                 <td>
-                    Date de naissance
+                    <label>Date de naissance</label>
                     <input type="text" name="dateDeNaissance" id="actor-dob" value="Insérez prénom">
                 </td>
 
                 <td>
-                    Sexe
+                    <label>Sexe</label>
                     <input type="text" name="sexe" id="actor-sex" value="Insérez sexe (au bon format)">
                 </td>
             </tr>
