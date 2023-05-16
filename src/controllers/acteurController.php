@@ -64,3 +64,8 @@ function updateActeur($dataActeurs,$id)
 //We need to keep in mind we are working with a filtered value  comming from a string
                                                             //3 args so we retain the fieldname
 }
+
+function addActeur($acteurData)
+{
+    addActeurModel($acteurData);
+}
