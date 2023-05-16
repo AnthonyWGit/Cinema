@@ -10,3 +10,14 @@ function getRoles()
     $roles = $stmt->fetchAll();
     return $roles;
 }
+
+function updateRoleModel($filteredValue,$id)
+{
+    $mySQLconnection = connexion();
+    $sqlQuery = 'UPDATE role SET nom_role = :nom_role
+                WHERE id_role = :id_role';
+    $stmt =  $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':nom_role',$filteredValue);
+    $stmt->bindValue(':id_role',$id,PDO::PARAM_INT);
+    $stmt->execute();
+}

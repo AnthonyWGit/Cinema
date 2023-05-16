@@ -27,6 +27,12 @@ if (isset($_GET["action"]) &&  $_GET["action"] == "updateRealisateur")
     updateReal($dataReals, $id);
 }
 
+if (isset($_GET["action"]) &&  $_GET["action"] == "updateRole")
+{   
+    $dataRoles = $_POST;
+    $id = $_GET["id_role"];
+    updateRole($dataRoles, $id);
+}
 //--------------------END ACTIONS UPDATE ---------------------------------------
 
 //----------------------ACTIONS DISPLAY -----------------------------------------
