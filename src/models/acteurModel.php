@@ -19,7 +19,7 @@ function updateActeurModel($filteredDataActeurs,$id,$fieldName)
                 SET '. $fieldName . ' = :'.$fieldName.' WHERE id_acteur = :id_acteur';
     $stmt = $mySQLconnection->prepare($sqlQuery);
     $stmt->bindValue($fieldName, $filteredDataActeurs);
-    $stmt->bindValue('id_acteur',$id);
+    $stmt->bindValue('id_acteur',$id,PDO::PARAM_INT);
     var_dump($stmt);
     $stmt->execute();
     unset($mySQLconnection);
@@ -49,4 +49,17 @@ function addActeurModel($acteurData) //This need to add an entry in personne tab
     $stmt = $mySQLconnection->prepare($sqlQuery);
     $stmt->bindValue(":nom",$nom);
     $stmt->execute();                           //and here is where we create a new id actor associated with the id person 
+}
+
+function deleteActeurModel($id)
+{
+    $mySQLconnection = connexion(); //Below innerjoin because we need to delete date in personne table and the id linked with the 
+                                    //personne entry so we doin a join
+    $sqlQuery = 'DELETE acteur, personne
+                FROM acteur
+                INNER JOIN personne ON acteur.id_personne = personne.id_personne
+                WHERE acteur.id_acteur = :id_acteur';
+    $stmt = $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':id_acteur',$id, PDO::PARAM_INT);
+    $stmt->execute();
 }

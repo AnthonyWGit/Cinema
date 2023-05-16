@@ -80,3 +80,8 @@ function addActeur($acteurData)
     var_dump($filteredActeurData);
     if ($permission) addActeurModel($filteredActeurData);
 }
+
+function deleteActeur($id)
+{
+    deleteActeurModel($id);
+}

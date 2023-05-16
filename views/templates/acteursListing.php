@@ -4,6 +4,7 @@
     <!-- TABLE STARTS HERE -->
     <table>
         <tr>
+            <th></th>
             <th>Nom</th>
             <th>Prénom</th>
             <th>Date de naissance</th>
@@ -16,6 +17,11 @@
         ?>
 
         <tr>
+            
+            <td>
+                <button><a href="index.php?action=deleteActeur&id_acteur=<?=$acteur["id_acteur"]?>">Supprimer</a></button>
+            </td>
+
             <form method="post" action="index.php?action=updateActeur&id_acteur=<?=$acteur["id_acteur"]?>">
                 <td>  
                     <?=$acteur["nom"]?>

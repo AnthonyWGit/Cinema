@@ -63,6 +63,11 @@ else if (isset($_GET["action"]) && $_GET["action"] == "deleteFilm")
     deleteFilm($id);
 }
 
+else if (isset($_GET["action"]) && $_GET["action"] == "deleteActeur")
+{
+    $id = $_GET["id_acteur"];
+    deleteActeur($id);
+}
 // ----------------------------END ACTION DELETE STUFF----------------------------------------
 
 //----------------------------ACTION UPLOAD FILE-----------------------------------------
