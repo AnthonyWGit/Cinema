@@ -49,3 +49,16 @@ function addRealModel($realData) //This need to add an entry in personne table a
     $stmt->bindValue(":nom",$nom);
     $stmt->execute();                           //and here is where we create a new id actor associated with the id person 
 }
+
+function deleteRealModel($id)
+{
+    $mySQLconnection = connexion(); //Below innerjoin because we need to delete date in personne table and the id linked with the 
+                                    //personne entry so we doin a join
+    $sqlQuery = 'DELETE realisateur, personne
+                FROM realisateur
+                INNER JOIN personne ON realisateur.id_personne = personne.id_personne
+                WHERE realisateur.id_realisateur = :id_realisateur';
+    $stmt = $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':id_realisateur',$id, PDO::PARAM_INT);
+    $stmt->execute();
+}

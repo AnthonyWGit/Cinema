@@ -1,19 +1,20 @@
 <?php 
-require_once "src/models/realisateurModel.php";
+require_once ("src/models/realisateurModel.php");
 
 function displayReals()
 {
-    $realisateurs = getRealisateurs();
-    require_once "views/templates/realsListing.php";
+    $reals = getRealisateurs();
+    require "views/templates/realsListing.php";
 }
-
 function updateReal($dataReals,$id)
 {
+    //----------INITIALIZATION-------------------------------------
     $authorizedSexStrings = ["h","f","a","homme","femme","autre"];      //We want the user to only put that
     $transformation = ["H" => "Homme", "F" => "Femme", "A" => "Autre"]; //If user put a correct input like "h" "f" or "a"
                                                                         //we will use this array to transform string b/c full array is prettier
-    $permission = true;
-    var_dump($dataReals);
+    $permission = false;                                                                        
+    //----------END INITIALIZATION------------------------------------
+    //METHOD ONE : 
     foreach ($dataReals as $fieldname=>$value)
     {
         $filteredDataReals = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -30,99 +31,96 @@ function updateReal($dataReals,$id)
                 }
                 else        //user trolled 
                 {
-                    var_dump($dateObj);
-                    $permission = false;
                     echo "test not ok";
                     break;
                 }
-
             case $fieldname == "sexe";
                 if (in_array(mb_strtolower($filteredDataReals),$authorizedSexStrings)) //We get rid of case sensivity problem
                 {
                     echo "test ok";
-                    $filteredDataReals = ucfirst(strtolower($filteredDataReals));     //value displayed as UPPERCASElowercase-- I like having the final output as "Homme"
-                    if (array_key_exists($filteredDataReals, $transformation))          //"Femme" or "Autre"  
-                    $filteredDataReals = $transformation[$filteredDataReals];         //So i check if the the input is "h" "f" or "a" and transform
+                    $filteredDataReals = ucfirst(strtolower($filteredDataReals));    //Il like having                                  //value displayed as UPPERCASElowercase
+                                                                                         //value displayed as UPPERCASElowercase--
+                    if (array_key_exists($filteredDataReals, $transformation))         //"Femme" or "Autre"  
+                    {
+                        $filteredDataReals = $transformation[$filteredDataReals];         //So i check if the the input is "h" "f" or "a" and transform                        
+                    }
                     $permission = true;
                     break;
                 }
-                
                 else
                 {
                     echo "test not ok";
                     $permission = false;
                     break;
                 }
+
             default:
                 $permission = true;
                 break;
         }
     }
-    $permission == true ? updateRealModel($filteredDataReals,$id,$fieldname) : null ;
-    header("Location:index.php?action=displayReals");
-
-//We need to keep in mind we are working with a filtered value  comming from a string
+    if($permission)
+    {
+        updateRealModel($filteredDataReals,$id,$fieldname);//We need to keep in mind we are working with a filtered value  comming from a string
                                                             //3 args so we retain the fieldname
+        header("Location:index.php?action=displayReals");        
+    }
+    else
+    {
+        echo "Error";
+    }
 }
+
+
 
 function addReal($realData)
 {
+
+    //------------- INITIALIZATION VAR--------------------------------
     $authorizedSexStrings = ["h","f","a","homme","femme","autre"];      //We want the user to only put that
     $transformation = ["H" => "Homme", "F" => "Femme", "A" => "Autre"]; //If user put a correct input like "h" "f" or "a"
-                                                                        //we will use this array to transform string b/c full array is prettier
-    $permission = false;
-    foreach ($realData as $fieldname=>$value)
-    {
-        $filteredDataReals = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        switch ($fieldname)
-        {
-            case $fieldname == "dateDeNaissance":
-                $dateObj = DateTime::createFromFormat('Y-m-d', $filteredDataReals); //Checking good data format
-                if ($dateObj) //is true if we created the object it means used has good input 
-                {
-                    var_dump($dateObj);
-                    echo "text Ok";
-                    $permission = true;
-                    break;                    
-                }
-                else        //user trolled 
-                {
-                    var_dump($dateObj);
-                    $permission = false;
-                    echo "test not ok";
-                    break;
-                }
+    $permission = true;                                //Another method of filtering using filter_var_array instead of
+    $filters = [                                        //foreaching through all of the field and adding filtered values to a new array
+        "nom" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,    //like an idiot 
+        "prenom" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "dateDeNaissance" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "sexe" => FILTER_SANITIZE_FULL_SPECIAL_CHARS
+    ];
+    //-----------------SANITIZING-------------------------------------
+    $filteredRealData = filter_var_array($realData,$filters);
+    $sexeInput = mb_strtolower($filteredRealData["sexe"]);       
+    //-----------------END INTIALIZATION VAR--------------------------    
+    //-----------------CHEKING DATE FORMAT
+    $dateObj = DateTime::createFromFormat('Y-m-d', $filteredRealData["dateDeNaissance"]);
+    if (!$dateObj) $permission = false;          //If the creation of object DateTime is false it means the user put wrong format    
+    //-----------------CHECKING SEX------------------------
 
-            case $fieldname == "sexe";
-                if (in_array(mb_strtolower($filteredDataReals),$authorizedSexStrings)) //We get rid of case sensivity problem
-                {
-                    echo "test ok";
-                    $filteredDataReals = ucfirst(strtolower($filteredDataReals));     //value displayed as UPPERCASElowercase-- I like having the final output as "Homme"
-                    if (array_key_exists($filteredDataReals, $transformation))          //"Femme" or "Autre"  
-                    $filteredDataReals = $transformation[$filteredDataReals];         //So i check if the the input is "h" "f" or "a" and transform
-                    $permission = true;
-                    break;
-                }
-                
-                else
-                {
-                    echo "test not ok";
-                    $permission = false;
-                    break;
-                }
-            default:
-                $permission = true;
-                break;
+    if (in_array($sexeInput,$authorizedSexStrings)) //We get rid of case sensivity problem
+    {
+        echo "test ok-------". var_dump($filteredRealData["sexe"]);
+        $sexeInput = ucfirst($sexeInput);     //value displayed as UPPERCASElowercase-- I like having the final output as "Homme"
+        if (array_key_exists($sexeInput, $transformation))          //"Femme" or "Autre"  
+        {
+            $filteredRealData["sexe"] = $transformation[$sexeInput];         //So i check if the the input is "h" "f" or "a" and transform
+            $permission = true;            
         }
     }
-    $permission == true ? addRealModel($filteredDataReals) : null ;
-    var_dump($filteredDataReals);
-//We need to keep in mind we are working with a filtered value  comming from a string
-                                                            //3 args so we retain the fieldname
+    else
+    {
+        $permission = false;
+        echo "Error";
+    }
+    //-------------------------ACTION ---------------------------
+    if ($permission){
+        addRealModel($filteredRealData);
+        header("Location:index.php?action=displayReals");
+    }
+    else{
+    echo "Error";
+    }
 }
-
-// function deleteReal($id)
-// {
-//     deleteActeurReal($id);
-//     header("Location:index.php?action=displayReals");
-// }
+function deleteReal($id)
+{
+    deleteRealModel($id);
+    header("Location:index.php?action=displayReals");
+}

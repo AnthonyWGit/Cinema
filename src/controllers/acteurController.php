@@ -112,6 +112,7 @@ function addActeur($acteurData)
     //-------------------------ACTION ---------------------------
     if ($permission){
         addActeurModel($filteredActeurData);
+        header("Location:index.php?action=displayActeurs");
     }
     else{
     echo "Error";

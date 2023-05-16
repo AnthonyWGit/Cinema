@@ -12,14 +12,14 @@
         </tr>
     
         <?php 
-        foreach($realisateurs as $realisateur)
+        foreach($reals as $realisateur)
         { 
         ?>
 
         <tr>
             
             <td>
-                <button><a href="index.php?action=deleteRealisateur&id_real=<?=$realisateur["id_realisateur"]?>">Supprimer</a></button>
+                <button><a href="index.php?action=deleteReal&id_real=<?=$realisateur["id_realisateur"]?>">Supprimer</a></button>
             </td>
 
             <form method="post" action="index.php?action=updateRealisateur&id_real=<?=$realisateur["id_realisateur"]?>" id="nom-real-form">

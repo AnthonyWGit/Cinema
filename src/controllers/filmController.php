@@ -7,7 +7,7 @@ function displayFilms()
 {
     $filmsList = getFilms(); 
     $realisateursList = [];
-    foreach ($filmsList as $film) //This will be used for the dropdown too add director when creating new row
+    foreach ($filmsList as $film) //This will be used for the dropdown to add director when creating new row
     {
         $realisateursList[$film["id_realisateur"]] = [
             "name" => $film["nom"],

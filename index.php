@@ -83,6 +83,12 @@ else if (isset($_GET["action"]) && $_GET["action"] == "deleteActeur")
     $id = $_GET["id_acteur"];
     deleteActeur($id);
 }
+
+else if (isset($_GET["action"]) && $_GET["action"] == "deleteReal")
+{
+    $id = $_GET["id_real"];
+    deleteReal($id);
+}
 // ----------------------------END ACTION DELETE STUFF----------------------------------------
 
 //----------------------------ACTION UPLOAD FILE-----------------------------------------
