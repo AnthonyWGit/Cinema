@@ -19,10 +19,10 @@
         <tr>
             
             <td>
-                <button><a href="index.php?action=deleterealisateur&id_realisateur=<?=$realisateur["id_realisateur"]?>">Supprimer</a></button>
+                <button><a href="index.php?action=deleteRealisateur&id_realisateur=<?=$realisateur["id_realisateur"]?>">Supprimer</a></button>
             </td>
 
-            <form method="post" action="index.php?action=updaterealisateur&id_realisateur=<?=$realisateur["id_realisateur"]?>" id="nom-real-form">
+            <form method="post" action="index.php?action=updateRealisateur&id_realisateur=<?=$realisateur["id_realisateur"]?>" id="nom-real-form">
                 <td>  
                     <?=$realisateur["nom"]?>
                     <input type="text" name="nom" value="nom" id="nom-real-input">
@@ -30,7 +30,7 @@
                 </td>
             </form>
 
-            <form method="post" action="index.php?action=updaterealisateur&id=<?=$realisateur["id_realisateur"]?>" id="prenom-real-form">
+            <form method="post" action="index.php?action=updateRealisateur&id=<?=$realisateur["id_realisateur"]?>" id="prenom-real-form">
                 <td>  
                     <?=$realisateur["prenom"]?>
                     <input type="text" name="prenom" value="prénom" id="prenom-real-input">
@@ -38,7 +38,7 @@
                 </td>
             </form>
 
-            <form method="post" action="index.php?action=updaterealisateur&id=<?=$realisateur["id_realisateur"]?>" id="ddN-real-form">
+            <form method="post" action="index.php?action=updateRealisateur&id=<?=$realisateur["id_realisateur"]?>" id="ddN-real-form">
                 <td>  
                     <?=$realisateur["dateDeNaissance"]?>
                     <input type="text" name="dateDeNaissance" value="ddN" id="ddN-real-input">
@@ -46,7 +46,7 @@
                 </td>
             </form>
 
-            <form method="post" action="index.php?action=updaterealisateur&id=<?=$realisateur["id_realisateur"]?>" id="sexe-real-form">
+            <form method="post" action="index.php?action=updateRealisateur&id=<?=$realisateur["id_realisateur"]?>" id="sexe-real-form">
                 <td>  
                     <?=$realisateur["sexe"]?>
                     <input type="text" name="sexe" value="H/F/Autre" id="sexe-real-input">
