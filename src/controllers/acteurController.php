@@ -7,11 +7,13 @@ function displayActeurs()
 }
 function updateActeur($dataActeurs,$id)
 {
+    //----------INITIALIZATION-------------------------------------
     $authorizedSexStrings = ["h","f","a","homme","femme","autre"];      //We want the user to only put that
     $transformation = ["H" => "Homme", "F" => "Femme", "A" => "Autre"]; //If user put a correct input like "h" "f" or "a"
                                                                         //we will use this array to transform string b/c full array is prettier
-    $permission = false;
-    var_dump($dataActeurs);
+    $permission = false;                                                                        
+    //----------END INITIALIZATION------------------------------------
+    //METHOD ONE : 
     foreach ($dataActeurs as $fieldname=>$value)
     {
         $filteredDataActeurs = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -28,8 +30,6 @@ function updateActeur($dataActeurs,$id)
                 }
                 else        //user trolled 
                 {
-                    var_dump($dateObj);
-                    $permission = false;
                     echo "test not ok";
                     break;
                 }
@@ -37,21 +37,22 @@ function updateActeur($dataActeurs,$id)
                 if (in_array(mb_strtolower($filteredDataActeurs),$authorizedSexStrings)) //We get rid of case sensivity problem
                 {
                     echo "test ok";
-                    $filteredDataActeurs = ucfirst(strtolower($filteredDataActeurs));     //Il like having
-                    $permission = true;                                     //value displayed as UPPERCASElowercase
-                    $filteredDataActeurs = ucfirst(strtolower($filteredDataActeurs));     //value displayed as UPPERCASElowercase-- I like having the final output as "Homme"
-                    if (array_key_exists($filteredDataActeurs, $transformation))          //"Femme" or "Autre"  
-                    $filteredDataActeurs = $transformation[$filteredDataActeurs];         //So i check if the the input is "h" "f" or "a" and transform
+                    $filteredDataActeurs = ucfirst(strtolower($filteredDataActeurs));    //Il like having                                  //value displayed as UPPERCASElowercase
+                                                                                         //value displayed as UPPERCASElowercase--
+                    if (array_key_exists($filteredDataActeurs, $transformation))         //"Femme" or "Autre"  
+                    {
+                        $filteredDataActeurs = $transformation[$filteredDataActeurs];         //So i check if the the input is "h" "f" or "a" and transform                        
+                    }
                     $permission = true;
                     break;
                 }
-
                 else
                 {
                     echo "test not ok";
                     $permission = false;
                     break;
                 }
+
             default:
                 $permission = true;
                 break;
@@ -102,6 +103,11 @@ function addActeur($acteurData)
             $filteredActeurData["sexe"] = $transformation[$sexeInput];         //So i check if the the input is "h" "f" or "a" and transform
             $permission = true;            
         }
+    }
+    else
+    {
+        $permission = false;
+        echo "Error";
     }
     //-------------------------ACTION ---------------------------
     if ($permission){
