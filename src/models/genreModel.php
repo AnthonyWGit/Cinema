@@ -1,21 +1,7 @@
 <?php
-function connexion()
-{
-    try {
-        $mySQLconnection = new PDO(                                                     //Connecting to SQL server
-            'mysql:host=127.0.0.1;dbname=cinema;charset=utf8',
-            'root',
-            '',
-            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-        );
-        return $mySQLconnection;
-    } catch (\Exception $e) 
-    { 
-        die('Erreur : ' . $e->getMessage());
-    }
-}
+require_once ('src/models/connexion.php');
 
-function getGenres() 
+function getgenres() 
 {
     $mySQLconnection = connexion();
     $sqlQuery = 'SELECT * FROM genre'; //priceF means priceFormated
@@ -23,4 +9,32 @@ function getGenres()
     $stmt->execute();                                                     //The data we retrieve are in array form
     $genres = $stmt->fetchAll();
     return $genres;
+}
+
+function updateGenreModel($filteredValue,$id)
+{
+    $mySQLconnection = connexion();
+    $sqlQuery = 'UPDATE genre SET nom_genre = :nom_genre
+                WHERE id_genre = :id_genre';
+    $stmt =  $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':nom_genre',$filteredValue);
+    $stmt->bindValue(':id_genre',$id,PDO::PARAM_INT);
+    $stmt->execute();
+}
+function addGenreModel($filteredgenreData)
+{
+    $mySQLconnection = connexion();
+    $sqlQuery = 'INSERT INTO genre (nom_genre) VALUES (:nom_genre)';
+    $stmt = $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':nom_genre',$filteredgenreData);
+    $stmt->execute();
+}
+function deleteGenreModel($id)
+{
+    $mySQLconnection = connexion();
+    $sqlQuery = 'DELETE FROM genre
+                WHERE id_genre = :id_genre';
+    $stmt = $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':id_genre',$id, PDO::PARAM_INT);
+    $stmt->execute();
 }

@@ -5,6 +5,7 @@ require_once("src/controllers/filmController.php");
 require_once("src/controllers/synopsisController.php");
 require_once("src/controllers/realController.php");
 require_once("src/controllers/roleController.php");
+require_once("src/controllers/genreController.php");
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -33,6 +34,13 @@ if (isset($_GET["action"]) &&  $_GET["action"] == "updateRole")
     $id = $_GET["id_role"];
     updateRole($dataRoles, $id);
 }
+
+if (isset($_GET["action"]) &&  $_GET["action"] == "updateGenre")
+{   
+    $dataGenres = $_POST;
+    $id = $_GET["id_genre"];
+    updateGenre($dataGenres, $id);
+}
 //--------------------END ACTIONS UPDATE ---------------------------------------
 
 //----------------------ACTIONS DISPLAY -----------------------------------------
@@ -53,7 +61,10 @@ else if (isset($_GET["action"]) && $_GET["action"] == "displayRoles")
 {
     displayRoles();
 }
-
+else if (isset($_GET["action"]) && $_GET["action"] == "displayGenres")
+{
+    displayGenres();
+}
 //------------------END ACTION DISPLAY-----------------------------------------------
 
 //-------------------------ACTIONS ADD STUFF ----------------------------------
