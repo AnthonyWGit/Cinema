@@ -10,6 +10,8 @@ function displayActeurs()
 function updateActeur($dataActeurs,$id)
 {
     $authorizedSexStrings = ["h","f","a","homme","femme","autre"];      //We want the user to only put that
+    $transformation = ["H" => "Homme", "F" => "Femme", "A" => "Autre"]; //If user put a correct input like "h" "f" or "a"
+                                                                        //we will use this array to transform string b/c full array is prettier
     $permission = false;
     var_dump($dataActeurs);
     foreach ($dataActeurs as $fieldname=>$value)
@@ -38,8 +40,10 @@ function updateActeur($dataActeurs,$id)
                 if (in_array(mb_strtolower($filteredDataActeurs),$authorizedSexStrings)) //We get rid of case sensivity problem
                 {
                     echo "test ok";
-                    $filteredDataActeurs = ucfirst(strtolower($filteredDataActeurs));     //Il like having
-                    $permission = true;                                     //value displayed as UPPERCASElowercase
+                    $filteredDataActeurs = ucfirst(strtolower($filteredDataActeurs));     //value displayed as UPPERCASElowercase-- I like having the final output as "Homme"
+                    if (array_key_exists($filteredDataActeurs, $transformation))          //"Femme" or "Autre"  
+                    $filteredDataActeurs = $transformation[$filteredDataActeurs];         //So i check if the the input is "h" "f" or "a" and transform
+                    $permission = true;
                     break;
                 }
                 
@@ -77,6 +81,10 @@ function addActeur($acteurData)
     $filteredActeurData = filter_var_array($acteurData,$filters);
     $dateObj = DateTime::createFromFormat('Y-m-d', $filteredActeurData["dateDeNaissance"]);
     if (!$dateObj) $permission = false;          //If the creation of object DateTime is false it means the user put wrong format
+    $authorizedSexStrings = ["h","f","a","homme","femme","autre"];      //We want the user to only put that
+    if (in_array(mb_strtolower($filteredActeurData),$authorizedSexStrings)) //We get rid of case sensivity problem
+    
+
     if ($permission){
         addActeurModel($filteredActeurData);
     }
