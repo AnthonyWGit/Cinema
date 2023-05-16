@@ -16,10 +16,14 @@ if (isset($_GET["action"]) &&  $_GET["action"] == "updateFilms")
 if (isset($_GET["action"]) &&  $_GET["action"] == "updateActeur")
 {   
     $dataActeurs = $_POST;
-    var_dump($dataActeurs);
-    $id = $_GET["id"];
-    var_dump($_GET);
+    $id = $_GET["id_acteur"];
     updateActeur($dataActeurs, $id);
+}
+if (isset($_GET["action"]) &&  $_GET["action"] == "updateRealisateur")
+{   
+    $dataReals = $_POST;
+    $id = $_GET["id_realisateur"];
+    updateReal($dataReals, $id);
 }
 
 //--------------------END ACTIONS UPDATE ---------------------------------------
