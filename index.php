@@ -22,7 +22,7 @@ if (isset($_GET["action"]) &&  $_GET["action"] == "updateActeur")
 if (isset($_GET["action"]) &&  $_GET["action"] == "updateRealisateur")
 {   
     $dataReals = $_POST;
-    $id = $_GET["id_realisateur"];
+    $id = $_GET["id_real"];
     updateReal($dataReals, $id);
 }
 
@@ -62,6 +62,12 @@ else if (isset($_GET["action"]) && $_GET["action"] == "addActeur")
     addActeur($actorData);
 }
 
+else if (isset($_GET["action"]) && $_GET["action"] == "addReal")
+{
+
+     $realData= $_POST;
+     addReal($realData);
+}
 //----------------------------------END ACTIONS ADD STUFF ----------------------------
 
 //------------------------------ACTION DELETE STUFF-------------------------------------
