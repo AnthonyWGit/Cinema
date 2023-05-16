@@ -21,12 +21,12 @@ function updateGenreModel($filteredValue,$id)
     $stmt->bindValue(':id_genre',$id,PDO::PARAM_INT);
     $stmt->execute();
 }
-function addGenreModel($filteredgenreData)
+function addGenreModel($filteredGenreData)
 {
     $mySQLconnection = connexion();
     $sqlQuery = 'INSERT INTO genre (nom_genre) VALUES (:nom_genre)';
     $stmt = $mySQLconnection->prepare($sqlQuery);
-    $stmt->bindValue(':nom_genre',$filteredgenreData);
+    $stmt->bindValue(':nom_genre',$filteredGenreData);
     $stmt->execute();
 }
 function deleteGenreModel($id)

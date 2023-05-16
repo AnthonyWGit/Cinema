@@ -19,12 +19,12 @@ function updateGenre($dataGenres, $id)
     updateGenreModel($filteredValue,$id);
 }
 
-// function addGenre($GenreData)
-// {
-//     $filteredGenreData = filter_var($GenreData,FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-//     addGenreModel($filteredGenreData);
-// }
-// function deleteGenre($id)
-// {
-//     deleteGenreModel($id);
-// }
+function addGenre($genreData)
+{
+    $filteredGenreData = filter_var($genreData,FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    addGenreModel($filteredGenreData);
+}
+function deleteGenre($id)
+{
+    deleteGenreModel($id);
+}

@@ -42,7 +42,7 @@
         <form method="post" action="index.php?action=addGenre">
             <tr>
                 <td>
-                    <button type="submit">Ajouter un rôle</button>
+                    <button type="submit">Ajouter un genre</button>
                 </td>
 
                 <td>

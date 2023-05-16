@@ -93,6 +93,12 @@ else if (isset($_GET["action"]) && $_GET["action"] == "addRole")
      $roleData= $_POST;
      addRole($roleData);
 }
+
+else if (isset($_GET["action"]) && $_GET["action"] == "addGenre")
+{
+     $genreData= $_POST;
+     addGenre($genreData);
+}
 //----------------------------------END ACTIONS ADD STUFF ----------------------------
 
 //------------------------------ACTION DELETE STUFF-------------------------------------
@@ -119,6 +125,12 @@ else if (isset($_GET["action"]) && $_GET["action"] == "deleteRole")
 {
     $id = $_GET["id_role"];
     deleteRole($id);
+}
+
+else if (isset($_GET["action"]) && $_GET["action"] == "deleteGenre")
+{
+    $id = $_GET["id_genre"];
+    deleteGenre($id);
 }
 // ----------------------------END ACTION DELETE STUFF----------------------------------------
 
