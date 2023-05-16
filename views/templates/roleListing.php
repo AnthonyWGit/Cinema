@@ -25,9 +25,9 @@
             </td>
 
 
-            <form method="post" action="index.php?action=updateRole&id_role=<?=$role["id_acteur"]?>">
+            <form method="post" action="index.php?action=updateRole&id_role=<?=$role["id_role"]?>">
                 <td>  
-                    <?=$role["prenom"]?>
+                    <?=$role["nom_role"]?>
                     <input type="text" name="nom_role" value="Titre du rôle">
                     <button type="submit">Envoyer</button>
                 </td>
@@ -39,7 +39,7 @@
         }
         ?>
         <!-- LAST LINE OF TABLE -->
-        <form method="post" action="index.php?action=addActeur">
+        <form method="post" action="index.php?action=addRole">
             <tr>
                 <td>
                     <button type="submit">Ajouter un rôle</button>
@@ -50,7 +50,7 @@
 
                 <td>
                     <label>Nom du rôle</label>
-                    <input type="text" name="prenom" id="actor-forename" value="Insérez prénom">
+                    <input type="text" name="prenom" id="role-nom-role" value="Insérez rôle">
                 </td>
 
             </tr>

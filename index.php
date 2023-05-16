@@ -4,6 +4,7 @@ require_once("src/controllers/acteurController.php");
 require_once("src/controllers/filmController.php");
 require_once("src/controllers/synopsisController.php");
 require_once("src/controllers/realController.php");
+require_once("src/controllers/roleController.php");
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -41,6 +42,10 @@ else if (isset($_GET["action"]) && $_GET["action"] == "displayActeurs")
 else if (isset($_GET["action"]) && $_GET["action"] == "displayReals")
 {
     displayReals();
+}
+else if (isset($_GET["action"]) && $_GET["action"] == "displayRoles")
+{
+    displayRoles();
 }
 
 //------------------END ACTION DISPLAY-----------------------------------------------
