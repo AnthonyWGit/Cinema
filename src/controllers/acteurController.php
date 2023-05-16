@@ -67,5 +67,16 @@ function updateActeur($dataActeurs,$id)
 
 function addActeur($acteurData)
 {
-    addActeurModel($acteurData);
+    $permission = true;                                //Another method of filtering using filter_var_array instead of
+    $filters = [                                        //foreaching through all of the field and adding filtered values to a new array
+        "nom" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,    //like an idiot 
+        "prenom" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "dateDeNaissance" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        "sexe" => FILTER_SANITIZE_FULL_SPECIAL_CHARS
+    ];
+    $filteredActeurData = filter_var_array($acteurData,$filters);
+    $dateObj = DateTime::createFromFormat('Y-m-d', $filteredActeurData["dateDeNaissance"]);
+    if ($dateObj) $permission == false;
+    var_dump($filteredActeurData);
+    if ($permission) addActeurModel($filteredActeurData);
 }
