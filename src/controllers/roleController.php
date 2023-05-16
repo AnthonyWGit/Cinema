@@ -18,3 +18,13 @@ function updateRole($dataRole, $id)
     var_dump($id);
     updateRoleModel($filteredValue,$id);
 }
+
+function addRole($roleData)
+{
+    $filteredRoleData = filter_var($roleData,FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    addRoleModel($filteredRoleData);
+}
+function deleteRole($id)
+{
+    deleteRoleModel($id);
+}

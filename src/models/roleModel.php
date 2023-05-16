@@ -21,3 +21,20 @@ function updateRoleModel($filteredValue,$id)
     $stmt->bindValue(':id_role',$id,PDO::PARAM_INT);
     $stmt->execute();
 }
+function addRoleModel($filteredRoleData)
+{
+    $mySQLconnection = connexion();
+    $sqlQuery = 'INSERT INTO role (nom_role) VALUES (:nom_role)';
+    $stmt = $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':nom_role',$filteredRoleData);
+    $stmt->execute();
+}
+function deleteRoleModel($id)
+{
+    $mySQLconnection = connexion();
+    $sqlQuery = 'DELETE FROM role
+                WHERE id_role = :id_role';
+    $stmt = $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':id_role',$id, PDO::PARAM_INT);
+    $stmt->execute();
+}

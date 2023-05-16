@@ -60,7 +60,6 @@ else if (isset($_GET["action"]) && $_GET["action"] == "displayRoles")
 
 else if (isset($_GET["action"]) && $_GET["action"] == "addFilm")
 {
-
     $filmData = $_POST;
     $fileDataa = $_FILES;
     addFilm($filmData,$fileDataa);
@@ -68,16 +67,20 @@ else if (isset($_GET["action"]) && $_GET["action"] == "addFilm")
 
 else if (isset($_GET["action"]) && $_GET["action"] == "addActeur")
 {
-
     $actorData = $_POST;
     addActeur($actorData);
 }
 
 else if (isset($_GET["action"]) && $_GET["action"] == "addReal")
 {
-
      $realData= $_POST;
      addReal($realData);
+}
+
+else if (isset($_GET["action"]) && $_GET["action"] == "addRole")
+{
+     $roleData= $_POST;
+     addRole($roleData);
 }
 //----------------------------------END ACTIONS ADD STUFF ----------------------------
 
@@ -99,6 +102,12 @@ else if (isset($_GET["action"]) && $_GET["action"] == "deleteReal")
 {
     $id = $_GET["id_real"];
     deleteReal($id);
+}
+
+else if (isset($_GET["action"]) && $_GET["action"] == "deleteRole")
+{
+    $id = $_GET["id_role"];
+    deleteRole($id);
 }
 // ----------------------------END ACTION DELETE STUFF----------------------------------------
 
