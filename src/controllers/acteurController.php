@@ -76,12 +76,17 @@ function addActeur($acteurData)
     ];
     $filteredActeurData = filter_var_array($acteurData,$filters);
     $dateObj = DateTime::createFromFormat('Y-m-d', $filteredActeurData["dateDeNaissance"]);
-    if ($dateObj) $permission == false;
-    var_dump($filteredActeurData);
-    if ($permission) addActeurModel($filteredActeurData);
+    if (!$dateObj) $permission = false;          //If the creation of object DateTime is false it means the user put wrong format
+    if ($permission){
+        addActeurModel($filteredActeurData);
+    }
+    else{
+    echo "Error";
+    }
 }
 
 function deleteActeur($id)
 {
     deleteActeurModel($id);
+    header("Location:index.php?action=displayActeurs");
 }
