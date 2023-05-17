@@ -24,7 +24,7 @@
             
             <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&champ_casting=<?=$casting["titre_film"]?>">
                 <td>  
-                    <?=$casting["titre_film"]?>
+                    <label><?=$casting["titre_film"]?></label>
                     <input type="text" name="titre_film" value="Titre du film">
                     <button type="submit">Envoyer</button>
                 </td>
@@ -32,7 +32,7 @@
 
             <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&champ_casting=<?=$casting["nom"]?>">
                 <td>  
-                    <?=$casting["nom"]?> 
+                    <label><?=$casting["nom"]?></label>
                     <input type="text" name="nom" value="Titre du rôle">
                     <button type="submit">Envoyer</button>
                 </td>
@@ -40,7 +40,7 @@
 
             <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&champ_casting=<?=$casting["prenom"]?>">
                 <td>  
-                    <?=$casting["prenom"]?> 
+                    <label><?=$casting["prenom"]?></label>
                     <input type="text" name="prenom" value="Titre du rôle">
                     <button type="submit">Envoyer</button>
                 </td>
@@ -48,7 +48,7 @@
 
             <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&champ_casting=<?=$casting["nom_role"]?>">
                 <td>  
-                    <?=$casting["nom_role"]?> 
+                    <label><?=$casting["nom_role"]?></label>
                     <input type="text" name="nom_role" value="Titre du rôle">
                     <button type="submit">Envoyer</button>
                 </td>
@@ -65,13 +65,27 @@
                 <td>
                     <button type="submit">Ajouter un casting</button>
                 </td>
-
                 <td>
+                
+                    <label><?=$casting["titre_film"]?></label>
+                    <input type="text" name="titre_film" value="Titre du film">
+                    <button type="submit">Envoyer</button>
+                    
                 </td>
-
+                <td>  
+                    <label><?=$casting["nom"]?> </label>
+                    <input type="text" name="nom" value="Titre du rôle">
+                    <button type="submit">Envoyer</button>
+                </td>
                 <td>
-                    <label>Nom du rôle</label>
-                    <input type="text" name="casting" id="casting-nom-casting" value="Insérez casting">
+                    <label><?=$casting["prenom"]?> </label>
+                    <input type="text" name="prenom" value="Titre du rôle">
+                    <button type="submit">Envoyer</button>
+                </td>
+                <td>  
+                    <label><?=$casting["nom_role"]?> </label>
+                    <input type="text" name="nom_role" value="Titre du rôle">
+                    <button type="submit">Envoyer</button>
                 </td>
 
             </tr>

@@ -34,20 +34,22 @@ function updateCastingModel($filteredValue,$id,$fieldName,$champ_casting)
     $stmt->execute();
 }
 
-// function addCastingModel($filteredcastingData)
-// {
-//     $mySQLconnection = connexion();
-//     $sqlQuery = 'INSERT INTO casting (nom_casting) VALUES (:nom_casting)';
-//     $stmt = $mySQLconnection->prepare($sqlQuery);
-//     $stmt->bindValue(':nom_casting',$filteredcastingData);
-//     $stmt->execute();
-// }
-// function deletecastingModel($id)
-// {
-//     $mySQLconnection = connexion();
-//     $sqlQuery = 'DELETE FROM casting
-//                 WHERE id_casting = :id_casting';
-//     $stmt = $mySQLconnection->prepare($sqlQuery);
-//     $stmt->bindValue(':id_casting',$id, PDO::PARAM_INT);
-//     $stmt->execute();
-// }
+function addCastingModel($ids)
+{
+    $mySQLconnection = connexion();
+    $sqlQuery = 'INSERT INTO casting (id_film, id_acteur, id_role) VALUES (:id_film, :id_acteur, :id_role)';
+    $stmt = $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':id_film',$ids[0]);    
+    $stmt->bindValue(':id_acteur',$ids[1]);
+    $stmt->bindValue(':id_role', $ids[2]);
+    $stmt->execute();
+}
+function deleteCastingModel($id)
+{
+    $mySQLconnection = connexion();
+    $sqlQuery = 'DELETE FROM casting
+                WHERE id_casting = :id_casting';
+    $stmt = $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':id_casting',$id, PDO::PARAM_INT);
+    $stmt->execute();
+}

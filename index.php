@@ -97,26 +97,26 @@ else if (isset($_GET["action"]) && $_GET["action"] == "addActeur")
 
 else if (isset($_GET["action"]) && $_GET["action"] == "addReal")
 {
-     $realData= $_POST;
-     addReal($realData);
+    $realData = $_POST;
+    addReal($realData);
 }
 
 else if (isset($_GET["action"]) && $_GET["action"] == "addRole")
 {
-     $roleData= $_POST;
-     addRole($roleData);
+    $roleData = $_POST;
+    addRole($roleData);
 }
 
 else if (isset($_GET["action"]) && $_GET["action"] == "addGenre")
 {
-     $genreData= $_POST;
-     addGenre($genreData);
+    $genreData = $_POST;
+    addGenre($genreData);
 }
 
 else if (isset($_GET["action"]) && $_GET["action"] == "addCasting")
 {
-     $genreData= $_POST;
-     addGenre($genreData);
+    $castingData = $_POST;
+    addCasting($castingData);
 }
 //----------------------------------END ACTIONS ADD STUFF ----------------------------
 
