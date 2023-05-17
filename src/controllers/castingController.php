@@ -74,7 +74,7 @@ function addcasting($castingData)
     if ($permission1 && $permission2 && $permission3) addCastingModel($ids);
 
 }
-function deletecasting($id)
+function deleteCasting($id_film, $id_acteur, $id_role)
 {
-    deleteCastingModel($id);
+    deleteCasting($id_film, $id_acteur, $id_role);
 }

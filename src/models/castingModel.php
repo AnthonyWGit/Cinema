@@ -44,12 +44,16 @@ function addCastingModel($ids)
     $stmt->bindValue(':id_role', $ids[2]);
     $stmt->execute();
 }
-function deleteCastingModel($id)
+function deleteCastingModel($id_film, $id_acteur, $id_role)
 {
     $mySQLconnection = connexion();
     $sqlQuery = 'DELETE FROM casting
-                WHERE id_casting = :id_casting';
+                WHERE id_acteur = :id_acteur
+                AND id_film = :id_film
+                AND id_role = :id_role';
     $stmt = $mySQLconnection->prepare($sqlQuery);
-    $stmt->bindValue(':id_casting',$id, PDO::PARAM_INT);
+    $stmt->bindValue(':id_film',$id_film, PDO::PARAM_INT);
+    $stmt->bindValue(':id_acteur',$id_acteur, PDO::PARAM_INT);
+    $stmt->bindValue(':id_role',$id_role, PDO::PARAM_INT);
     $stmt->execute();
 }

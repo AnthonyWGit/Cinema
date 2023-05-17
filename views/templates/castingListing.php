@@ -18,7 +18,7 @@
         <tr>
 
             <td>
-                <button><a href="index.php?action=deleteCasting&id_film=<?=$casting["id_film"]?>">Supprimer</a></button>
+                <button><a href="index.php?action=deleteCasting&id_film=<?=$casting["id_film"]?>&id_acteur=<?=$casting["id_acteur"]?>&id_role=<?=$casting["id_role"]?>">Supprimer</a></button>
             </td>
             
             
