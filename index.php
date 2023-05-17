@@ -6,6 +6,7 @@ require_once("src/controllers/synopsisController.php");
 require_once("src/controllers/realController.php");
 require_once("src/controllers/roleController.php");
 require_once("src/controllers/genreController.php");
+require_once("src/controllers/castingController.php");
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -41,6 +42,14 @@ if (isset($_GET["action"]) &&  $_GET["action"] == "updateGenre")
     $id = $_GET["id_genre"];
     updateGenre($dataGenres, $id);
 }
+
+if (isset($_GET["action"]) &&  $_GET["action"] == "updateCasting")
+{   
+    $dataCasting = $_POST;
+    $id = $_GET["id_film"];
+    $champ_casting= $_GET["champ_casting"];
+    updateCasting($dataCasting, $id, $champ_casting);
+}
 //--------------------END ACTIONS UPDATE ---------------------------------------
 
 //----------------------ACTIONS DISPLAY -----------------------------------------
@@ -64,6 +73,10 @@ else if (isset($_GET["action"]) && $_GET["action"] == "displayRoles")
 else if (isset($_GET["action"]) && $_GET["action"] == "displayGenres")
 {
     displayGenres();
+}
+else if (isset($_GET["action"]) && $_GET["action"] == "displayCastings")
+{
+    displayCastings();
 }
 //------------------END ACTION DISPLAY-----------------------------------------------
 
@@ -95,6 +108,12 @@ else if (isset($_GET["action"]) && $_GET["action"] == "addRole")
 }
 
 else if (isset($_GET["action"]) && $_GET["action"] == "addGenre")
+{
+     $genreData= $_POST;
+     addGenre($genreData);
+}
+
+else if (isset($_GET["action"]) && $_GET["action"] == "addCasting")
 {
      $genreData= $_POST;
      addGenre($genreData);
@@ -165,6 +184,6 @@ else if (isset($_GET["action"]) && $_GET["action"] == "editSynopsis")
 
 else //page when landing on site 
 {
-    displayFilms();
+    // displayFilms();  
 }
 
