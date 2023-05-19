@@ -68,8 +68,8 @@ function updateFilmsModel($filmData, $idZ)
         $stmt->bindValue('id_film',$idZ);
         var_dump($values);
         $stmt->execute();
-        unset($mySQLconnection);
-    }   
+    }
+        unset($mySQLconnection);    
 } 
 
 function updateFilmSynopsis($textSynopsis, $id)

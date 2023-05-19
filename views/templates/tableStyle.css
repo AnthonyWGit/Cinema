@@ -20,7 +20,6 @@
 
 .footer
 {
-    position: sticky;
     bottom: 0;
     width: 100vw;
     height: 4vh;
@@ -53,4 +52,10 @@ input
 {
     border: none;
     cursor: default;
+}
+
+table
+{
+    display: flex;
+    overflow-x: auto;
 }

@@ -20,18 +20,19 @@ function displayFilms()
     require("views/templates/filmListing.php");
 }
 
-function updateFilms($filmData, $idZ)
+function updateFilms($DataFilm, $idZ)
 {
+    $permissionInt = true;
     $permission = false;                                            //Setting a value that we will turn to true after verification
-    if (isset($filmData) && !empty(array_filter($filmData)))        //Checking if the user put something in the form. Using array_filter
+    if (isset($DataFilm) && !empty(array_filter($DataFilm)))        //Checking if the user put something in the form. Using array_filter
     {                                                               //because $filmData is an array
-        foreach ($filmData as $fieldName => $value)
+        foreach ($DataFilm as $fieldName => $value)
         {                                       //Need the following switch case to the filter different dataTypes
             switch ($fieldName)
             {
                 case "dateSortie_film":
                     $filteredValue = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
-                    $filmData[$fieldName] = $filteredValue;
+                    $DataFilm[$fieldName] = $filteredValue;
                     echo("Filtered dateSortie");
                     $permission = true;
                     break;
@@ -41,13 +42,13 @@ function updateFilms($filmData, $idZ)
                     if (preg_match("/^\d{2}:\d{2}$/", $filteredValue)) //If the pattern of the string is :"1 number, 1 number, semi column,
                         {                                                  //, one number, one number
                             $filteredValue = filterFourNumbers($filteredValue);
-                            $filmData[$fieldName] = $filteredValue;
+                            $DataFilm[$fieldName] = $filteredValue;
                             $permission = true;
                         }
                     else if (preg_match("/^\d{1}:\d{2}$/", $filteredValue)) 
                         {
                             $filteredValue = filterThreeNumbers($filteredValue);
-                            $filmData[$fieldName] = $filteredValue;
+                            $DataFilm[$fieldName] = $filteredValue;
                             $permission = true;
                         }
                     else
@@ -57,18 +58,23 @@ function updateFilms($filmData, $idZ)
                             var_dump($permission);                        
                     }
                     break;
+                
+                    case "id_realisateur";
+                    $isIdRAnInt = filter_var($fieldName["id"], FILTER_VALIDATE_INT);
+                    if (!$isIdRAnInt) $permissionInt = false;
+                    break;
 
                 default:
                     $filteredValue = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                    $filmData[$fieldName] = $filteredValue;
+                    $DataFilm[$fieldName] = $filteredValue;
                     echo ("Filtered named fields");
                     $permission = true;
                     break;                 
             }
         }
-        if ($permission)
+        if ($permission && $permissionInt)
         {
-            updateFilmsModel($filmData, $idZ);
+            updateFilmsModel($DataFilm, $idZ);
             header("Location:index.php?action=displayFilms");
         }
     }
