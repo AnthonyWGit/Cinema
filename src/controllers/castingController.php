@@ -35,7 +35,7 @@ function addcasting($castingData)
     $permission3 = false;
     $ids = [];
     $filteredCastingData = filter_var($castingData,FILTER_SANITIZE_FULL_SPECIAL_CHARS);     //Strategy to add array = checking if imputs matches the first existsting value having an 
-    $castings = getCastings();                                                              //existing if for each then we allow to execute the add function. Ir's an alternative version to
+    $castings = getCastings();                                                              //existing id for each then we allow to execute the add function. It's an alternative version to
     foreach ($castings as $casting)                                                         //ensure user puts always existing data 
     {
         if ($casting["titre_film"] == $castingData["titre_film"])
@@ -71,10 +71,10 @@ function addcasting($castingData)
     var_dump($permission3);
     var_dump($ids);
 
-    if ($permission1 && $permission2 && $permission3) addCastingModel($ids);
+    if ($permission1 && $permission2 && $permission3) addCastingModel($ids); //adding only when we all 3 good values
 
 }
 function deleteCasting($id_film, $id_acteur, $id_role)
 {
-    deleteCasting($id_film, $id_acteur, $id_role);
+    deleteCastingModel($id_film, $id_acteur, $id_role);
 }
