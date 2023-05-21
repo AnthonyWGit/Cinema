@@ -1,7 +1,8 @@
 <?php ob_start()?>
 
 <div class="sideImg">
-    <img src="<?=$pathFile[0]["image_film"]?>">
+    <?= var_dump($thereIsAFile) ?>
+    <img src="<?= ($thereIsAFile) ? ($pathFile[0]['image_film']) : "img/filmPlaceholder.jpg" ?>">
 </div>
 <div class="synopsisText">
     <p>
