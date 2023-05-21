@@ -4,7 +4,8 @@
     <!-- TABLE STARTS HERE -->
     <table>
         <tr>
-            <th>Numéro</th>
+            <th></th>
+            <th>Affiche</th>
             <th>Titre du film</th>
             <th>Synopsis</th>
             <th>Durée du film</th>
@@ -20,10 +21,11 @@
 
         <tr>
             <td>
-                    <button class="updateButton"><a href="index.php?action=goToAffiche&id=<?=$film["id_film"]?>">Voir affiche</button>
+                <button class="deleteButton"><a href="index.php?action=deleteFilm&id_acteur=<?=$film["id_film"]?>">DELETE</button>   
+                         
             </td>
             <td>
-                    <button class="deleteButton"><a href="index.php?action=deleteFilm&id_acteur=<?=$film["id_film"]?>">DELETE</button>                
+                <button class="updateButton"><a href="index.php?action=goToAffiche&id=<?=$film["id_film"]?>">Voir affiche</button>                        
             </td>
             <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">           
                 <td>
@@ -98,6 +100,9 @@
             <tr>
                 <td>
                         <button type="submit" class="updateButton"> Ajouter un film</button>
+                </td>
+                <td>
+                    
                 </td>
                 <td>
                     <?= $film["titre_film"]?>
