@@ -100,14 +100,24 @@ function uploadFileModel($filePath, $id)
 function addFilmModel($filmData,$fileData)  //VeryBasic function, $filmData contains 4 fields, $fileData has the path file
 {                                           //Need to add code to use $fileData
     $fieldNameValues =[];
+    $sqlFilePartInsert = "";
+    $sqlFilePartValues = "";
     foreach ($filmData as $fieldName => $value)
     {
         $fieldNameValues[$fieldName] = $value ;
     }
     $mySQLconnection = connexion();
-    $sql = 'INSERT INTO  film (film.id_realisateur, film.titre_film, film.duree_film, film.dateSortie_film)
-            VALUES (:id_realisateur, :titre_film, :duree_film, :dateSortie_film)';
+        if (!empty($filmData)) 
+        {
+            $sqlFilePartInsert = ", film.image_film";
+            $sqlFilePartValues = ", :image_film";
+            $bindValuePlus = true;
+        }
+    $sql = 'INSERT INTO  film (film.id_realisateur, film.titre_film, film.duree_film, film.dateSortie_film '.$sqlFilePartInsert.')
+            VALUES (:id_realisateur, :titre_film, :duree_film, :dateSortie_film'.$sqlFilePartValues.' )';
     $stmt = $mySQLconnection->prepare($sql);
+    var_dump($stmt);
+    if ($bindValuePlus) $fieldNameValues["image_film"] = $fileData;
     var_dump($fieldNameValues);
     $stmt->execute($fieldNameValues);
     unset($mySQLconnection);

@@ -114,9 +114,28 @@ function addFilm($filmData,$fileData)
 {
     var_dump($fileData);
     var_dump($filmData);
+    //------------------------ File part : copy past of what's above--------------------
+    $filePath ="";
+    $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];  // Allowed picture types
+    $maxSize = 100000000; // 100 MB in bytes                   // 100 MB max size
+
+    // Check if file type and MIME type are allowed
+    if (in_array($fileData["fileNew"]["type"], $allowedTypes) && in_array(mime_content_type($fileData["fileNew"]["tmp_name"]), $allowedTypes) && $fileData["fileNew"]["size"] <= $maxSize) 
+    {
+        // Generate a unique ID for the file
+        $uniqueId = uniqid('', true); // The second parameter generates a more unique ID
+        // Sanitize file name and generate new file path
+        $fileName = filter_var(basename($fileData["fileNew"]["name"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION); // gives .jpg as example 
+        $fileNameWithoutExtension = pathinfo($fileName, PATHINFO_FILENAME); // gives the file name without extension 
+        $newFileName = $fileNameWithoutExtension . '_' . $uniqueId . '.' . $fileExtension; //Building a new file name we add _id behind the name 
+        $uploadsDir = 'uploads/'; //uploads dir
+        $filePath = $uploadsDir . $newFileName;
+        move_uploaded_file($fileData["fileNew"]["tmp_name"], $uploadsDir . basename($newFileName));   //Moving files from local to folder  
+    }
+    //----------------------------END FILE PART-------------------------------------
     $filmData["duree_film"] = filterFourNumbers($filmData["duree_film"]);  //Converting format |For now coverage is only format 4 nb
-    addFilmModel($filmData,$fileData);                                      //fileData contains file path
-    header("Location:index.php?action=displayFilms");
+    addFilmModel($filmData,$filePath);                                      //fileData contains file path
 }
 
 function deleteFilm($id)
