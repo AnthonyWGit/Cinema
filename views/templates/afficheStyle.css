@@ -1,7 +1,16 @@
 
 .sideImg > img
 {
-    width: 150px;
-    height: 200px;
+    width: 100%;
+    height: 400px;
 }
-
+.sideImg
+{
+    width: 25%;
+}
+.synopsisText
+{
+    display: flex;
+    width: 50%;
+    padding: 10px;
+}

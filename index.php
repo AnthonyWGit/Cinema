@@ -87,8 +87,8 @@ else if (isset($_GET["action"]) && $_GET["action"] == "displayCastings")
 else if (isset($_GET["action"]) && $_GET["action"] == "addFilm")
 {
     $filmData = $_POST;
-    $fileDataa = $_FILES;
-    addFilm($filmData,$fileDataa);
+    $fileData = $_FILES;
+    addFilm($filmData,$fileData);
 }
 
 else if (isset($_GET["action"]) && $_GET["action"] == "addActeur")
