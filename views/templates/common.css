@@ -44,13 +44,6 @@
     display: flex;
 }
 
-.listFilms
-{
-    display: flex;
-    width: 65%;
-    flex-grow: 1;
-}
-
 .header 
 {
     min-width: 100%;
@@ -89,37 +82,12 @@
 {
     display: flex;
     flex-direction: column;
-}
-.grille
-
-{
-    display: flex;
-    flex-wrap: wrap;
-    flex-grow: 1;
-    align-content: center;
-    align-items: center;
-    gap : 7.5px;
-    padding: 0 5px 0 5px;
+    padding-left: 15px;    
 }
 
-.card
+.list > ul
 {
-    display: flex;
-    flex: 25%;
-    margin: 5px;
-    height: 250px;
-    background-color: #8A7A97;
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
-    justify-content: center;
+    list-style: none;
 }
 
-.textCard
-{
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-}
+

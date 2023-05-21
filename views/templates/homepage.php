@@ -41,4 +41,4 @@
 </div>
 <?php $content = ob_get_clean(); ?>
 
-<?php require ("layoutGlobal.php");?>
+<?php require ("layoutHomepage.php");?>
