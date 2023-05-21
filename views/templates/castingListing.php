@@ -18,7 +18,7 @@
         <tr>
 
             <td>
-                <button><a href="index.php?action=deleteCasting&id_film=<?=$casting["id_film"]?>&id_acteur=<?=$casting["id_acteur"]?>&id_role=<?=$casting["id_role"]?>">Supprimer</a></button>
+                <button class="deleteButton"><a href="index.php?action=deleteCasting&id_film=<?=$casting["id_film"]?>&id_acteur=<?=$casting["id_acteur"]?>&id_role=<?=$casting["id_role"]?>">Supprimer</a></button>
             </td>
             
             
@@ -26,7 +26,7 @@
                 <td>  
                     <label><?=$casting["titre_film"]?></label>
                     <input type="text" name="titre_film" value="Titre du film">
-                    <button type="submit">Envoyer</button>
+                    <button type="submit" class="updateButton" class="updateButton">Envoyer</button>
                 </td>
             </form>
 
@@ -34,7 +34,7 @@
                 <td>  
                     <label><?=$casting["nom"]?></label>
                     <input type="text" name="nom" value="nom">
-                    <button type="submit">Envoyer</button>
+                    <button type="submit" class="updateButton" class="updateButton">Envoyer</button>
                 </td>
             </form>
 
@@ -42,7 +42,7 @@
                 <td>  
                     <label><?=$casting["prenom"]?></label>
                     <input type="text" name="prenom" value="prénom">
-                    <button type="submit">Envoyer</button>
+                    <button type="submit" class="updateButton" class="updateButton">Envoyer</button>
                 </td>
             </form>
 
@@ -50,7 +50,7 @@
                 <td>  
                     <label><?=$casting["nom_role"]?></label>
                     <input type="text" name="nom_role" value="nom du rôle">
-                    <button type="submit">Envoyer</button>
+                    <button type="submit" class="updateButton" class="updateButton">Envoyer</button>
                 </td>
             </form>
 
@@ -63,7 +63,7 @@
         <form method="post" action="index.php?action=addCasting">
             <tr>
                 <td>
-                    <button type="submit">Ajouter un casting</button>
+                    <button type="submit" class="updateButton" class="updateButton">Ajouter un casting</button>
                 </td>
                 <td>
                 

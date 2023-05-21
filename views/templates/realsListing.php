@@ -19,14 +19,14 @@
         <tr>
             
             <td>
-                <button><a href="index.php?action=deleteReal&id_real=<?=$realisateur["id_realisateur"]?>">Supprimer</a></button>
+                <button class="deleteButton"><a href="index.php?action=deleteReal&id_real=<?=$realisateur["id_realisateur"]?>">Supprimer</a></button>
             </td>
 
             <form method="post" action="index.php?action=updateRealisateur&id_real=<?=$realisateur["id_realisateur"]?>" id="nom-real-form">
                 <td>  
                     <label><?=$realisateur["nom"]?></label>
                     <input type="text" name="nom" value="nom" id="nom-real-input">
-                    <button type="submit" id="nom-real-button">Envoyer</button>
+                    <button type="submit" class="updateButton" class="updateButton" id="nom-real-button">Envoyer</button>
                 </td>
             </form>
 
@@ -34,7 +34,7 @@
                 <td>  
                     <label><?=$realisateur["prenom"]?></label>
                     <input type="text" name="prenom" value="prénom" id="prenom-real-input">
-                    <button type="submit" id="prenom-real-button">Envoyer</button>
+                    <button type="submit" class="updateButton" class="updateButton" id="prenom-real-button">Envoyer</button>
                 </td>
             </form>
 
@@ -42,7 +42,7 @@
                 <td>  
                     <label><?=$realisateur["dateDeNaissance"]?></label>
                     <input type="text" name="dateDeNaissance" value="ddN" id="ddN-real-input">
-                    <button type="submit" id="dob-real-button">Envoyer</button>
+                    <button type="submit" class="updateButton" class="updateButton" id="dob-real-button">Envoyer</button>
                 </td>
             </form>
 
@@ -50,7 +50,7 @@
                 <td>  
                     <label><?=$realisateur["sexe"]?></label>
                     <input type="text" name="sexe" value="H/F/Autre" id="sexe-real-input">
-                    <button type="submit" id="sexe-real-button">Envoyer</button>
+                    <button type="submit" class="updateButton" class="updateButton" id="sexe-real-button">Envoyer</button>
                 </td>
             </form>
 
@@ -63,7 +63,7 @@
         <form method="post" action="index.php?action=addReal">
             <tr>
                 <td>
-                    <button type="submit">Ajouter un(e) realisateur/actrice</button>
+                    <button type="submit" class="updateButton" class="updateButton">Ajouter un(e) realisateur/actrice</button>
                 </td>
 
                 <td>

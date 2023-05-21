@@ -17,7 +17,7 @@
         <tr>
 
             <td>
-                <button><a href="index.php?action=deleteGenre&id_genre=<?=$genre["id_genre"]?>">Supprimer</a></button>
+                <button class="deleteButton"><a href="index.php?action=deleteGenre&id_genre=<?=$genre["id_genre"]?>">Supprimer</a></button>
             </td>
 
             <td>  
@@ -29,7 +29,7 @@
                 <td>  
                     <?=$genre["nom_genre"]?>
                     <input type="text" name="nom_genre" value="Titre du rôle">
-                    <button type="submit">Envoyer</button>
+                    <button type="submit" class="updateButton" class="updateButton">Envoyer</button>
                 </td>
             </form>
 
@@ -42,7 +42,7 @@
         <form method="post" action="index.php?action=addGenre">
             <tr>
                 <td>
-                    <button type="submit">Ajouter un genre</button>
+                    <button type="submit" class="updateButton" class="updateButton">Ajouter un genre</button>
                 </td>
 
                 <td>

@@ -19,14 +19,14 @@
         <tr>
 
             <td>
-                <button><a href="index.php?action=deleteActeur&id_acteur=<?=$acteur["id_acteur"]?>">Supprimer</a></button>
+                <button class="deleteButton"><a href="index.php?action=deleteActeur&id_acteur=<?=$acteur["id_acteur"]?>">Supprimer</a></button>
             </td>
 
             <form method="post" action="index.php?action=updateActeur&id_acteur=<?=$acteur["id_acteur"]?>">
                 <td>  
                     <label><?=$acteur["nom"]?></label>
                     <input type="text" name="nom" value="nom">
-                    <button type="submit">Envoyer</button>
+                    <button type="submit" class="updateButton">Envoyer</button>
                 </td>
             </form>
 
@@ -34,7 +34,7 @@
                 <td>  
                     <label><?=$acteur["prenom"]?></label>
                     <input type="text" name="prenom" value="prénom">
-                    <button type="submit">Envoyer</button>
+                    <button type="submit" class="updateButton">Envoyer</button>
                 </td>
             </form>
 
@@ -42,7 +42,7 @@
                 <td>  
                     <label><?=$acteur["dateDeNaissance"]?></label>
                     <input type="text" name="dateDeNaissance" value="ddN">
-                    <button type="submit">Envoyer</button>
+                    <button type="submit" class="updateButton">Envoyer</button>
                 </td>
             </form>
 
@@ -50,7 +50,7 @@
                 <td>  
                     <label><?=$acteur["sexe"]?></label>
                     <input type="text" name="sexe" value="H/F/Autre">
-                    <button type="submit">Envoyer</button>
+                    <button type="submit" class="updateButton">Envoyer</button>
                 </td>
             </form>
 
@@ -63,7 +63,7 @@
         <form method="post" action="index.php?action=addActeur">
             <tr>
                 <td>
-                    <button type="submit">Ajouter un(e) acteur/actrice</button>
+                    <button type="submit" class="updateButton">Ajouter un(e) acteur/actrice</button>
                 </td>
 
                 <td>

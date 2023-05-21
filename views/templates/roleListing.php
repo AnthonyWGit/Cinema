@@ -17,7 +17,7 @@
         <tr>
 
             <td>
-                <button><a href="index.php?action=deleteRole&id_role=<?=$role["id_role"]?>">Supprimer</a></button>
+                <button class="deleteButton"><a href="index.php?action=deleteRole&id_role=<?=$role["id_role"]?>">Supprimer</a></button>
             </td>
 
             <td>  
@@ -29,7 +29,7 @@
                 <td>  
                     <?=$role["nom_role"]?>
                     <input type="text" name="nom_role" value="Titre du rôle">
-                    <button type="submit">Envoyer</button>
+                    <button type="submit" class="updateButton" class="updateButton" class="updateButton">Envoyer</button>
                 </td>
             </form>
 
@@ -42,7 +42,7 @@
         <form method="post" action="index.php?action=addRole">
             <tr>
                 <td>
-                    <button type="submit">Ajouter un rôle</button>
+                    <button type="submit" class="updateButton" class="updateButton" class="updateButton">Ajouter un rôle</button>
                 </td>
 
                 <td>

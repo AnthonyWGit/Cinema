@@ -114,6 +114,7 @@ table
 {
     display: flex;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .updateButton
