@@ -10,7 +10,6 @@
             <li>Roles</li>
             <li>Casting</li>
             <li>Statistiques</li>
-            <li>Modifier - Ajouter - Supprimer</li>
             <li>Films</li>
             <li>Réalisateur / Réalisatrices</li>
             <li>Acteurs / Actrices</li>

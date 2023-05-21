@@ -94,8 +94,20 @@ input
 {
     border: none;
     cursor: default;
+    color: purple;
+    background-color:  #180023;
 }
-
+input::file-selector-button 
+{
+    color: white;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border: none;
+    background-color: rgba(255, 255, 0 ,0.8);
+}
 table
 {
     display: flex;
@@ -122,4 +134,9 @@ button
     -o-border-radius: 15px;
     height: 3em;
     width: 5em;
+}
+
+select
+{
+    background-color:  #180023;
 }
