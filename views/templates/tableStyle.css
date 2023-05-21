@@ -38,6 +38,7 @@
     height: 5em;
     background-color: rgb(32,38,37);
 
+
 }
 
 .insideFooter
@@ -50,6 +51,7 @@
     display: flex;
     width: 65%;
     flex-grow: 1;
+    padding : 15px;
 }
 
 .header 

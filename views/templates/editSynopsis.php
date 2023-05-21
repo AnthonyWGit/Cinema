@@ -2,7 +2,6 @@
 <div class="alignCol">
     <div class="alignRow">
 
-    <?php var_dump($id); var_dump($film[$id]["synopsis"]) ?>
         <form method="post" action="index.php?action=editSynopsis&id=<?=$_GET["id"]?>">
 
             <textarea name="textSynopsis" placeholder="<?= $synopsisIsEmpty == true ? "Créez un synopsis" : $film[$id]["synopsis"]?>"></textarea>
