@@ -12,8 +12,8 @@
     </head>
     <body>
         <div class="wrapper">
+                <?php require_once("header.php");?>            
             <div class="wrapperInside">
-                <?php require_once("header.php");?>
                 <?= $content ?>
                 <?php require_once("sidebar.php")?>
                 <?php require_once("footer.php");?>

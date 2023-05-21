@@ -1,9 +1,8 @@
 <?php 
 
-require ("../models/filmModel.php");
 
 function landingOnWebsite()
 {
-    header("Location:../views/templates/homepage.php");
+    require("views/templates/homepage.php") ;
 }
 

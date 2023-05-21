@@ -7,6 +7,7 @@ require_once("src/controllers/realController.php");
 require_once("src/controllers/roleController.php");
 require_once("src/controllers/genreController.php");
 require_once("src/controllers/castingController.php");
+require_once("src/controllers/homepageController.php");
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -187,10 +188,10 @@ else if (isset($_GET["action"]) && $_GET["action"] == "editSynopsis")
     editSynopsis($textSynopsis, $id);
 }
 
-// ---------------------------------DEFAULT--------------------------------
+// ---------------------------------DEFAULT : HOMEPAGE--------------------------------
 
 else //page when landing on site 
 {
-    // displayFilms();  
+    landingOnWebsite();
 }
 

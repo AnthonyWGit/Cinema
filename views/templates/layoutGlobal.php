@@ -12,9 +12,12 @@
     </head>
     <body>
         <div class="wrapper">
-            <?php require_once("header.php");?>
-            <?= $content ?>
-        </div>
-        <?php require_once("footer.php");?>        
+                <?php require_once("header.php");?>        
+            <div class="wrapperInside">
+                <?= $content ?>
+                <?php require_once("sidebar.php")?>
+            </div>                    
+                <?php require_once("footer.php");?>
+        </div> 
     </body>
 </html>
