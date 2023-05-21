@@ -8,6 +8,7 @@ require_once("src/controllers/roleController.php");
 require_once("src/controllers/genreController.php");
 require_once("src/controllers/castingController.php");
 require_once("src/controllers/homepageController.php");
+require_once("src/controllers/afficheController.php");
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -186,6 +187,11 @@ else if (isset($_GET["action"]) && $_GET["action"] == "editSynopsis")
     $id = $_GET["id"];
     $textSynopsis = $_POST["textSynopsis"];
     editSynopsis($textSynopsis, $id);
+}
+else if (isset($_GET["action"]) && $_GET["action"] == "goToAffiche")
+{
+    $id = $_GET["id"];
+    displayAffiche($id);
 }
 
 // ---------------------------------DEFAULT : HOMEPAGE--------------------------------

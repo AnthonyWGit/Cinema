@@ -20,7 +20,9 @@
 
         <tr>
             <td>
-                <?= $film["id_film"]?>
+                    <button class="updateButton"><a href="index.php?action=goToAffiche&id=<?=$film["id_film"]?>">Voir affiche</button>
+            </td>
+            <td>
                     <button class="deleteButton"><a href="index.php?action=deleteFilm&id_acteur=<?=$film["id_film"]?>">DELETE</button>                
             </td>
             <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">           
