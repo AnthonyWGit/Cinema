@@ -63,7 +63,7 @@
         <form method="post" action="index.php?action=addReal">
             <tr>
                 <td>
-                    <button type="submit" class="updateButton" class="updateButton">Ajouter un(e) realisateur/actrice</button>
+                    <button type="submit" class="updateButton addButton" class="updateButton">Ajouter un(e) realisateur/actrice</button>
                 </td>
 
                 <td>
