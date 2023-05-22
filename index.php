@@ -9,6 +9,7 @@ require_once("src/controllers/genreController.php");
 require_once("src/controllers/castingController.php");
 require_once("src/controllers/homepageController.php");
 require_once("src/controllers/afficheController.php");
+require_once("src/controllers/statsFilmsController.php");
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -79,6 +80,10 @@ else if (isset($_GET["action"]) && $_GET["action"] == "displayGenres")
 else if (isset($_GET["action"]) && $_GET["action"] == "displayCastings")
 {
     displayCastings();
+}
+else if (isset($_GET["action"]) && $_GET["action"] == "displayStatsFilms")
+{
+    displayStatsFilms();
 }
 //------------------END ACTION DISPLAY-----------------------------------------------
 
