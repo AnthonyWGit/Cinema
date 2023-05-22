@@ -10,6 +10,7 @@ require_once("src/controllers/castingController.php");
 require_once("src/controllers/homepageController.php");
 require_once("src/controllers/afficheController.php");
 require_once("src/controllers/statsFilmsController.php");
+require_once("src/controllers/statsRealsController.php");
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -84,6 +85,10 @@ else if (isset($_GET["action"]) && $_GET["action"] == "displayCastings")
 else if (isset($_GET["action"]) && $_GET["action"] == "displayStatsFilms")
 {
     displayStatsFilms();
+}
+else if (isset($_GET["action"]) && $_GET["action"] == "displayStatsReals")
+{
+    displayStatsReals();
 }
 //------------------END ACTION DISPLAY-----------------------------------------------
 
@@ -199,6 +204,11 @@ else if (isset($_GET["action"]) && $_GET["action"] == "goToAffiche")
     displayAffiche($id);
 }
 
+else if (isset($_GET["action"]) && $_GET["action"] == "getRealsStats")
+{
+    $id = $_POST["id_realisateur"];
+    displayStatsOneReal($id);
+}
 // ---------------------------------DEFAULT : HOMEPAGE--------------------------------
 
 else //page when landing on site 
