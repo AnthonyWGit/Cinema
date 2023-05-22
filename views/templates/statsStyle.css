@@ -1,0 +1,31 @@
+.wrapperInside
+{
+    align-items: center;
+}
+.statsFlex
+{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    padding: 5em 1em 5em 1em;
+    background-color: rgb(34, 44, 60);
+    width: 60%;
+    height: 60%;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    margin-left: 0.5em;
+    justify-content: space-around;
+}
+
+.col
+{
+    display: flex;
+    flex-direction: column;
+}
+.col > ul
+{
+    list-style: inside decimal;
+}
