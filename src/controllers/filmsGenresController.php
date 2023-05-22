@@ -41,3 +41,9 @@ function addFilmGenreData($id_film,$id_genre)
     addFilmGenreModel($id_film,$id_genre);
 }
 
+function deleteFilmGenre($id_film,$id_genre)
+{
+    var_dump($id_film);
+    var_dump($id_genre);
+    deleteFilmGenreModel($id_film,$id_genre);
+}

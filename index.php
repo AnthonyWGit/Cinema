@@ -191,6 +191,13 @@ else if (isset($_GET["action"]) && $_GET["action"] == "deleteCasting")
     $id_role = $_GET["id_role"];
     deleteCasting($id_film, $id_acteur, $id_role);
 }
+
+else if (isset($_GET["action"]) && $_GET["action"] == "deleteFilmGenre")
+{
+    $id_film = $_GET["id_film"];
+    $id_genre = $_GET["id_genre"];
+    deleteFilmGenre($id_film, $id_genre);
+}
 // ----------------------------END ACTION DELETE STUFF----------------------------------------
 
 //----------------------------ACTION UPLOAD FILE-----------------------------------------
