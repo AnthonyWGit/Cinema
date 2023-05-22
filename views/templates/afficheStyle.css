@@ -25,3 +25,15 @@ h3
 {
     color : rgba(255,215,0,0.75);
 }
+
+.actorsGroupRow
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.actorsGroupColumn
+{
+    display: flex;
+    flex-direction: column;
+}
