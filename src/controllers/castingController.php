@@ -35,6 +35,8 @@ function addcasting($castingData)
     $permission2 = false;
     $permission3 = false;
     $castingsRightJoinFilm = getCastingsRightJoinFilm();
+    $castingsRightJoinActors = getCastingsRightJoinActors();
+    $castingsRightJoinRoles = getCastingsRightJoinRoles();
     $ids = [];
     $filteredCastingData = filter_var($castingData,FILTER_SANITIZE_FULL_SPECIAL_CHARS);     //Strategy to add array = checking if imputs matches the first existsting value having an 
     $castings = getCastings();                                                              //existing id for each then we allow to execute the add function. It's an alternative version to
@@ -48,7 +50,7 @@ function addcasting($castingData)
             break;
         }
     }
-    foreach ($castings as $casting)     
+    foreach ($castingsRightJoinActors as $casting)     
     {
         if ($casting["nom"] == $castingData["nom"] && $casting["prenom"] == $castingData["prenom"])
         {
@@ -58,7 +60,7 @@ function addcasting($castingData)
             break;
         }
     }
-    foreach ($castings as $casting)     
+    foreach ($castingsRightJoinRoles as $casting)     
     {
         if ($casting["nom_role"] == $castingData["nom_role"])
         {

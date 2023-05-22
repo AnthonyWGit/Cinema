@@ -26,6 +26,30 @@ function getCastingsRightJoinFilm()
     return $castingsRightJoinFilm;
 }
 
+function getCastingsRightJoinActors() 
+{
+    $mySQLconnection = connexion();
+    $sqlQuery = 'SELECT * FROM casting 
+                RIGHT JOIN acteur ON casting.id_acteur = acteur.id_acteur
+                INNER JOIN personne ON acteur.id_personne = personne.id_personne';
+    $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
+    $stmt->execute();                                                     //The data we retrieve are in array form
+    $castingsRightJoinActors = $stmt->fetchAll();
+    return $castingsRightJoinActors;
+}
+
+function getCastingsRightJoinRoles() 
+{
+    $mySQLconnection = connexion();
+    $sqlQuery = 'SELECT * FROM casting 
+                RIGHT JOIN role ON casting.id_role = role.id_role';
+    $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
+    $stmt->execute();                                                     //The data we retrieve are in array form
+    $castingsRightJoinRoles = $stmt->fetchAll();
+    return $castingsRightJoinRoles;
+}
+
+
 function updateCastingModel($filteredValue,$id,$fieldName,$champ_casting)
 {
     $mySQLconnection = connexion();             //there is no id_casting so to target a specific row we will point at the old value at :cahmp_casting
