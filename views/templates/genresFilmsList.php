@@ -17,7 +17,7 @@
         <tr>
 
             <td>
-                <button class="deleteButton"><a href="index.php?action=deleteGenre&id_genre=<?=$genre["id_genre"]?>">Supprimer</a></button>
+                <button class="deleteButton"><a href="index.php?action=deleteFilmGenre&id_genre=<?=$filmGenre["id_genre"]?>&id_film=<?=$filmGenre["id_film"]?>">Supprimer</a></button>
             </td>
 
             <td>  
