@@ -1,6 +1,7 @@
 <?php 
 require_once ('src/models/castingModel.php');
 
+
 function displayCastings()
 {
     $castings = getCastings();
@@ -33,13 +34,15 @@ function addcasting($castingData)
     $permission1 = false;
     $permission2 = false;
     $permission3 = false;
+    $castingsRightJoinFilm = getCastingsRightJoinFilm();
     $ids = [];
     $filteredCastingData = filter_var($castingData,FILTER_SANITIZE_FULL_SPECIAL_CHARS);     //Strategy to add array = checking if imputs matches the first existsting value having an 
     $castings = getCastings();                                                              //existing id for each then we allow to execute the add function. It's an alternative version to
-    foreach ($castings as $casting)                                                         //ensure user puts always existing data 
+    foreach ($castingsRightJoinFilm as $casting)                                                         //ensure user puts always existing data 
     {
-        if ($casting["titre_film"] == $castingData["titre_film"])
-        { 
+        if ($casting["titre_film"] == $castingData["titre_film"])                           //We need to use special sql requests using RIGHT JOINs because when
+        {                                                                                   //we have a newly created film it has NULL 
+            echo"IF IF IF";                                                                 //id_film/id_acteur/_id_role associated
             $permission1 = true;
             $ids[] = $casting["id_film"];
             break;
