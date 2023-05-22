@@ -15,6 +15,17 @@ function getCastings()
     return $castings;
 }
 
+function getCastingsRightJoinFilm() 
+{
+    $mySQLconnection = connexion();
+    $sqlQuery = 'SELECT * FROM casting 
+                RIGHT JOIN film ON casting.id_film = film.id_film'; //priceF means priceFormated
+    $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
+    $stmt->execute();                                                     //The data we retrieve are in array form
+    $castingsRightJoinFilm = $stmt->fetchAll();
+    return $castingsRightJoinFilm;
+}
+
 function updateCastingModel($filteredValue,$id,$fieldName,$champ_casting)
 {
     $mySQLconnection = connexion();             //there is no id_casting so to target a specific row we will point at the old value at :cahmp_casting
