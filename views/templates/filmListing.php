@@ -80,6 +80,19 @@
                 </td>
             </form>
 
+            <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
+                <td>
+
+                    <?= $film["nom"]?> <?= $film["prenom"]?>
+                    <button type="submit" class="updateButton">Envoyer</button>
+
+                    <input name="nom" type="text" id="nom_<?=$film["id_film"]?>" value="<?= $film["nom"]?>">
+                    <input name="prenom" type="text" id="prenom_<?=$film["id_film"]?>" value="<?= $film["prenom"]?>">
+
+                </td>
+            </form>
+
+
             <form method="post" action="index.php?action=uploadFile&id_film=<?=$film["id_film"] ?>" enctype="multipart/form-data">
                 <td>
                     <?= $film["image_film"]?>
