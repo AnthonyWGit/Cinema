@@ -29,3 +29,8 @@
 {
     list-style: inside decimal;
 }
+
+select, option
+{
+    color: black;
+}
