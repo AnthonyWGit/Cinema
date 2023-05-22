@@ -63,7 +63,7 @@
         <form method="post" action="index.php?action=addActeur">
             <tr>
                 <td>
-                    <button type="submit" class="updateButton">Ajouter un(e) acteur/actrice</button>
+                    <button type="submit" class="updateButton addButton">Ajouter un(e) acteur/actrice</button>
                 </td>
 
                 <td>

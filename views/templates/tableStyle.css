@@ -58,3 +58,10 @@ select
     list-style: none;
     padding: 10px;
 }
+
+.addButton
+
+{
+    height: 5em;
+    width: 8em;
+}
