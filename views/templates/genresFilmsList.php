@@ -48,18 +48,29 @@
         }
         ?>
         <!-- LAST LINE OF TABLE -->
-        <form method="post" action="index.php?action=addGenre">
+        <form method="post" action="index.php?action=addFilmGenre">
             <tr>
                 <td>
                     <button type="submit" class="updateButton" class="updateButton">Ajouter un genre</button>
                 </td>
 
                 <td>
+                    <label>Placeholder</label>
+                        <select name="id_film" id="film_id-select-add">
+                            <?php 
+                            foreach($filmsList as $film)
+                            {
+                            ?>
+                <option value="<?=$film["id"]?>"><?=$film["titre_film"]?></option>
+                            <?php
+                            }
+                            ?>
+                        </select>       
                 </td>
 
-                <td>
-                    <label>Nom du genre</label>
-                    <select name="id_realisateur" id="real-select">
+                <td>  
+                <label><?= $filmGenre["nom_genre"]?></label>
+                    <select name="id_genre" id="genre_nom-select-add">
                         <?php 
                         foreach($genresFilmsList as $stuff)
                         { var_dump($filmsList);
@@ -68,7 +79,7 @@
                         <?php
                         }
                         ?>
-                    </select>
+                    </select>                     
                 </td>
 
             </tr>
