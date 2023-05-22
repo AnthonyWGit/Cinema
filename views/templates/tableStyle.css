@@ -56,4 +56,5 @@ select
     width: 65%;
     flex-grow: 1;
     list-style: none;
+    padding: 10px;
 }
