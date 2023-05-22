@@ -45,9 +45,10 @@ function getOneFilmData($id)
 function getOneFilmCasting($id)
 {
     $mySQLconnection = connexion();
-    $sqlQuery = 'SELECT * FROM film
-                INNER JOIN realisateur on film.id_realisateur = realisateur.id_realisateur
-                INNER JOIN personne on realisateur.id_personne = personne.id_personne
+    $sqlQuery = 'SELECT * FROM casting 
+                INNER JOIN acteur ON casting.id_acteur = acteur.id_acteur
+                INNER JOIN personne ON personne.id_personne = acteur.id_personne
+                INNER JOIN role on casting.id_role = role.id_role
                 WHERE id_film = :id_film'; //
     $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
     $stmt->bindValue(':id_film',$id);
@@ -56,3 +57,5 @@ function getOneFilmCasting($id)
     unset($mySQLconnection);
     return $casting;
 }
+
+
