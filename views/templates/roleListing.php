@@ -50,7 +50,7 @@
 
                 <td>
                     <label>Nom du rôle</label>
-                    <input type="text" name="prenom" id="role-nom-role" value="Insérez rôle">
+                    <input type="text" name="nom_role" id="role-nom-role" value="Insérez rôle">
                 </td>
 
             </tr>

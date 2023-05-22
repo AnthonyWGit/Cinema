@@ -21,7 +21,7 @@ function updateRole($dataRole, $id)
 
 function addRole($roleData)
 {
-    $filteredRoleData = filter_var($roleData,FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $filteredRoleData = filter_var($roleData["nom_role"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     addRoleModel($filteredRoleData);
 }
 function deleteRole($id)

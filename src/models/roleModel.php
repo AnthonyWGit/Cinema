@@ -26,6 +26,7 @@ function addRoleModel($filteredRoleData)
     $mySQLconnection = connexion();
     $sqlQuery = 'INSERT INTO role (nom_role) VALUES (:nom_role)';
     $stmt = $mySQLconnection->prepare($sqlQuery);
+    var_dump($filteredRoleData);
     $stmt->bindValue(':nom_role',$filteredRoleData);
     $stmt->execute();
 }
