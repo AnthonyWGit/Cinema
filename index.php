@@ -209,6 +209,12 @@ else if (isset($_GET["action"]) && $_GET["action"] == "getRealsStats")
     $id = $_POST["id_realisateur"];
     displayStatsOneReal($id);
 }
+
+else if (isset($_GET["action"]) && $_GET["action"] == "getRealsStatsActorCheck")
+{
+    $id = $_POST["id_realisateur"];
+    displayStatsOneRealIsActor($id);
+}
 // ---------------------------------DEFAULT : HOMEPAGE--------------------------------
 
 else //page when landing on site 
