@@ -21,7 +21,7 @@ function updateGenre($dataGenres, $id)
 
 function addGenre($genreData)
 {
-    $filteredGenreData = filter_var($genreData,FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $filteredGenreData = filter_var($genreData["nom_genre"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     addGenreModel($filteredGenreData);
 }
 function deleteGenre($id)
