@@ -10,7 +10,7 @@
             <li><a href ="index.php?action=displayRoles">Roles</a></li>
             <li><a href ="index.php?action=displayCastings">Casting</a></li>
             <li>Statistiques</li>
-            <li><a href ="index.php?action=displayFilms">Films</a></li>
+            <li><a href ="index.php?action=displayStatsFilms">Films</a></li>
             <li><a href ="index.php?action=displayFilms">Réalisateur / Réalisatrices</a></li>
             <li><a href ="index.php?action=displayFilms">Acteurs / Actrices</a></li>
             <li><a href ="index.php?action=displayFilms">Genres</a></li>
