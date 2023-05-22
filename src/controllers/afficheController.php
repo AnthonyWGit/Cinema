@@ -7,6 +7,7 @@ function displayAffiche($id)
     $filmData = getOneFilmData($id);
     $pathFile = getPathfile($id); //Getting the filepath from DB
     $synopsis = getSynopsis($id);
+    $castings = getOneFilmCasting($id);
     if (in_array(!empty($pathFile[0]["image_film"]),$pathFile)) $thereIsAFile = true; else $thereIsAFile = false;
     require_once("views/templates/affiche.php");
 }
