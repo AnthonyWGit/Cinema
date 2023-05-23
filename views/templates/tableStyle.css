@@ -5,29 +5,49 @@ input
     color: purple;
     background-color:  #180023;
 }
-input::file-selector-button 
-{
-    color: white;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    border: none;
-    background-color: rgba(255, 255, 0 ,0.8);
-}
+
 table
 {
     display: flex;
     overflow-x: auto;
     overflow-y: hidden;
 }
-
+/*----------------------------------BUTTONS----------------------------------*/
 .updateButton
 {
     background-color : rgba(32, 255, 112,0.5);
 }
+.buttonHover a
+{
+    pointer-events: none;
+}
 
+.buttonHoverUpload a
+{
+    pointer-events: none;
+}
+
+.buttonHover :hover
+{
+    background-color: rgba(32, 255, 112,0.75);
+    transition:1s;
+    -webkit-transition:1s;
+    -moz-transition:1s;
+    -ms-transition:1s;
+    -o-transition:1s;
+    -webkit-transition:1s;
+}
+
+.buttonHoverUpload :hover
+{
+    background-color: rgba(32, 255, 112,0.75);
+    transition:1s;
+    -webkit-transition:1s;
+    -moz-transition:1s;
+    -ms-transition:1s;
+    -o-transition:1s;
+    -webkit-transition:1s;
+}
 .deleteButton
 {
     background-color: rgba(255, 46, 0,0.5);
@@ -45,6 +65,28 @@ button
     width: 5em;
 }
 
+input::file-selector-button 
+{
+    color: white;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border: none;
+    background-color: rgba(255, 255, 0 ,0.8);
+}
+
+input::file-selector-button:hover
+{
+    background-color: rgba(255, 255, 0 ,1);
+    transition: 1s;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+}
+/*---------------------------------- END BUTTONS----------------------------------*/
 select
 {
     background-color:  #180023;

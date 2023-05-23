@@ -21,17 +21,22 @@
 
         <tr>
             <td>
+                
                 <button class="deleteButton"><a href="index.php?action=deleteFilm&id_film=<?=$film["id_film"]?>">DELETE</button>   
                          
             </td>
             <td>
-                <button class="updateButton"><a href="index.php?action=goToAffiche&id=<?=$film["id_film"]?>">Voir affiche</button>                        
+                <div class="buttonHover">
+                    <button class="updateButton"><a href="index.php?action=goToAffiche&id=<?=$film["id_film"]?>">Voir affiche</button>    
+                </div>                    
             </td>
             <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">           
                 <td>
         
                     <?= $film["titre_film"]?>
-                    <button type="submit" class="updateButton">Envoyer</button>
+                    <div class="buttonHover">
+                        <button type="submit" class="updateButton">Envoyer</button>
+                    </div>
 
                         <input name="titre_film" type="text" id="titre_film_<?=$film["id_film"]?>" value="<?= $film["titre_film"]?>">
 
@@ -41,18 +46,21 @@
 
             <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
                 <td>
-                    
-                    <button class="updateButton"><a href="index.php?action=goToSynopsis&id=<?=$film["id_film"]?>">Modifier</a></button>
-
+                    <div class="buttonHover">
+                        <button class="updateButton"><a href="index.php?action=goToSynopsis&id=<?=$film["id_film"]?>">Modifier</a></button>
+                    </div>
                 </td>
             </form>
 
             <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
                 <td>
                     <?= $film["dureeFormat"]?>
-                    <button type="submit" class="updateButton">Envoyer</button>
 
-                        <input name="duree_film" type="text" id="duree_film_"<?=$film["id_film"]?>" value="<?= $film["dureeFormat"]?>">
+                    <div class="buttonHover">
+                        <button type="submit" class="updateButton">Envoyer</button>
+                    </div>
+
+                        <input name="duree_film" type="text" id="duree_film_<?=$film["id_film"]?>" value="<?= $film["dureeFormat"]?>">
                 </td>
             </form>
 
@@ -60,7 +68,9 @@
 
                 <td>
                     <?= $film["dateSortie_film"]?>
-                    <button type="submit" class="updateButton">Envoyer</button>
+                    <div class="buttonHover">
+                        <button type="submit" class="updateButton">Envoyer</button>
+                    </div>
 
                     <input name="dateSortie_film" type="text" id="dateSortie_<?=$film["id_film"]?>" value="<?= $film["dateSortie_film"]?>">
 
@@ -72,7 +82,9 @@
                 <td>
 
                     <?= $film["nom"]?> <?= $film["prenom"]?>
-                    <button type="submit" class="updateButton">Envoyer</button>
+                    <div class="buttonHover">
+                        <button type="submit" class="updateButton">Envoyer</button>
+                    </div>
 
                     <input name="nom" type="text" id="nom_<?=$film["id_film"]?>" value="<?= $film["nom"]?>">
                     <input name="prenom" type="text" id="prenom_<?=$film["id_film"]?>" value="<?= $film["prenom"]?>">
@@ -84,7 +96,9 @@
                 <td>
 
                     <?= $film["nom"]?> <?= $film["prenom"]?>
-                    <button type="submit" class="updateButton">Envoyer</button>
+                    <div class="buttonHover">
+                        <button type="submit" class="updateButton">Envoyer</button>
+                    </div>
 
                     <input name="nom" type="text" id="nom_<?=$film["id_film"]?>" value="<?= $film["nom"]?>">
                     <input name="prenom" type="text" id="prenom_<?=$film["id_film"]?>" value="<?= $film["prenom"]?>">
@@ -99,7 +113,10 @@
 
                     <label for="file">Fichier à héberger :</label>
                     <input type="file" name="file" id="file" required />
-                    <button type="submit" class="updateButton">Upload</button>
+
+                    <div class="buttonHoverUpload">
+                        <button type="submit" class="updateButton">Upload</button>
+                    </div>
 
                 </td>
             </form>
