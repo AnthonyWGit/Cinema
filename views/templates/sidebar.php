@@ -15,8 +15,8 @@
             <li><a href ="index.php?action=displayStatsReals">Réalisateur / Réalisatrices</a></li>
             <li><a href ="index.php?action=displayStatsActeurs">Acteurs / Actrices</a></li>
             <li><a href ="index.php?action=displayStatsGenres">Genres</a></li>
-            <li><a href ="index.php?action=displayFilms">Roles</a></li>
-            <li><a href ="index.php?action=displayFilms">Casting</a></li>
+            <li><a href ="index.php?action=displayStatsRoles">Roles</a></li>
+            <li><a href ="index.php?action=displayStatsCastings">Casting</a></li>
         </ul>
     </div>
 </div>

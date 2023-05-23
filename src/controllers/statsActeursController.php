@@ -17,7 +17,6 @@ function displayStatsActeurs()
     }
 
     $actorsSex = getStatsSex();
-    var_dump($actorsSex);
     require_once("views/templates/statsActeurs.php");
 }
 
