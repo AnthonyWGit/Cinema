@@ -80,7 +80,7 @@ function addActeur($acteurData)
     $transformation = ["H" => "Homme", "F" => "Femme", "A" => "Autre"]; //If user put a correct input like "h" "f" or "a"
     $permission = true;                                //Another method of filtering using filter_var_array instead of
     $filters = [                                        //foreaching through all of the field and adding filtered values to a new array
-        "nom" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,    //like an idiot 
+        "nom" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,    //
         "prenom" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         "dateDeNaissance" => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         "sexe" => FILTER_SANITIZE_FULL_SPECIAL_CHARS
