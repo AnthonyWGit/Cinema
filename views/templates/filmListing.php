@@ -21,7 +21,7 @@
 
         <tr>
             <td>
-                <button class="deleteButton"><a href="index.php?action=deleteFilm&id_acteur=<?=$film["id_film"]?>">DELETE</button>   
+                <button class="deleteButton"><a href="index.php?action=deleteFilm&id_film=<?=$film["id_film"]?>">DELETE</button>   
                          
             </td>
             <td>
