@@ -49,11 +49,21 @@ function addActeurModel($acteurData) //This need to add an entry in personne tab
     $stmt = $mySQLconnection->prepare($sqlQuery);
     $stmt->bindValue(":nom",$nom);
     $stmt->execute();                           //and here is where we create a new id actor associated with the id person 
+
+    unset($stmt);
 }
 
 function deleteActeurModel($id)
 {
-    $mySQLconnection = connexion(); //Below innerjoin because we need to delete date in personne table and the id linked with the 
+
+    $mySQLconnection = connexion();
+    $sql = 'DELETE FROM casting
+            WHERE id_film = :id_acteur';
+    $stmt = $mySQLconnection->prepare($sql);
+    $stmt->bindValue(':id_acteur',$id);
+    $stmt->execute();
+
+ //Below innerjoin because we need to delete date in personne table and the id linked with the 
                                     //personne entry so we doin a join
     $sqlQuery = 'DELETE acteur, personne
                 FROM acteur
@@ -62,4 +72,6 @@ function deleteActeurModel($id)
     $stmt = $mySQLconnection->prepare($sqlQuery);
     $stmt->bindValue(':id_acteur',$id, PDO::PARAM_INT);
     $stmt->execute();
+
+    unset($stmt);
 }

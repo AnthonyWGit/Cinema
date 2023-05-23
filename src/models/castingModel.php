@@ -67,6 +67,8 @@ function updateCastingModel($filteredValue,$id,$fieldName,$champ_casting)
     $stmt->bindValue(':champ_casting',$champ_casting);
     var_dump($stmt);
     $stmt->execute();
+
+    unset($stmt);
 }
 
 function addCastingModel($ids)
@@ -91,4 +93,6 @@ function deleteCastingModel($id_film, $id_acteur, $id_role)
     $stmt->bindValue(':id_acteur',$id_acteur, PDO::PARAM_INT);
     $stmt->bindValue(':id_role',$id_role, PDO::PARAM_INT);
     $stmt->execute();
+
+    unset($stmt);
 }
