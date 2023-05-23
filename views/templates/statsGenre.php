@@ -4,16 +4,27 @@
     <div class="col">
         <p>
             <span class="yellow">Nombre de films par genre</span>
-            <ul>
-                <?php
-                foreach ($filmsLenght as $filmLenght)
-                {?>
 
-                <li><?= $filmLenght["titre_film"] ?></li>
+            <table>
+            <tr>
+                <th>Genre</th>
+                <th>Film</th>
+            </tr>
+            <tr>
 
-                <?php
-                }
-                ?>
+            <?php 
+            foreach($rawFilmsByGenre as $film)
+
+            {?>
+                <tr>
+                    <td><?= $film["nom_genre"]?></td>
+                    <td><?= $film["Nombre films"] ?></td>
+                </tr>
+            <?php
+            }?>
+            
+            </tr>
+            </table>
 
             </ul>
         </p>
