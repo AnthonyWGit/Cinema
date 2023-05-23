@@ -1,22 +1,23 @@
 <?php 
 
 require ("src/models/filmModel.php");
+require ("src/models/realisateurModel.php");        //Need to retrieve list of reals 
 require ("src/controllers/math.php");
 
 function displayFilms()
 {
-    $filmsList = getFilms(); 
+    $filmsList = getFilms();
+    $realisateurs = getRealisateurs(); 
     $realisateursList = [];
-    foreach ($filmsList as $film) //This will be used for the dropdown to add director when creating new row
+    foreach ($realisateurs as $real) //This will be used for the dropdown to add director when creating new row
     {
-        $realisateursList[$film["id_realisateur"]] = [
-            "name" => $film["nom"],
-            "forename" => $film["prenom"],
-            "id" => $film["id_realisateur"]
+        $realisateursList[$real["id_realisateur"]] = [
+            "name" => $real["nom"],
+            "forename" => $real["prenom"],
+            "id" => $real["id_realisateur"]
         ];
     }
     $realisateursList = array_unique($realisateursList, SORT_REGULAR); //We don't need duplicates
-    ksort($realisateursList);
     require("views/templates/filmListing.php");
 }
 
@@ -141,5 +142,4 @@ function addFilm($filmData,$fileData)
 function deleteFilm($id)
 {
     deleteFilmModel($id);
-    header("Location:index.php?action=displayFilms");
 }
