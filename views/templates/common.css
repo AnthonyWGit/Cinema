@@ -4,6 +4,7 @@
     padding: 0;
     font-family: 'Quantico', sans-serif;
     color: white;
+    text-decoration: none;
 }
 /* trying to fix bug on mobile cutting bottom*/
 body 
