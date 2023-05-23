@@ -42,7 +42,7 @@ function addRealModel($realData) //This need to add an entry in personne table a
     var_dump($fieldNameValues);
     echo '--------';
     var_dump($nom);
-    $stmt->execute($fieldNameValues);           //Here the entry in personne is created 
+    $stmt->execute($fieldNameValues);           //Here below the entry in personne is created 
     $sqlQuery = "INSERT INTO realisateur (realisateur.id_personne)
                 SELECT personne.id_personne FROM personne WHERE personne.nom = :nom";
     $stmt = $mySQLconnection->prepare($sqlQuery);
@@ -54,6 +54,15 @@ function deleteRealModel($id)
 {
     $mySQLconnection = connexion(); //Below innerjoin because we need to delete date in personne table and the id linked with the 
                                     //personne entry so we doin a join
+
+    $mySQLconnection = connexion();         //Deleting associated films first to avoid errors 
+    $sql = 'DELETE FROM film
+            WHERE id_realisateur = :id_realisateur';
+    $stmt = $mySQLconnection->prepare($sql);
+    $stmt->bindValue(':id_film',$id);
+    $stmt->execute();
+
+
     $sqlQuery = 'DELETE realisateur, personne
                 FROM realisateur
                 INNER JOIN personne ON realisateur.id_personne = personne.id_personne
