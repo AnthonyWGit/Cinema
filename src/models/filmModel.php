@@ -123,12 +123,21 @@ function addFilmModel($filmData,$fileData)  //VeryBasic function, $filmData cont
     unset($mySQLconnection);
 }
 
-function deleteFilmModel($id)
+function deleteFilmModel($id) //Getting rid of what's associated with a film id 
 {
     $mySQLconnection = connexion();
-    $sql = 'DELETE FROM film WHERE id_film = :id_film';
+    $sql = 'DELETE FROM casting
+            WHERE id_film = :id_film';
     $stmt = $mySQLconnection->prepare($sql);
     $stmt->bindValue(':id_film',$id);
     $stmt->execute();
-    unset($mySQLconnection);
+
+
+    $sql = 'DELETE FROM film
+            WHERE id_film = :id_film';
+    $stmt = $mySQLconnection->prepare($sql);
+    $stmt->bindValue(':id_film',$id);
+    $stmt->execute();
+
+    unset($stmt);
 }
