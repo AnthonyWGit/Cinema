@@ -16,6 +16,18 @@ function getFilms()
     return $films;
 }
 
+function getFiles($id)
+{
+    $mySQLconnection = connexion();
+    $sql = 'SELECT image_film from film
+            WHERE id_film = :id_film';
+    $stmt = $mySQLconnection->prepare($sql);
+    $stmt->bindValue('id_film',$id,PDO::PARAM_STR);
+    $stmt->execute();
+    $filePath = $stmt->fetchAll();
+    return $filePath;
+}
+
 // function updateFilmsModel($filmData)
 // {
 //     $mySQLconnection = connexion();
@@ -123,8 +135,15 @@ function addFilmModel($filmData,$fileData)  //VeryBasic function, $filmData cont
     unset($mySQLconnection);
 }
 
-function deleteFilmModel($id) //Getting rid of what's associated with a film id 
+function deleteFilmModel($id,$isEmptyPathfile,$filePath) //Getting rid of what's associated with a film id 
 {
+
+    if (!$isEmptyPathfile)            /*Deleting uploaded file under the path and id of the film is*/
+                                                                /*model responsability*/
+    {                                                           
+        unlink($filePath["image_film"]);
+    }
+
     $mySQLconnection = connexion();
     $sql = 'DELETE FROM casting
             WHERE id_film = :id_film';

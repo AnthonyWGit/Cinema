@@ -141,5 +141,10 @@ function addFilm($filmData,$fileData)
 
 function deleteFilm($id)
 {
-    deleteFilmModel($id);
+    $filePath = getFiles($id);                  //We will use the filePath var to retrive filepath and if there is one
+    $filePath = $filePath[0];                   //the model function will have unlick so we delete the file
+    $isEmptyPathfile = false;
+    if (empty($filePath)) $isEmptyPathfile = true;
+    var_dump($filePath);
+    deleteFilmModel($id,$isEmptyPathfile,$filePath);
 }
