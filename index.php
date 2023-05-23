@@ -17,6 +17,7 @@ require_once("src/controllers/filmsGenresController.php");
 require_once("src/controllers/statsFilmsController.php");
 require_once("src/controllers/statsRealsController.php");
 require_once("src/controllers/statsActeursController.php");
+require_once("src/controllers/statsGenresController.php");
 //********************** END STATS CONTROLLER******************* */
 
 //---------------------- ACTIONS UPDATE---------------------------------------
@@ -97,6 +98,10 @@ else if (isset($_GET["action"]) && $_GET["action"] == "displayCastings")
 {
     displayCastings();
 }
+else if (isset($_GET["action"]) && $_GET["action"] == "displayFilmsGenres")
+{
+    displayFilmsGenres();
+}
 else if (isset($_GET["action"]) && $_GET["action"] == "displayStatsFilms")
 {
     displayStatsFilms();
@@ -109,9 +114,9 @@ else if (isset($_GET["action"]) && $_GET["action"] == "displayStatsActeurs")
 {
     displayStatsActeurs();
 }
-else if (isset($_GET["action"]) && $_GET["action"] == "displayFilmsGenres")
+else if (isset($_GET["action"]) && $_GET["action"] == "displayStatsGenres")
 {
-    displayFilmsGenres();
+    displayStatsGenres();
 }
 //------------------END ACTION DISPLAY-----------------------------------------------
 
