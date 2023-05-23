@@ -9,6 +9,8 @@ function getRoles()
     $stmt->execute();                                                     //The data we retrieve are in array form
     $roles = $stmt->fetchAll();
     return $roles;
+
+    unset($stmt);
 }
 
 function updateRoleModel($filteredValue,$id)
@@ -20,6 +22,8 @@ function updateRoleModel($filteredValue,$id)
     $stmt->bindValue(':nom_role',$filteredValue);
     $stmt->bindValue(':id_role',$id,PDO::PARAM_INT);
     $stmt->execute();
+
+    unset($stmt);
 }
 function addRoleModel($filteredRoleData)
 {
@@ -29,13 +33,25 @@ function addRoleModel($filteredRoleData)
     var_dump($filteredRoleData);
     $stmt->bindValue(':nom_role',$filteredRoleData);
     $stmt->execute();
+
+    unset($stmt);
 }
 function deleteRoleModel($id)
-{
+{   //When we want to delete the role when need to break all links it has with film and acteurs tables in casting
+
     $mySQLconnection = connexion();
     $sqlQuery = 'DELETE FROM role
                 WHERE id_role = :id_role';
     $stmt = $mySQLconnection->prepare($sqlQuery);
     $stmt->bindValue(':id_role',$id, PDO::PARAM_INT);
     $stmt->execute();
+
+
+    $sqlQuery = 'DELETE FROM role
+                WHERE id_role = :id_role';
+    $stmt = $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':id_role',$id, PDO::PARAM_INT);
+    $stmt->execute();
+
+    unset($stmt);
 }
