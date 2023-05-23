@@ -23,6 +23,7 @@ function displayStatsOneReal($id)
 {
     $numberOfMovies = getStatsRealOne($id);
     $data = getStatsReals();
+    $infosIsActor = "";
     $allReals = getRealisateurs();
     $realsArray=[];
     foreach ($allReals as $real) //This will be used for the dropdown to select director
