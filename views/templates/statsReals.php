@@ -3,7 +3,7 @@
 <div class="statsFlex">
     <div class="col">
         <p>
-            Choisissez le réalisateur dont vous voulez voir le nombre de films.
+            <span class="yellow">Choisissez le réalisateur dont vous voulez voir le nombre de films.</span>
             <form method="post" action="index.php?action=getRealsStats">
                 <select name="id_realisateur" id="real-select-number-films">
                 <?php 
@@ -20,7 +20,7 @@
             </form>
         </p>
         <p>
-            Choisissez le réalisateur dont vous voulez vérifier s'il a joué dans ses propres films.
+        <span class="yellow">Choisissez le réalisateur dont vous voulez vérifier s'il a joué dans ses propres films.</span>
             <form method="post" action="index.php?action=getRealsStatsActorCheck">
                 <select name="id_realisateur" id="real-select-actor-check">
                 <?php 
