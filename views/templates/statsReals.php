@@ -20,7 +20,7 @@
             </form>
         </p>
         <p>
-            Choisissez le réalisateur dont vous vérifier s'il a joué dans ses propres films.
+            Choisissez le réalisateur dont vous voulez vérifier s'il a joué dans ses propres films.
             <form method="post" action="index.php?action=getRealsStatsActorCheck">
                 <select name="id_realisateur" id="real-select-actor-check">
                 <?php 
