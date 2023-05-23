@@ -4,9 +4,9 @@ require_once ('src/models/connexion.php');
 function getgenres() 
 {
     $mySQLconnection = connexion();
-    $sqlQuery = 'SELECT * FROM genre'; //priceF means priceFormated
-    $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
-    $stmt->execute();                                                     //The data we retrieve are in array form
+    $sqlQuery = 'SELECT * FROM genre'; 
+    $stmt = $mySQLconnection->prepare($sqlQuery);
+    $stmt->execute();
     $genres = $stmt->fetchAll();
     return $genres;
 }
@@ -31,7 +31,15 @@ function addGenreModel($filteredGenreData)
 }
 function deleteGenreModel($id)
 {
+    // We need to get rid of the entries in genrer table where there is the id of genre we want to dolete 
     $mySQLconnection = connexion();
+    $sqlQuery = 'DELETE FROM genrer
+                WHERE id_genre = :id_genre';
+    $stmt = $mySQLconnection->prepare($sqlQuery);
+    $stmt->bindValue(':id_genre',$id, PDO::PARAM_INT);
+    $stmt->execute();
+
+
     $sqlQuery = 'DELETE FROM genre
                 WHERE id_genre = :id_genre';
     $stmt = $mySQLconnection->prepare($sqlQuery);
