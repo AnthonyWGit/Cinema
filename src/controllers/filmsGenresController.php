@@ -22,7 +22,7 @@ function displayFilmsGenres()
     //-------------Building a new array for film--------------
     foreach ($films as $film) //This will be used for the dropdown to add director when creating new row
     {
-        $filmsList[$film["titre_film"]] = [
+        $filmsList[$film["id_film"]] = [
             "titre_film" => $film["titre_film"],
             "id" => $film["id_film"]
         ];
