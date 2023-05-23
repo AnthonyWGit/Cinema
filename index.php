@@ -173,6 +173,7 @@ else if (isset($_GET["action"]) && $_GET["action"] == "addFilmGenre")
     $id_genre = $_POST["id_genre"];
     var_dump($id_film);
     var_dump($id_genre);
+    var_dump($_POST);
     addFilmGenreData($id_film,$id_genre);
 }
 //----------------------------------END ACTIONS ADD STUFF ----------------------------
