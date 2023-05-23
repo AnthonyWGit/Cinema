@@ -1,5 +1,6 @@
 <?php
 // This page is a test. It will be the controller for a page i'll do later. It's the one for controlview
+//** *********************LISTINGS CONTROLLERS********************** */
 require_once("src/controllers/acteurController.php");
 require_once("src/controllers/filmController.php");
 require_once("src/controllers/synopsisController.php");
@@ -9,9 +10,14 @@ require_once("src/controllers/genreController.php");
 require_once("src/controllers/castingController.php");
 require_once("src/controllers/homepageController.php");
 require_once("src/controllers/afficheController.php");
+require_once("src/controllers/filmsGenresController.php");
+//*************************END LISTINGS CONTROLLERS***************** */
+
+ //******************** STATS CONTROLLER*********************** */
 require_once("src/controllers/statsFilmsController.php");
 require_once("src/controllers/statsRealsController.php");
-require_once("src/controllers/filmsGenresController.php");
+require_once("src/controllers/statsActeursController.php");
+//********************** END STATS CONTROLLER******************* */
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -98,6 +104,10 @@ else if (isset($_GET["action"]) && $_GET["action"] == "displayStatsFilms")
 else if (isset($_GET["action"]) && $_GET["action"] == "displayStatsReals")
 {
     displayStatsReals();
+}
+else if (isset($_GET["action"]) && $_GET["action"] == "displayStatsActeurs")
+{
+    displayStatsActeurs();
 }
 else if (isset($_GET["action"]) && $_GET["action"] == "displayFilmsGenres")
 {
@@ -242,6 +252,12 @@ else if (isset($_GET["action"]) && $_GET["action"] == "getRealsStatsActorCheck")
 {
     $id = $_POST["id_realisateur"];
     displayStatsOneRealIsActor($id);
+}
+
+else if (isset($_GET["action"]) && $_GET["action"] == "getActorFilm")           //USED TO DISPLAY WICH ACTOR HAS PLAYED IN WICH FILM 
+{
+    $id = $_POST["id_acteur"];
+    displayFilmActor($id);
 }
 // ---------------------------------DEFAULT : HOMEPAGE--------------------------------
 
