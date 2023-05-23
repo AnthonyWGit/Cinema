@@ -4,12 +4,12 @@ require_once("connexion.php");
 function getStatsGenres()
 {
     $mySQLconnexion = connexion();
-    $sql = 'SELECT personne.nom, personne.prenom, personne.sexe, film.titre_film FROM personne
-            INNER JOIN acteur ON personne.id_personne = acteur.id_personne
-            INNER JOIN realisateur ON personne.id_personne = realisateur.id_personne
-            INNER JOIN film ON realisateur.id_realisateur = film.id_realisateur
-            WHERE realisateur.id_realisateur = :id_realisateur';
-    $stmt = $mySQLconnexion->prepare($sql);  
+    $sql = 'SELECT COUNT(film.id_film) AS "Nombre films", genre.nom_genre FROM genre
+            INNER JOIN genrer ON genre.id_genre = genrer.id_genre
+            INNER JOIN film ON genrer.id_film = film.id_film
+            GROUP BY genre.nom_genre
+            ORDER BY COUNT(film.id_film) DESC';  
+    $stmt = $mySQLconnexion->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll();
     return $data;
