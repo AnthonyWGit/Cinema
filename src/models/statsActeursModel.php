@@ -25,3 +25,15 @@ function getStatsFilmActor($id)
     $data = $stmt->fetchAll();
     return $data;
 }
+
+function getStatsSex()
+{
+    $mySQLconnexion = connexion();
+    $sql = 'SELECT COUNT(personne.sexe) AS "nombre", personne.sexe FROM acteur INNER JOIN personne ON acteur.id_personne=personne.id_personne
+            WHERE ((personne.sexe LIKE "H%") OR (personne.sexe LIKE "F%")  OR (personne.sexe LIKE "A%"))
+            GROUP BY personne.sexe';
+    $stmt = $mySQLconnexion->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll();
+    return $data;
+}

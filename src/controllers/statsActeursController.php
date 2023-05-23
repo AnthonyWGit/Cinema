@@ -15,12 +15,16 @@ function displayStatsActeurs()
             "id" => $acteur["id_acteur"]
         ];
     }
+
+    $actorsSex = getStatsSex();
+    var_dump($actorsSex);
     require_once("views/templates/statsActeurs.php");
 }
 
 function displayFilmActor($id)
 {
     $arrayFilm = [];                        //Array containing values we want to display 
+    $actorsSex = getStatsSex();
     $statsActeurs = getStatsActeurs();
     $allActeurs = getActeurs();
     foreach ($allActeurs as $acteur) //This will be used for the dropdown to add director when creating new row

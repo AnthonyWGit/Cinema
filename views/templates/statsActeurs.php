@@ -52,6 +52,14 @@
         </ul>
     </p>
     </div>
+
+    <p class="col">
+        Nombre de femmes dans le groupe acteur : <?= $actorsSex[0]["nombre"]?>
+        </br>
+        Nombre d'hommes dans le groupe acteur : <?= $actorsSex[1]["nombre"]?>
+        </br>
+        Nombre de personnes dans la groupe acteur qui ne se définissent ni comme femme ni comme homme : <?= $actorsSex[2]["nombre"]?>
+    </p>
 </div>
 <?php
 $content = ob_get_clean();
