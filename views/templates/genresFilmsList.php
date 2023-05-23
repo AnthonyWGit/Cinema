@@ -25,13 +25,13 @@
             </td>
 
 
-            <form method="post" action="index.php?action=updateFilmGenre&id=<?=$filmGenre["id_film"]?>&oldID=<?=$filmGenre["id_genre"]?>">
+            <form method="post" action="index.php?action=updateFilmGenre&id=<?=$filmGenre["TrueFilmID"]?>&oldID=<?=$filmGenre["id_genre"]?>">  
                 <td>  
                 <label><?= $filmGenre["nom_genre"]?></label>
-                    <select name="id_genre" id="real-select">
+                    <select name="id_genre" id="genre-select">
                         <?php 
                         foreach($genresFilmsList as $stuff)
-                        { var_dump($filmsList);
+                        {
                         ?>
             <option value="<?=$stuff["id"]?>"><?=$stuff["nom_genre"]?></option>
                         <?php
