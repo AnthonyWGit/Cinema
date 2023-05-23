@@ -181,7 +181,7 @@ else if (isset($_GET["action"]) && $_GET["action"] == "addFilmGenre")
 
 else if (isset($_GET["action"]) && $_GET["action"] == "deleteFilm")
 {
-    $id = $_GET["id"];
+    $id = $_GET["id_film"];
     deleteFilm($id);
 }
 
