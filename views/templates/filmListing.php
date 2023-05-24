@@ -44,13 +44,13 @@
 
             </form>  
 
-            <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
+
                 <td>
                     <div class="buttonHover">
-                        <button class="updateButton"><a href="index.php?action=goToSynopsis&id=<?=$film["id_film"]?>">Modifier</a></button>
+                        <a href="index.php?action=goToSynopsis&id=<?=$film["id_film"]?>"><button class="updateButton">Modifier</button></a>
                     </div>
                 </td>
-            </form>
+
 
             <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
                 <td>
