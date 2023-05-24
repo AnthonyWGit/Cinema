@@ -26,14 +26,14 @@ require_once ("src/models/genreModel.php");
 require_once ("src/models/statsGenresModel.php");
 //*************************************END******* */
 
-use Controllers\CinemaController;
+use Controllers\GenreController;
 
 spl_autoload_register(function ($class_name)
 {
     include 'src\\'.$class_name . '.php';
 });
 
-$controllerCinema = new CinemaController();
+$controllerGenre = new GenreController();
 
 
 //---------------------- ACTIONS UPDATE---------------------------------------
@@ -65,7 +65,7 @@ if (isset($_GET["action"]))
         case "updateGenre":
             $dataGenres = $_POST;
             $id = $_GET["id_genre"];
-            updateGenre($dataGenres, $id);     
+            $controllerGenre->updateGenre($dataGenres, $id);     
             break;
         case "updateCasting":
             $dataCasting = $_POST;
@@ -95,7 +95,7 @@ if (isset($_GET["action"]))
             displayRoles();
             break;
         case "displayGenres":
-            $controllerCinema->displayGenres();
+            $controllerGenre->displayGenres();
             break;
         case "displayCastings":
             displayCastings();
@@ -142,7 +142,7 @@ if (isset($_GET["action"]))
             break;
         case "addGenre":
             $genreData = $_POST;
-            $controllerCinema->addGenre($genreData);
+            $controllerGenre->addGenre($genreData);
             break;
         case "addCasting":
             $castingData = $_POST;
@@ -178,7 +178,7 @@ if (isset($_GET["action"]))
             break;
         case "deleteGenre":
             $id = $_GET["id_genre"];
-            $controllerCinema->deleteGenre($id);      
+            $controllerGenre->deleteGenre($id);      
             break;    
         case "deleteCasting":
             $id_film = $_GET["id_film"];
