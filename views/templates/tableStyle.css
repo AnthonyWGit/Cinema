@@ -17,15 +17,6 @@ table
 {
     background-color : rgba(32, 255, 112,0.5);
 }
-.buttonHover a
-{
-    pointer-events: none;
-}
-
-.buttonHoverUpload a
-{
-    pointer-events: none;
-}
 
 .buttonHover :hover
 {
@@ -38,6 +29,10 @@ table
     -webkit-transition:1s;
 }
 
+.buttonHover a:link
+{
+    background-color: transparent;
+}
 .buttonHoverUpload :hover
 {
     background-color: rgba(32, 255, 112,0.75);
