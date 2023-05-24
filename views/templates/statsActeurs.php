@@ -41,14 +41,15 @@
     <p>
         <ul>
         <?php 
-        foreach ($arrayFilm as $film)
+        foreach ($arrayFilmActeur as $film)
         {?>
 
-            <li><?= $film["titre_film"]?></li>
+            <li><?= $film["titre_film"] ?></li>
 
         <?php 
         }
         ?>
+            <?php if(empty($arrayFilmActeur)) echo $emptyMsg?>
         </ul>
     </p>
     </div>
