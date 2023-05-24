@@ -37,8 +37,8 @@ function updateFilmGenre($id_genre,$id_film,$oldID)
     $oldID = filter_var($oldID,FILTER_VALIDATE_INT);
     $id_genre_f = filter_var($id_genre,FILTER_VALIDATE_INT);
     $id_film_f = filter_var($id_film,FILTER_VALIDATE_INT);
-    if (!$oldID) //is oldID is false it means the previous id of the genre of the film we modify is not an id or is empty so we will put a placeholder 
-                //one b/c updateFilmGenre needs need 3 valid id
+    if (!$oldID) //is oldID is false it means the previous id of the genre of the film we modify is not an id or is empty so we will 
+                //create a var we will send to model to deal with this situation 
     {
         $whereIsNullActivated = true;
     }
