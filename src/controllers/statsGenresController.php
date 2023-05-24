@@ -1,11 +1,17 @@
 <?php 
-require_once ("src/models/genreModel.php");
-require_once ("src/models/statsGenresModel.php");
 
-function displayStatsGenres()
+Class StatsGenreController
 {
-    $filmsByGenre = [];
-    $rawFilmsByGenre = getStatsGenres();
-    require_once("views/templates/statsGenre.php");
-}
+    function displayStatsGenres()
+    {
 
+        $modelData = new StatsGenresModel();            //getting data from model Object
+        $rawFilmsByGenre = $modelData->getStatsGenres();
+
+
+        $filmsByGenre = [];
+        require_once("views/templates/statsGenre.php");
+
+    }
+    
+}

@@ -1,4 +1,5 @@
 <?php
+
 function connexion()
 {
     try {

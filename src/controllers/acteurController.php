@@ -114,7 +114,8 @@ function addActeur($acteurData)
         addActeurModel($filteredActeurData);
         header("Location:index.php?action=displayActeurs");
     }
-    else{
+    else
+    {
     echo "Error";
     }
 }

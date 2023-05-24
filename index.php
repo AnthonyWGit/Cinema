@@ -21,6 +21,12 @@ require_once("src/controllers/statsGenresController.php");
 require_once("src/controllers/statsRolesAndCastingsController.php");
 //********************** END STATS CONTROLLER******************* */
 
+//***********************MODELS */
+require_once ("src/models/genreModel.php");
+require_once ("src/models/statsGenresModel.php");
+//*************************************END******* */
+
+
 //---------------------- ACTIONS UPDATE---------------------------------------
 
 if (isset($_GET["action"]))
@@ -98,7 +104,8 @@ if (isset($_GET["action"]))
             displayStatsActeurs();
             break;
         case "displayStatsGenres":
-            displayStatsGenres();
+            $display = new StatsGenreController();
+            $display->displayStatsGenres();
             break;
         case "displayStatsRoles":
         case "displayStatsCastings":
