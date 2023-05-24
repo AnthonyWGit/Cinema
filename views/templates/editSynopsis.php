@@ -1,15 +1,15 @@
 <?php ob_start() ?>
 <div class="alignCol">
-    <div class="alignRow">
 
-        <form method="post" action="index.php?action=editSynopsis&id=<?=$_GET["id"]?>">
+    <form method="post" action="index.php?action=editSynopsis&id=<?=$_GET["id"]?>">
 
-            <textarea name="textSynopsis" placeholder="<?= $synopsisIsEmpty == true ? "Créez un synopsis" : $film[$id]["synopsis"]?>"></textarea>
-
+        <textarea name="textSynopsis" placeholder="<?= $synopsisIsEmpty == true ? "Créez un synopsis" : $film[$id]["synopsis"]?>"></textarea>
+        
+        <div class="sendbutton">
             <button type="submit">Mettre à jour</button>
+        </div>
 
-        </form>
-    </div>
+    </form>
 </div>
 <?php 
 $content = ob_get_clean();
