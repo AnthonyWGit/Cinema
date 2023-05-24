@@ -1,7 +1,7 @@
 <?php 
 
 require ("src/models/filmModel.php");
-require ("src/models/realisateurModel.php");        //Need to retrieve list of reals 
+require ("src/models/realisateurModel.php");        //Need to retrieve list of reals (=directors)
 require ("src/controllers/math.php");
 
 function displayFilms()
