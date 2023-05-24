@@ -14,8 +14,6 @@ function updateGenre($dataGenres, $id)
         $filteredValue = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);    //Sanitizing value in array
         $dataGenre[$fieldName] = $filteredValue;                                     //replacing original values by sanitized
     }
-    var_dump($filteredValue);
-    var_dump($id);
     updateGenreModel($filteredValue,$id);
 }
 
