@@ -74,7 +74,7 @@ class StatsActeursController
         $actorsSex = $this->getActorsSex();
         
         //--------------------SQL REQUEST6 ALL FILM FROM SELECTED ACTOR----------------------------
-        $mySQLconnexion = connexion();
+        $mySQLconnexion = Connect::connexion();
         $sql = 'SELECT * FROM film INNER JOIN casting ON film.id_film = casting.id_film
                 WHERE id_acteur = :id_acteur';
         $stmt = $mySQLconnexion->prepare($sql);

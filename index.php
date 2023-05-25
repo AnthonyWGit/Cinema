@@ -17,12 +17,13 @@ use Controllers\StatsGenreController;
 use Controllers\StatsRealsController;
 use Controllers\StatsRaCC;
 use Controllers\SynopsisController;
-
+//_________________________________AUTOLOAD_____________________________________
 spl_autoload_register(function ($class_name)
 {
     include 'src\\'.$class_name . '.php';
 });
 
+//__________________________INSTANCIATE CONTROLLERS_____________________________________
 $controllerGenre = new GenreController();
 $controllerFilmsGenre = new FilmsGenreController();
 $controllerFilm = new FilmController();

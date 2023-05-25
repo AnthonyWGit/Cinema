@@ -46,7 +46,7 @@ class RoleController
         $filteredRoleData = filter_var($roleData["nom_role"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         //--------------------SQL REQUSET -----------------------------
 
-        $mySQLconnection = connexion();
+        $mySQLconnection = Connect::connexion();
         $sqlQuery = 'INSERT INTO role (nom_role) VALUES (:nom_role)';
         $stmt = $mySQLconnection->prepare($sqlQuery);
         var_dump($filteredRoleData);
@@ -62,7 +62,7 @@ class RoleController
         //--------------------------SQL REQUEST --------------------------------------------
         //When we want to delete the role when need to break all links it has with film and acteurs tables in casting
 
-        $mySQLconnection = connexion();
+        $mySQLconnection = Connect::connexion();
         $sqlQuery = 'DELETE FROM casting
                     WHERE id_role= :id_role';
         $stmt = $mySQLconnection->prepare($sqlQuery);
