@@ -13,7 +13,7 @@ class GenreController
         $stmt = $mySQLconnection->prepare($sqlQuery);
         $stmt->execute();
         $genres = $stmt->fetchAll();
-        $genres = getGenres();
+    
         //-----------------------------------------
 
         require "views/templates/genreListing.php";
@@ -35,39 +35,39 @@ class GenreController
 
     function deleteGenre($id)
     {
-    //------------------------------SQL PART
-           // We need to get rid of the entries in genrer table where there is the id of genre we want to dolete 
-    $mySQLconnection = connexion();
-    $sqlQuery = 'DELETE FROM genrer
-                WHERE id_genre = :id_genre';
-    $stmt = $mySQLconnection->prepare($sqlQuery);
-    $stmt->bindValue(':id_genre',$id, \PDO::PARAM_INT);
-    $stmt->execute();
+        //------------------------------SQL PART
+            // We need to get rid of the entries in genrer table where there is the id of genre we want to dolete 
+        $mySQLconnection = connexion();
+        $sqlQuery = 'DELETE FROM genrer
+                    WHERE id_genre = :id_genre';
+        $stmt = $mySQLconnection->prepare($sqlQuery);
+        $stmt->bindValue(':id_genre',$id, \PDO::PARAM_INT);
+        $stmt->execute();
 
 
-    $sqlQuery = 'DELETE FROM genre
-                WHERE id_genre = :id_genre';
-    $stmt = $mySQLconnection->prepare($sqlQuery);
-    $stmt->bindValue(':id_genre',$id, \PDO::PARAM_INT);
-    $stmt->execute();
-    //-------------------------------------------
+        $sqlQuery = 'DELETE FROM genre
+                    WHERE id_genre = :id_genre';
+        $stmt = $mySQLconnection->prepare($sqlQuery);
+        $stmt->bindValue(':id_genre',$id, \PDO::PARAM_INT);
+        $stmt->execute();
+        //-------------------------------------------
     }
 
     function updateGenre($dataGenres, $id)
-{
-    foreach ($dataGenres as $fieldName=>$value)
     {
-        $filteredValue = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);    //Sanitizing value in array
-        $dataGenre[$fieldName] = $filteredValue;                                     //replacing original values by sanitized
+        foreach ($dataGenres as $fieldName=>$value)
+        {
+            $filteredValue = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);    //Sanitizing value in array
+            $dataGenre[$fieldName] = $filteredValue;                                     //replacing original values by sanitized
+        }
+    //--------------SQL PART------------------------------------
+        $mySQLconnection = connexion();
+        $sqlQuery = 'UPDATE genre SET nom_genre = :nom_genre
+                    WHERE id_genre = :id_genre';
+        $stmt =  $mySQLconnection->prepare($sqlQuery);
+        $stmt->bindValue(':nom_genre',$filteredValue);
+        $stmt->bindValue(':id_genre',$id,\PDO::PARAM_INT);
+        $stmt->execute();
+    //----------------------------------------------------------
     }
-//--------------SQL PART------------------------------------
-    $mySQLconnection = connexion();
-    $sqlQuery = 'UPDATE genre SET nom_genre = :nom_genre
-                WHERE id_genre = :id_genre';
-    $stmt =  $mySQLconnection->prepare($sqlQuery);
-    $stmt->bindValue(':nom_genre',$filteredValue);
-    $stmt->bindValue(':id_genre',$id,\PDO::PARAM_INT);
-    $stmt->execute();
-//----------------------------------------------------------
-}
 }

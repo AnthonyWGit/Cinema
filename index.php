@@ -1,4 +1,6 @@
 <?php
+
+
 // This page is a test. It will be the controller for a page i'll do later. It's the one for controlview
 //** *********************LISTINGS CONTROLLERS********************** */
 require_once("src/controllers/acteurController.php");
@@ -10,7 +12,7 @@ require_once("src/controllers/genreController.php");
 require_once("src/controllers/castingController.php");
 require_once("src/controllers/homepageController.php");
 require_once("src/controllers/afficheController.php");
-require_once("src/controllers/filmsGenresController.php");
+
 //*************************END LISTINGS CONTROLLERS***************** */
 
  //******************** STATS CONTROLLER*********************** */
@@ -22,10 +24,11 @@ require_once("src/controllers/statsRolesAndCastingsController.php");
 //********************** END STATS CONTROLLER******************* */
 
 //***********************MODELS */
-require_once ("src/models/genreModel.php");
+
 require_once ("src/models/statsGenresModel.php");
 //*************************************END******* */
 
+use Controllers\FilmsGenreController;
 use Controllers\GenreController;
 
 spl_autoload_register(function ($class_name)
@@ -34,6 +37,7 @@ spl_autoload_register(function ($class_name)
 });
 
 $controllerGenre = new GenreController();
+$controllerFilmsGenre = new FilmsGenreController();
 
 
 //---------------------- ACTIONS UPDATE---------------------------------------
@@ -77,7 +81,7 @@ if (isset($_GET["action"]))
             $oldID = $_GET["oldID"];
             $id_genre = $_POST["id_genre"];
             $id_film = $_GET["id"];
-            updateFilmGenre($id_genre,$id_film,$oldID);     
+            $controllerFilmsGenre->updateFilmGenre($id_genre, $id_film, $oldID);   
             break; 
 //--------------------END ACTIONS UPDATE ---------------------------------------
 
@@ -101,7 +105,7 @@ if (isset($_GET["action"]))
             displayCastings();
             break;
         case "displayFilmsGenres":
-            displayFilmsGenres();
+            $controllerFilmsGenre->displayFilmsGenres();
             break;
         case "displayStatsFilms":
             displayStatsFilms();
@@ -151,10 +155,7 @@ if (isset($_GET["action"]))
         case "addFilmGenre":
             $id_film = $_POST["id_film"];
             $id_genre = $_POST["id_genre"];
-            var_dump($id_film);
-            var_dump($id_genre);
-            var_dump($_POST);
-            addFilmGenreData($id_film,$id_genre);
+            $controllerFilmsGenre->addFilmGenreData($id_film,$id_genre);
             break;
 //----------------------------------END ACTIONS ADD STUFF ----------------------------
 
@@ -189,7 +190,7 @@ if (isset($_GET["action"]))
         case "deleteFilmGenre":
             $id_film = $_GET["id_film"];
             $id_genre = $_GET["id_genre"];
-            deleteFilmGenre($id_film, $id_genre);       
+            $controllerFilmsGenre->deleteFilmGenre($id_film,$id_genre);     
             break;     
 // ----------------------------END ACTION DELETE STUFF----------------------------------------
 
