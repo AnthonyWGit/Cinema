@@ -4,10 +4,9 @@
 namespace Controllers;
 use Models\Connect;
 
-
 class CastingController
 {
-    public function displayCastings()
+    public function getCastings()
     {
         //--------------------------SQL PART-------------------------
         $mySQLconnection = Connect::connexion();
@@ -20,6 +19,12 @@ class CastingController
         $stmt->execute();                                                     //The data we retrieve are in array form
         $castings = $stmt->fetchAll();
         //--------------------------------------------------------------
+        return $castings;
+    }
+    public function displayCastings()
+    {
+
+        $castings = $this->getCastings();
         require "views/templates/castingListing.php";
     }
 
@@ -59,7 +64,7 @@ class CastingController
             $stmt->execute();
             unset($stmt);
         }
-        //_____________________________________________________________________________________
+//_____________________________________________________________________________________
         //------------------------SQL PART---------------------------------------------
         $mySQLconnection = Connect::connexion();             //there is no id_casting so to target a specific row we will point at the old value at :cahmp_casting
         $sqlQuery = 'UPDATE casting 
@@ -108,7 +113,7 @@ class CastingController
         $castingsRightJoinActors = $stmt->fetchAll();
 
         //-----------------END SQL CRA-----------------------------------
-        //    $castingsRightJoinRoles = getCastingsRightJoinRoles();
+
         //----------------------------SQL PART--------------------------------
  
         $mySQLconnection = Connect::connexion();
@@ -123,18 +128,7 @@ class CastingController
         $filteredCastingData = filter_var($castingData,FILTER_SANITIZE_FULL_SPECIAL_CHARS);     //Strategy to add array = checking if imputs matches the first existsting value having an 
                                                                                                 //existing id for each then we allow to execute the add public function. It's an alternative version to
                                                                                                 //ensure user puts always existing data 
-        // $castings = getCastings();
-        
-        //--------------------------SQL PART getCASTIGNG------------------------------
-        $mySQLconnection = Connect::connexion();
-        $sqlQuery = 'SELECT * FROM casting 
-                    INNER JOIN film ON casting.id_film = film.id_film
-                    INNER JOIN acteur ON casting.id_acteur = acteur.id_acteur
-                    INNER JOIN role ON casting.id_role = role.id_role
-                    INNER JOIN personne ON acteur.id_personne = personne.id_personne'; //priceF means priceFormated
-        $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
-        $stmt->execute();                                                     //The data we retrieve are in array form
-        $castings = $stmt->fetchAll();
+        $castings =$this->getCastings();
         //-------------------------END SQL-------------------------------
         foreach ($castingsRightJoinFilm as $casting)                                                       
         {
