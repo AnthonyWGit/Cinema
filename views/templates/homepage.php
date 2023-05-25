@@ -11,7 +11,7 @@
         <div class="textCard">
             <h3>Films</h3>
             <p>Dernière mise à jour : </p>
-            <p><?= $lastUpdatedItems[2]["LastUpdated"]?></p>
+            <p><?= $dateTime[2]["LastUpdated"]?></p>
         </div>
     </div>
     <div class="card">
