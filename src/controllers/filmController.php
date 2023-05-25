@@ -4,6 +4,7 @@
 // require ("src/models/realisateurModel.php");        //Need to retrieve list of reals (=directors)
 namespace Controllers;
 use Models\Connect;
+use Controllers\Math;
 
 require ("src/controllers/math.php");
 
@@ -70,13 +71,13 @@ class FilmController
                         $filteredValue = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS); //so we have to do conversion. Here sanitizing
                         if (preg_match("/^\d{2}:\d{2}$/", $filteredValue)) //If the pattern of the string is :"1 number, 1 number, semi column,
                             {                                                  //, one number, one number
-                                $filteredValue = filterFourNumbers($filteredValue);
+                                $filteredValue = Math::filterFourNumbers($filteredValue);
                                 $datafilm[$fieldName] = $filteredValue;
                                 $permission = true;
                             }
                         else if (preg_match("/^\d{1}:\d{2}$/", $filteredValue)) 
                             {
-                                $filteredValue = filterThreeNumbers($filteredValue);
+                                $filteredValue = Math::filterThreeNumbers($filteredValue);
                                 $datafilm[$fieldName] = $filteredValue;
                                 $permission = true;
                             }
@@ -186,7 +187,7 @@ class FilmController
             move_uploaded_file($fileData["fileNew"]["tmp_name"], $uploadsDir . basename($newFileName));   //Moving files from local to folder  
         }
         //----------------------------END FILE PART-------------------------------------
-        $filmData["duree_film"] = filterFourNumbers($filmData["duree_film"]);  //Converting format |For now coverage is only format 4 nb
+        $filmData["duree_film"] = Math::filterFourNumbers($filmData["duree_film"]);  //Converting format |For now coverage is only format 4 nb
 
         //-------------------------SQL PART----------------------------------
         $fieldNameValues =[];
