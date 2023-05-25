@@ -4,6 +4,7 @@
 namespace Controllers;
 use Models\Connect;
 
+
 class CastingController
 {
     function displayCastings()
@@ -22,18 +23,45 @@ class CastingController
         require "views/templates/castingListing.php";
     }
 
-    function updateCasting($dataCasting, $id, $champ_casting)
+    function updateCasting($dataCasting, $id, $id_acteur,$champ_casting)
     {
         foreach ($dataCasting as $fieldName=>$value)    //using foreach to get the fieldName because we will use it in SQL request 
         {
             $filteredValue = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);    //Sanitizing value in array
             $datacasting[$fieldName] = $filteredValue;                                     //replacing original values by sanitized
         }
-
+//______________________________________________________________________
+        //------------SPECIAL CASE ABOUT ACTORS --------------------------
+        if (isset($id_acteur) && !empty($id_acteur))    //Actor is special case because we have to use the name and forename to retrive associated id
+        {
+            $mySQLconnection = Connect::connexion();             //there is no id_casting so to target a specific row we will point at the old value at :cahmp_casting
+            $sqlQuery = 'SELECT * FROM personne INNER JOIN acteur ON personne.id_personne = acteur.id_personne
+                        WHERE nom = :nom
+                        AND prenom = :prenom';
+            $stmt =  $mySQLconnection->prepare($sqlQuery);
+            $stmt->bindValue(':prenom',$dataCasting["prenom"]);
+            $stmt->bindValue(':nom',$dataCasting["nom"]);
+            $stmt->execute();
+            $newActorId = $stmt->fetch(\PDO::FETCH_ASSOC);
+            $newActorId = $newActorId["id_acteur"];
+            
+            $mySQLconnection = Connect::connexion();             //there is no id_casting so to target a specific row we will point at the old value at :cahmp_casting
+            $sqlQuery = 'UPDATE casting 
+                        INNER JOIN film ON casting.id_film = film.id_film
+                        INNER JOIN acteur ON casting.id_acteur = acteur.id_acteur
+                        INNER JOIN role ON casting.id_role = role.id_role
+                        INNER JOIN personne ON acteur.id_personne = personne.id_personne 
+                        SET casting.id_acteur = :placeholder
+                        WHERE casting.id_acteur = :champ_casting';
+            $stmt =  $mySQLconnection->prepare($sqlQuery);
+            $stmt->bindValue(':placeholder',$newActorId);
+            $stmt->bindValue(':champ_casting',$id_acteur);
+            $stmt->execute();
+            unset($stmt);
+        }
+        //_____________________________________________________________________________________
         //------------------------SQL PART---------------------------------------------
         $mySQLconnection = Connect::connexion();             //there is no id_casting so to target a specific row we will point at the old value at :cahmp_casting
-        var_dump($fieldName);
-        var_dump($filteredValue);
         $sqlQuery = 'UPDATE casting 
                     INNER JOIN film ON casting.id_film = film.id_film
                     INNER JOIN acteur ON casting.id_acteur = acteur.id_acteur
@@ -49,8 +77,6 @@ class CastingController
 
         //-------------------------END SQL---------------------------------------------
     }
-
-
     function addCasting($castingData)
     {
         $permission1 = false;
