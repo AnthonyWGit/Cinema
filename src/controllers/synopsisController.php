@@ -5,13 +5,13 @@ use Models\Connect;
 
 class SynopsisController
 {
-    function getFilms()
+    public function getFilms()
     {
         $controllerFilms = new FilmController;
         $data = $controllerFilms->getFilms();
         return $data;
     }
-    function displaySynopsis($id)
+    public function displaySynopsis($id)
     {
         $synopsisIsEmpty = true;
         $film = $this->getFilms(); // we don't actually display all the films but we need it to get $films["synopsis"];
@@ -19,7 +19,7 @@ class SynopsisController
         require("views/templates/editSynopsis.php");
     }
 
-    function editSynopsis($textSynopsis, $id)
+    public function editSynopsis($textSynopsis, $id)
     {
         //-----------------SQL PART---------------------------
         $mySQLconnection = Connect::connexion();

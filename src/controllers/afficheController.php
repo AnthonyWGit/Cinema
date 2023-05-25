@@ -7,7 +7,7 @@ use Models\Connect;
 
 class AfficheController
 {
-    function getReal($id)
+    public function getReal($id)
     {
         //-----------------------SQL DATA FROM FILM------------------------------
         $mySQLconnection = Connect::connexion();
@@ -24,7 +24,7 @@ class AfficheController
         //--------------------------END SQL-------------------------------------        
     }
 
-    function getPathfile($id)
+    public function getPathfile($id)
     {
         //--------------SQL PATHFILE--------------------------
         $mySQLconnection = Connect::connexion();
@@ -40,7 +40,7 @@ class AfficheController
         //-------------END SQL PATHFILE---------------------------        
     }
 
-    function getSynopsis($id)
+    public function getSynopsis($id)
     {
         //------------------SQL SYNOPSIS---------------------------
         $mySQLconnection = Connect::connexion();
@@ -54,7 +54,7 @@ class AfficheController
         //---------------------------------------------------------  
         return($synopsis);      
     }
-    function getCasting($id)
+    public function getCasting($id)
     {
          //------------------SQL ONE FILM CASTING-----------------
         $mySQLconnection = Connect::connexion();
@@ -72,7 +72,7 @@ class AfficheController
         return $casting;
        
     }
-    function displayAffiche($id) 
+    public function displayAffiche($id) 
     {
         $filmData = $this->getReal($id);
         $pathFile = $this->getPathfile($id);

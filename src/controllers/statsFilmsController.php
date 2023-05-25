@@ -7,7 +7,7 @@ use Models\Connect;
 
 class statsFilmsController
 {
-    function getFiveYears()
+    public function getFiveYears()
     {
         $mySQLconnexion = Connect::connexion();
         $sql = 'SELECT film.titre_film  FROM film
@@ -18,7 +18,7 @@ class statsFilmsController
         return $data;
     }
 
-    function getTwoHours()
+    public function getTwoHours()
     {
         $mySQLconnexion = Connect::connexion();
         $sql = 'SELECT film.titre_film, DATE_FORMAT(SEC_TO_TIME(film.duree_film * 60), "%H:%i") AS "Durée" FROM film 
@@ -30,7 +30,7 @@ class statsFilmsController
         return $data;
     }
 
-    function displayStatsFilms()
+    public function displayStatsFilms()
     {
         $filmsFiveYears = $this->getFiveYears();
         $filmsLenght = $this->getTwoHours();

@@ -20,7 +20,7 @@ class GenreController
         return $genres;        
     }
     
-    function addGenre($genreData)
+    public function addGenre($genreData)
     {
         $filteredGenreData = filter_var($genreData["nom_genre"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -33,7 +33,7 @@ class GenreController
         //-------------------------------------------------------------
     }
 
-    function deleteGenre($id)
+    public function deleteGenre($id)
     {
         //------------------------------SQL PART
             // We need to get rid of the entries in genrer table where there is the id of genre we want to dolete 
@@ -53,7 +53,7 @@ class GenreController
         //-------------------------------------------
     }
 
-    function updateGenre($dataGenres, $id)
+    public function updateGenre($dataGenres, $id)
     {
         foreach ($dataGenres as $fieldName=>$value)
         {

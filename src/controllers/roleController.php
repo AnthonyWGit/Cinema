@@ -6,7 +6,7 @@ use Models\Connect;
 
 class RoleController
 {
-    function displayRoles()
+    public function displayRoles()
     {
         //------------------------SQL request-----------------------------------
         $mySQLconnection = Connect::connexion();
@@ -20,7 +20,7 @@ class RoleController
         require "views/templates/roleListing.php";
     }
 
-    function updateRole($dataRole, $id)
+    public function updateRole($dataRole, $id)
     {
         foreach ($dataRole as $fieldName=>$value)
         {
@@ -41,7 +41,7 @@ class RoleController
         unset($stmt);
     }
 
-    function addRole($roleData)
+    public function addRole($roleData)
     {
         $filteredRoleData = filter_var($roleData["nom_role"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         //--------------------SQL REQUSET -----------------------------
@@ -57,7 +57,7 @@ class RoleController
 
         //-------------------------------------------------------
     }
-    function deleteRole($id)
+    public function deleteRole($id)
     {
         //--------------------------SQL REQUEST --------------------------------------------
         //When we want to delete the role when need to break all links it has with film and acteurs tables in casting

@@ -8,7 +8,7 @@ class ActeurController
 {
 
 
-    function displayActeurs()
+    public function displayActeurs()
     {
         //-------------------------SQL PART--------------------------------------
         $mySQLconnection = Connect::connexion();
@@ -22,7 +22,7 @@ class ActeurController
         require "views/templates/acteursListing.php";
     }
 
-    function updateActeur($dataActeurs,$id)
+    public function updateActeur($dataActeurs,$id)
     {
         //----------INITIALIZATION-------------------------------------
         $authorizedSexStrings = ["h","f","a","homme","femme","autre"];      //We want the user to only put that
@@ -99,7 +99,7 @@ class ActeurController
 
 
 
-    function addActeur($acteurData)
+    public function addActeur($acteurData)
     {
 
         //------------- INITIALIZATION VAR--------------------------------
@@ -173,7 +173,7 @@ class ActeurController
         echo "Error";
         }
     }
-    function deleteActeur($id)
+    public function deleteActeur($id)
     {
         //--------------------------------SQL BEGIN------------------------------------
         $mySQLconnection = Connect::connexion();

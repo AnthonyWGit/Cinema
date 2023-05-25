@@ -5,7 +5,7 @@ use Models\Connect;
 
 class StatsRaCC
 {
-    function displayVoid()
+    public function displayVoid()
     {
         require("views/templates/statsRoleAndCasting.php");
     }    

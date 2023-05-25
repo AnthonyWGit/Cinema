@@ -10,7 +10,7 @@ require ("src/controllers/math.php");
 
 class FilmController
 {
-    function getFilms()
+    public function getFilms()
     {
         //------------------SQL PART--------------------------
         $mySQLconnection = Connect::connexion();
@@ -26,7 +26,7 @@ class FilmController
     //--------------------------------------------------------------        
     }
 
-    function getReals()
+    public function getReals()
     {
 
         //-----SQL PART : need realisateurs List------------------------
@@ -40,7 +40,7 @@ class FilmController
         //--------------------------------------------------------------
     }
 
-    function getFilePath($id)
+    public function getFilePath($id)
     {
         $mySQLconnection = Connect::connexion();
         $sql = 'SELECT image_film from film
@@ -51,7 +51,7 @@ class FilmController
         $filePath = $stmt->fetchAll();
         return $filePath;
     }
-    function displayFilms()
+    public function displayFilms()
     {
 
         $filmsList = $this->getFilms();
@@ -70,7 +70,7 @@ class FilmController
         require("views/templates/filmListing.php");
     }
 
-    function updateFilms($datafilm, $idZ)
+    public function updateFilms($datafilm, $idZ)
     {
         $permissionInt = true;
         $permission = false;                                            //Setting a value that we will turn to true after verification
@@ -145,7 +145,7 @@ class FilmController
         }
     }
 
-    function uploadFile($file, $id)
+    public function uploadFile($file, $id)
     {
         $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];  // Allowed picture types
         $maxSize = 100000000; // 100 MB in bytes                   // 100 MB max size
@@ -184,7 +184,7 @@ class FilmController
         }
     }
 
-    function addFilm($filmData,$fileData)
+    public function addFilm($filmData,$fileData)
     {
 
         //------------------------ File part : copy past of what's above--------------------
@@ -232,10 +232,10 @@ class FilmController
         unset($mySQLconnection);
     }
 
-    function deleteFilm($id)
+    public function deleteFilm($id)
     {
         $filePath = $this->getFilePath($id);                  //We will use the filePath var to retrive filepath and if there is one
-        $filePath = $filePath[0];                   //the model function will have unlick so we delete the file
+        $filePath = $filePath[0];                   //the model public function will have unlick so we delete the file
         $isEmptyPathfile = false;
         if (empty($filePath)) $isEmptyPathfile = true;
 

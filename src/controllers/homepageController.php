@@ -6,8 +6,8 @@ use Models\Connect;
 
 class HomepageController
 {
-    function landingOnWebsite()
-    {   //The fetLastUpdate function is borked. It uses information.schema_tables and this doesn't count changes done via web forms and stuff
+    public function landingOnWebsite()
+    {   //The fetLastUpdate public function is borked. It uses information.schema_tables and this doesn't count changes done via web forms and stuff
 
         //------------------SQL REQUEST------------------------------------
         $mySQLconnexion = Connect::connexion();

@@ -5,7 +5,7 @@ namespace Controllers;
 
 class Math
 {
-    static function filterFourNumbers($filteredValue)
+    static public function filterFourNumbers($filteredValue)
     {
         echo "String matches pattern!";
         $hours = substr($filteredValue, 0, 2); // extract the first two characters (hours)
@@ -15,7 +15,7 @@ class Math
         return $filteredValue;
     }
 
-    static function filterThreeNumbers($filteredValue)
+    static public function filterThreeNumbers($filteredValue)
     {
         echo "String matches pattern!";
         $hours = substr($filteredValue, 0, 1); // extract the first character (hours)

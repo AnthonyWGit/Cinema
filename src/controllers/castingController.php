@@ -7,7 +7,7 @@ use Models\Connect;
 
 class CastingController
 {
-    function displayCastings()
+    public function displayCastings()
     {
         //--------------------------SQL PART-------------------------
         $mySQLconnection = Connect::connexion();
@@ -23,7 +23,7 @@ class CastingController
         require "views/templates/castingListing.php";
     }
 
-    function updateCasting($dataCasting, $id, $id_acteur,$champ_casting)
+    public function updateCasting($dataCasting, $id, $id_acteur,$champ_casting)
     {
         foreach ($dataCasting as $fieldName=>$value)    //using foreach to get the fieldName because we will use it in SQL request 
         {
@@ -77,7 +77,7 @@ class CastingController
 
         //-------------------------END SQL---------------------------------------------
     }
-    function addCasting($castingData)
+    public function addCasting($castingData)
     {
         $permission1 = false;
         $permission2 = false;
@@ -121,7 +121,7 @@ class CastingController
         //--------------------------------SQL END SQL CRR--------------------------------
         $ids = [];
         $filteredCastingData = filter_var($castingData,FILTER_SANITIZE_FULL_SPECIAL_CHARS);     //Strategy to add array = checking if imputs matches the first existsting value having an 
-                                                                                                //existing id for each then we allow to execute the add function. It's an alternative version to
+                                                                                                //existing id for each then we allow to execute the add public function. It's an alternative version to
                                                                                                 //ensure user puts always existing data 
         // $castings = getCastings();
         
@@ -178,7 +178,7 @@ class CastingController
         }
 
     }
-    function deleteCasting($id_film, $id_acteur, $id_role)
+    public function deleteCasting($id_film, $id_acteur, $id_role)
     {
         // deleteCastingModel($id_film, $id_acteur, $id_role);
         $mySQLconnection = Connect::connexion();

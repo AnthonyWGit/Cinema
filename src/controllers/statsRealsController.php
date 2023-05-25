@@ -7,7 +7,7 @@ use Models\Connect;
 
 class StatsRealsController
 {
-    function getReals()
+    public function getReals()
     {
         //-------------------------------SQL--------------------------------
         $mySQLconnection = Connect::connexion();
@@ -19,7 +19,7 @@ class StatsRealsController
         return $realisateurs;
 
     }
-    function getStatsReals()
+    public function getStatsReals()
     {
         $mySQLconnexion = Connect::connexion();
         $sql = 'SELECT COUNT(film.id_film) AS "Nombre films", personne.nom, personne.prenom FROM personne
@@ -33,7 +33,7 @@ class StatsRealsController
         return $data;
     }
 
-    function getStatsIsActor($id)
+    public function getStatsIsActor($id)
     {
         $mySQLconnexion = Connect::connexion();
         $sql = 'SELECT personne.nom, personne.prenom, personne.sexe, film.titre_film FROM personne
@@ -48,7 +48,7 @@ class StatsRealsController
         return $data;
     }
 
-    function getStatsNumberFilms($id)
+    public function getStatsNumberFilms($id)
     {
         $mySQLconnexion = Connect::connexion();
         $sql = 'SELECT COUNT(film.id_film) AS "Nombre films", personne.nom, personne.prenom FROM personne
@@ -62,7 +62,7 @@ class StatsRealsController
         return $data;
     }
 
-    function displayStatsReals()
+    public function displayStatsReals()
     {
         $data = $this->getStatsReals();
         $allReals = $this->getReals();
@@ -79,7 +79,7 @@ class StatsRealsController
         require_once("views/templates/statsReals.php");
     }
 
-    function displayStatsOneReal($id)
+    public function displayStatsOneReal($id)
     {
         $numberOfMovies = $this->getStatsNumberFilms($id);
         $data = $this->getStatsReals();
@@ -97,7 +97,7 @@ class StatsRealsController
         require_once("views/templates/statsReals.php");
     }
 
-    function displayStatsOneRealIsActor($id)
+    public function displayStatsOneRealIsActor($id)
     {
         $isActorToo = $this->getStatsIsActor($id);
         $data = $this->getStatsReals();

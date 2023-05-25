@@ -9,7 +9,7 @@ use Models\Connect;
 class FilmsGenreController
 {
 
-    function getFilms()
+    public function getFilms()
     {
         $mySQLconnection = Connect::connexion();
         $sqlQuery = 'SELECT * FROM film'; 
@@ -19,7 +19,7 @@ class FilmsGenreController
         return $data;
     }
 
-    function getGenres()
+    public function getGenres()
     {
         //----------------------------------------------------------------------
         //----------SQL PART-----------------------
@@ -31,7 +31,7 @@ class FilmsGenreController
         return $genres;
         //----------------------------------------------------------------        
     }
-    function displayFilmsGenres()
+    public function displayFilmsGenres()
     {
         $films = $this->getFilms();
         $genres = $this->getGenres();
@@ -65,7 +65,7 @@ class FilmsGenreController
         require "views/templates/genresFilmsList.php";
     }
 
-    function updateFilmGenre($id_genre,$id_film,$oldID)
+    public function updateFilmGenre($id_genre,$id_film,$oldID)
     {
         $whereIsNullActivated = false;
         $oldID = filter_var($oldID,FILTER_VALIDATE_INT);
@@ -104,7 +104,7 @@ class FilmsGenreController
 
     }
 
-    function addFilmGenreData($id_film,$id_genre)
+    public function addFilmGenreData($id_film,$id_genre)
     {
         //--------------------------------SQL------------------------------------------
         $mySQLconnection = Connect::connexion();
@@ -117,7 +117,7 @@ class FilmsGenreController
         //-----------------------------------END SQL---------------------------------------
     }
 
-    function deleteFilmGenre($id_film,$id_genre)
+    public function deleteFilmGenre($id_film,$id_genre)
     {
         //----------------------------------SQL PART---------------------------------
         $mySQLconnection = Connect::connexion();

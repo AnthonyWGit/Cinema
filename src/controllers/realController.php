@@ -6,7 +6,7 @@ use Models\Connect;
 
 class RealController
 {
-    function displayReals()
+    public function displayReals()
     {
         //-----------------SQL PART----------------------------------------------------
         $mySQLconnection = Connect::connexion();
@@ -18,7 +18,7 @@ class RealController
         //-------------------------------------------------------------------------------------
         require "views/templates/realsListing.php";
     }
-    function updateReal($dataReals,$id)
+    public function updateReal($dataReals,$id)
     {
         //----------INITIALIZATION-------------------------------------
         $authorizedSexStrings = ["h","f","a","homme","femme","autre"];      //We want the user to only put that
@@ -94,7 +94,7 @@ class RealController
 
 
 
-    function addReal($realData)
+    public function addReal($realData)
     {
 
         //------------- INITIALIZATION VAR--------------------------------
@@ -161,7 +161,7 @@ class RealController
         echo "Error";
         }
     }
-    function deleteReal($id)
+    public function deleteReal($id)
     {
         //------------------------------SQL PART--------------------------------------------
         $mySQLconnection = Connect::connexion(); //Below innerjoin because we need to delete date in personne table and the id linked with the 

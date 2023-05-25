@@ -5,7 +5,7 @@ use Models\Connect;
 
 class StatsGenreController
 {
-    function displayStatsGenres()
+    public function displayStatsGenres()
     {
         //-------------------------SQL REQUEST---------------------------------------
         $mySQLconnexion = Connect::connexion();
