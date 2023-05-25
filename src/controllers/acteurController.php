@@ -1,5 +1,4 @@
 <?php 
-// require_once ("src/models/acteurModel.php");
 
 namespace Controllers;
 use Models\Connect;

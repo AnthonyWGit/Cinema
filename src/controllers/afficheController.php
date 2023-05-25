@@ -1,6 +1,4 @@
 <?php
-// require_once ("src/models/afficheModel.php");
-// require_once ("src/models/filmModel.php");
 
 namespace Controllers;
 use Models\Connect;
