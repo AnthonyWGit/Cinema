@@ -1,33 +1,5 @@
 <?php
-
-
-// This page is a test. It will be the controller for a page i'll do later. It's the one for controlview
-//** *********************LISTINGS CONTROLLERS********************** */
-require_once("src/controllers/acteurController.php");
-require_once("src/controllers/filmController.php");
-require_once("src/controllers/synopsisController.php");
-require_once("src/controllers/realController.php");
-require_once("src/controllers/roleController.php");
-require_once("src/controllers/genreController.php");
-require_once("src/controllers/castingController.php");
-require_once("src/controllers/homepageController.php");
-require_once("src/controllers/afficheController.php");
-
-//*************************END LISTINGS CONTROLLERS***************** */
-
- //******************** STATS CONTROLLER*********************** */
-// require_once("src/controllers/statsFilmsController.php");
-// require_once("src/controllers/statsRealsController.php");
-// require_once("src/controllers/statsActeursController.php");
-// require_once("src/controllers/statsGenresController.php");
-// require_once("src/controllers/statsRolesAndCastingsController.php");
-//********************** END STATS CONTROLLER******************* */
-
-//***********************MODELS */
-
-require_once ("src/models/statsGenresModel.php");
-//*************************************END******* */
-
+//____________________________CONTROLLER MAIN______________________________
 use Controllers\FilmController;
 use Controllers\FilmsGenreController;
 use Controllers\GenreController;
@@ -38,11 +10,13 @@ use Controllers\CastingController;
 use Controllers\Math;
 use Controllers\RealController;
 use Controllers\RoleController;
+//__________________________CONTROLLERS STATS__________________________
 use Controllers\StatsActeursController;
+use Controllers\statsFilmsController;
 use Controllers\StatsGenreController;
 use Controllers\StatsRealsController;
-// use Controllers\StatsFilmController;
-
+use Controllers\StatsRaCC;
+use Controllers\SynopsisController;
 
 spl_autoload_register(function ($class_name)
 {
@@ -61,6 +35,9 @@ $controllerRole = new RoleController();
 $controllerStatsActeurs = new StatsActeursController();
 $controllerStatsGenre = new StatsGenreController();
 $controllerStatsReal = new StatsRealsController();
+$controllerStatsFilms = new statsFilmsController();
+$controllerStatsRaCC = new StatsRaCC();
+$controllerSynopsis = new SynopsisController();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -133,7 +110,7 @@ if (isset($_GET["action"]))
             $controllerFilmsGenre->displayFilmsGenres();
             break;
         case "displayStatsFilms":
-            // displayStatsFilms();
+            $controllerStatsFilms->displayStatsFilms();
             break;
         case "displayStatsReals":
             $controllerStatsReal->displayStatsReals();
@@ -146,7 +123,7 @@ if (isset($_GET["action"]))
             break;
         case "displayStatsRoles":
         case "displayStatsCastings":
-            displayVoid();
+            $controllerStatsRaCC->displayVoid();
             break;
 //------------------END ACTION DISPLAY-----------------------------------------------
 
@@ -231,12 +208,12 @@ if (isset($_GET["action"]))
 
         case "goToSynopsis":
             $id = $_GET["id"];
-            displaySynopsis($id);  
+            $controllerSynopsis->displaySynopsis($id);  
             break;
         case "editSynopsis":
             $id = $_GET["id"];
             $textSynopsis = $_POST["textSynopsis"];
-            editSynopsis($textSynopsis, $id);     
+            $controllerSynopsis->editSynopsis($textSynopsis, $id);     
             break;
         case "goToAffiche":
             $id = $_GET["id"];
