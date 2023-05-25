@@ -30,15 +30,13 @@
                 </td>
             </form>
 
-            <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&champ_casting=<?=$casting["nom"]?>">
+            <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&id_acteur=<?=$casting["id_acteur"]?>">
                 <td>  
                     <label><?=$casting["nom"]?></label>
                     <input type="text" name="nom" value="nom">
-                    <button type="submit" class="updateButton" class="updateButton">Envoyer</button>
-                </td>
-            </form>
 
-            <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&champ_casting=<?=$casting["prenom"]?>">
+                </td>
+
                 <td>  
                     <label><?=$casting["prenom"]?></label>
                     <input type="text" name="prenom" value="prénom">
