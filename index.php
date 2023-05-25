@@ -33,6 +33,7 @@ use Controllers\FilmsGenreController;
 use Controllers\GenreController;
 use Controllers\ActeurController;
 use Controllers\AfficheController;
+use Controllers\CastingController;
 
 spl_autoload_register(function ($class_name)
 {
@@ -44,7 +45,7 @@ $controllerFilmsGenre = new FilmsGenreController();
 $controllerFilm = new FilmController();
 $controllerActeur = new ActeurController();
 $controllerAffiche = new AfficheController();
-
+$controllerCasting = new CastingController();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -81,7 +82,7 @@ if (isset($_GET["action"]))
             $dataCasting = $_POST;
             $id = $_GET["id_film"];
             $champ_casting= $_GET["champ_casting"];
-            updateCasting($dataCasting, $id, $champ_casting); 
+            $controllerCasting->updateCasting($dataCasting, $id, $champ_casting); 
             break;    
         case "updateFilmGenre";
             $oldID = $_GET["oldID"];
@@ -108,7 +109,7 @@ if (isset($_GET["action"]))
             $controllerGenre->displayGenres();
             break;
         case "displayCastings":
-            displayCastings();
+            $controllerCasting->displayCastings();
             break;
         case "displayFilmsGenres":
             $controllerFilmsGenre->displayFilmsGenres();
@@ -156,7 +157,7 @@ if (isset($_GET["action"]))
             break;
         case "addCasting":
             $castingData = $_POST;
-            addCasting($castingData);
+            $controllerCasting->addCasting($castingData);
             break;
         case "addFilmGenre":
             $id_film = $_POST["id_film"];
@@ -191,7 +192,7 @@ if (isset($_GET["action"]))
             $id_film = $_GET["id_film"];
             $id_acteur = $_GET["id_acteur"];
             $id_role = $_GET["id_role"];
-            deleteCasting($id_film, $id_acteur, $id_role);
+            $controllerCasting->deleteCasting($id_film, $id_acteur, $id_role);
             break;
         case "deleteFilmGenre":
             $id_film = $_GET["id_film"];
