@@ -31,6 +31,8 @@ require_once ("src/models/statsGenresModel.php");
 use Controllers\FilmController;
 use Controllers\FilmsGenreController;
 use Controllers\GenreController;
+use Controllers\ActeurController;
+use Controllers\AfficheController;
 
 spl_autoload_register(function ($class_name)
 {
@@ -40,6 +42,8 @@ spl_autoload_register(function ($class_name)
 $controllerGenre = new GenreController();
 $controllerFilmsGenre = new FilmsGenreController();
 $controllerFilm = new FilmController();
+$controllerActeur = new ActeurController();
+$controllerAffiche = new AfficheController();
 
 
 //---------------------- ACTIONS UPDATE---------------------------------------
@@ -57,7 +61,7 @@ if (isset($_GET["action"]))
         case "updateActeur":
             $dataActeurs = $_POST;
             $id = $_GET["id_acteur"];
-            updateActeur($dataActeurs, $id);
+            $controllerActeur->updateActeur($dataActeurs, $id);
             break;
         case "updateRealisateur":
             $dataReals = $_POST;
@@ -92,7 +96,7 @@ if (isset($_GET["action"]))
             $controllerFilm->displayFilms();
             break;
         case "displayActeurs":
-            displayActeurs();
+            $controllerActeur->displayActeurs();
             break;
         case "displayReals":
             displayReals();
@@ -136,7 +140,7 @@ if (isset($_GET["action"]))
             break;
         case "addActeur":
             $actorData = $_POST;
-            addActeur($actorData);        
+            $controllerActeur->addActeur($actorData);        
             break;
         case "addReal":
             $realData = $_POST;
@@ -169,7 +173,7 @@ if (isset($_GET["action"]))
             
         case "deleteActeur":
             $id = $_GET["id_acteur"];
-            deleteActeur($id); 
+            $controllerActeur->deleteActeur($id); 
             break;
         case "deleteReal":
             $id = $_GET["id_real"];
@@ -218,7 +222,8 @@ if (isset($_GET["action"]))
             break;
         case "goToAffiche":
             $id = $_GET["id"];
-            displayAffiche($id);    
+            $controllerAffiche->displayAffiche($id);    
+            break;
         case "getRealsStats":
             $id = $_POST["id_realisateur"];
             displayStatsOneReal($id);        
