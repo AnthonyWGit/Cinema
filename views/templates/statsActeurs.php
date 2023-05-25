@@ -40,16 +40,7 @@
 
     <p>
         <ul>
-        <?php 
-        foreach ($arrayFilmActeur as $film)
-        {?>
-
-            <li><?= $film["titre_film"] ?></li>
-
-        <?php 
-        }
-        ?>
-            <?php if(empty($arrayFilmActeur)) echo $emptyMsg?>
+            <?= $msg ?>
         </ul>
     </p>
     </div>

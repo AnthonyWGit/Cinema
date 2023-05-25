@@ -16,11 +16,11 @@ require_once("src/controllers/afficheController.php");
 //*************************END LISTINGS CONTROLLERS***************** */
 
  //******************** STATS CONTROLLER*********************** */
-require_once("src/controllers/statsFilmsController.php");
-require_once("src/controllers/statsRealsController.php");
-require_once("src/controllers/statsActeursController.php");
-require_once("src/controllers/statsGenresController.php");
-require_once("src/controllers/statsRolesAndCastingsController.php");
+// require_once("src/controllers/statsFilmsController.php");
+// require_once("src/controllers/statsRealsController.php");
+// require_once("src/controllers/statsActeursController.php");
+// require_once("src/controllers/statsGenresController.php");
+// require_once("src/controllers/statsRolesAndCastingsController.php");
 //********************** END STATS CONTROLLER******************* */
 
 //***********************MODELS */
@@ -37,6 +37,11 @@ use Controllers\HomepageController;
 use Controllers\CastingController;
 use Controllers\Math;
 use Controllers\RealController;
+use Controllers\RoleController;
+use Controllers\StatsActeursController;
+use Controllers\Derived;
+use Controllers\RequireView;
+
 
 spl_autoload_register(function ($class_name)
 {
@@ -51,6 +56,8 @@ $controllerAffiche = new AfficheController();
 $controllerCasting = new CastingController();
 $controllerHomepage = new HomepageController();
 $controllerReal = new RealController();
+$controllerRole = new RoleController();
+$controllerStatsActeurs = new StatsActeursController();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -77,7 +84,8 @@ if (isset($_GET["action"]))
         case "updateRole":
             $dataRoles = $_POST;
             $id = $_GET["id_role"];
-            updateRole($dataRoles, $id);   
+            $controllerRole->updateRole($dataRoles, $id);  
+            break; 
         case "updateGenre":
             $dataGenres = $_POST;
             $id = $_GET["id_genre"];
@@ -110,7 +118,7 @@ if (isset($_GET["action"]))
             $controllerReal->displayReals();
             break;
         case "displayRoles";
-            displayRoles();
+            $controllerRole->displayRoles();
             break;
         case "displayGenres":
             $controllerGenre->displayGenres();
@@ -128,7 +136,7 @@ if (isset($_GET["action"]))
             displayStatsReals();
             break;
         case "displayStatsActeurs":
-            displayStatsActeurs();
+            $controllerStatsActeurs->displayStatsActeurs();
             break;
         case "displayStatsGenres":
             $display = new StatsGenreController();
@@ -156,7 +164,7 @@ if (isset($_GET["action"]))
             break;
         case "addRole":
             $roleData = $_POST;
-            addRole($roleData);       
+            $controllerRole->addRole($roleData);       
             break;
         case "addGenre":
             $genreData = $_POST;
@@ -189,7 +197,7 @@ if (isset($_GET["action"]))
             break;
         case "deleteRole":
             $id = $_GET["id_role"];
-            deleteRole($id);
+            $controllerRole->deleteRole($id);
             break;
         case "deleteGenre":
             $id = $_GET["id_genre"];
@@ -242,7 +250,7 @@ if (isset($_GET["action"]))
             break;
         case "getActorFilm"://USED TO DISPLAY WICH ACTOR HAS PLAYED IN WICH FILM 
             $id = $_POST["id_acteur"];
-            displayFilmActor($id); 
+            $controllerStatsActeurs->displayFilmActor($id); 
             break;                                    
     }
 }
