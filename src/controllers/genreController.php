@@ -25,7 +25,7 @@ class GenreController
         $filteredGenreData = filter_var($genreData["nom_genre"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         //---------------------SQL PART-------------------------------
-        $mySQLconnection = connexion();
+        $mySQLconnection = Connect::connexion();
         $sqlQuery = 'INSERT INTO genre (nom_genre) VALUES (:nom_genre)';
         $stmt = $mySQLconnection->prepare($sqlQuery);
         $stmt->bindValue(':nom_genre',$filteredGenreData);
@@ -37,7 +37,7 @@ class GenreController
     {
         //------------------------------SQL PART
             // We need to get rid of the entries in genrer table where there is the id of genre we want to dolete 
-        $mySQLconnection = connexion();
+        $mySQLconnection = Connect::connexion();
         $sqlQuery = 'DELETE FROM genrer
                     WHERE id_genre = :id_genre';
         $stmt = $mySQLconnection->prepare($sqlQuery);
@@ -61,7 +61,7 @@ class GenreController
             $dataGenre[$fieldName] = $filteredValue;                                     //replacing original values by sanitized
         }
     //--------------SQL PART------------------------------------
-        $mySQLconnection = connexion();
+        $mySQLconnection = Connect::connexion();
         $sqlQuery = 'UPDATE genre SET nom_genre = :nom_genre
                     WHERE id_genre = :id_genre';
         $stmt =  $mySQLconnection->prepare($sqlQuery);

@@ -28,6 +28,7 @@ require_once("src/controllers/statsRolesAndCastingsController.php");
 require_once ("src/models/statsGenresModel.php");
 //*************************************END******* */
 
+use Controllers\FilmController;
 use Controllers\FilmsGenreController;
 use Controllers\GenreController;
 
@@ -38,6 +39,7 @@ spl_autoload_register(function ($class_name)
 
 $controllerGenre = new GenreController();
 $controllerFilmsGenre = new FilmsGenreController();
+$controllerFilm = new FilmController();
 
 
 //---------------------- ACTIONS UPDATE---------------------------------------
@@ -49,7 +51,7 @@ if (isset($_GET["action"]))
         case "updateFilms":
             $dataFilm = $_POST;
             $idZ = $_GET["id_film"];
-            updateFilms($dataFilm, $idZ);
+            $controllerFilm->updateFilms($dataFilm, $idZ);
             break;
 
         case "updateActeur":
@@ -87,7 +89,7 @@ if (isset($_GET["action"]))
 
 //----------------------ACTIONS DISPLAY -----------------------------------------            
         case "displayFilms":
-            displayFilms();
+            $controllerFilm->displayFilms();
             break;
         case "displayActeurs":
             displayActeurs();
@@ -130,7 +132,7 @@ if (isset($_GET["action"]))
         case "addFilm":
             $filmData = $_POST;
             $fileData = $_FILES;
-            addFilm($filmData,$fileData);
+            $controllerFilm->addFilm($filmData,$fileData);
             break;
         case "addActeur":
             $actorData = $_POST;
@@ -162,7 +164,7 @@ if (isset($_GET["action"]))
 //------------------------------ACTION DELETE STUFF-------------------------------------
         case "deleteFilm":
             $id = $_GET["id_film"];
-            deleteFilm($id);      
+            $controllerFilm->deleteFilm($id);      
             break;
             
         case "deleteActeur":
@@ -198,8 +200,7 @@ if (isset($_GET["action"]))
         case "uploadFile":
             $id = $_GET["id_film"];
             $file = $_FILES;
-            var_dump($_FILES);
-            uploadFile($file,$id);   
+            $controllerFilm->uploadFile($file,$id);   
             break;
 
 //-----------------------------------END ACTION UPLOAD FILE ------------------------------------

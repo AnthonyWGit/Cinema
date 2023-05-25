@@ -39,7 +39,7 @@ class FilmsGenreController
             ];
         }
         //--------------------------SQL PART-------------------------------------------------
-        $mySQLconnection = connexion();
+        $mySQLconnection = Connect::connexion();
         $sqlQuery =     'SELECT *, film.id_film AS TrueFilmID FROM film LEFT JOIN genrer ON film.id_film = genrer.id_film
                         LEFT JOIN genre ON genre.id_genre = genrer.id_genre'; 
         $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
@@ -62,7 +62,7 @@ class FilmsGenreController
             $whereIsNullActivated = true;
         }
         //-------------------------SQL PART---------------------------------------
-        $mySQLconnection = connexion();
+        $mySQLconnection = Connect::connexion();
         if (!$whereIsNullActivated)
         {
             $sqlQuery = 'UPDATE genrer SET genrer.id_genre = :id_genre
@@ -92,7 +92,7 @@ class FilmsGenreController
     function addFilmGenreData($id_film,$id_genre)
     {
         //--------------------------------SQL------------------------------------------
-        $mySQLconnection = connexion();
+        $mySQLconnection = Connect::connexion();
         $sqlQuery = 'INSERT INTO genrer (id_film, id_genre)
                     VALUES (:id_film, :id_genre)'; 
         $stmt = $mySQLconnection->prepare($sqlQuery);                        
@@ -105,7 +105,7 @@ class FilmsGenreController
     function deleteFilmGenre($id_film,$id_genre)
     {
         //----------------------------------SQL PART---------------------------------
-        $mySQLconnection = connexion();
+        $mySQLconnection = Connect::connexion();
         $sqlQuery = 'DELETE FROM genrer
                     WHERE id_film = :id_film
                     AND id_genre = :id_genre';
