@@ -10,22 +10,8 @@ require ("src/controllers/math.php");
 
 class FilmController
 {
-    function displayFilms()
+    function getFilms()
     {
-        $filmsList = getFilms();
-        // $realisateurs = getRealisateurs(); 
-
-        //-----SQL PART : need realisateurs List------------------------
-
-        $mySQLconnection = Connect::connexion();
-        $sqlQuery = 'SELECT * FROM realisateur INNER JOIN personne ON realisateur.id_personne = personne.id_personne'; //priceF means priceFormated
-        $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
-        $stmt->execute();                                                     //The data we retrieve are in array form
-        $realisateurs = $stmt->fetchAll();
-
-        //--------------------------------------------------------------
-        $realisateursList = [];
-
         //------------------SQL PART--------------------------
         $mySQLconnection = Connect::connexion();
         $sqlQuery = '   SELECT film.id_film, film.id_realisateur, personne.nom, film.synopsis, DATE_FORMAT(SEC_TO_TIME(film.duree_film * 60), "%H:%i") AS "dureeFormat", personne.prenom, film.titre_film, film.duree_film, film.dateSortie_film, film.synopsis, film.image_film, film.note_film FROM personne
@@ -34,10 +20,44 @@ class FilmController
                         ORDER BY film.id_film'; 
         $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
         $stmt->execute();                                                     //The data we retrieve are in array form
-        $films = $stmt->fetchAll();
+        $filmsList = $stmt->fetchAll();
         unset($mySQLconnection);
+        return $filmsList;
+    //--------------------------------------------------------------        
+    }
 
-    //--------------------------------------------------------------
+    function getReals()
+    {
+
+        //-----SQL PART : need realisateurs List------------------------
+
+        $mySQLconnection = Connect::connexion();
+        $sqlQuery = 'SELECT * FROM realisateur INNER JOIN personne ON realisateur.id_personne = personne.id_personne'; //priceF means priceFormated
+        $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
+        $stmt->execute();                                                     //The data we retrieve are in array form
+        $realisateurs = $stmt->fetchAll();
+        return $realisateurs;
+        //--------------------------------------------------------------
+    }
+
+    function getFilePath($id)
+    {
+        $mySQLconnection = Connect::connexion();
+        $sql = 'SELECT image_film from film
+                WHERE id_film = :id_film';
+        $stmt = $mySQLconnection->prepare($sql);
+        $stmt->bindValue('id_film',$id,\PDO::PARAM_STR);
+        $stmt->execute();
+        $filePath = $stmt->fetchAll();
+        return $filePath;
+    }
+    function displayFilms()
+    {
+
+        $filmsList = $this->getFilms();
+        $realisateurs = $this->getReals(); 
+
+        $realisateursList = [];
         foreach ($realisateurs as $real) //This will be used for the dropdown to add director when creating new row
         {
             $realisateursList[$real["id_realisateur"]] = [
@@ -187,9 +207,8 @@ class FilmController
             move_uploaded_file($fileData["fileNew"]["tmp_name"], $uploadsDir . basename($newFileName));   //Moving files from local to folder  
         }
         //----------------------------END FILE PART-------------------------------------
+        
         $filmData["duree_film"] = Math::filterFourNumbers($filmData["duree_film"]);  //Converting format |For now coverage is only format 4 nb
-
-        //-------------------------SQL PART----------------------------------
         $fieldNameValues =[];
         $sqlFilePartInsert = "";
         $sqlFilePartValues = "";
@@ -197,6 +216,7 @@ class FilmController
         {
             $fieldNameValues[$fieldName] = $value ;
         }
+        //-------------------------SQL PART----------------------------------        
         $mySQLconnection = Connect::connexion();
             if (!empty($filePath)) 
             {
@@ -214,7 +234,7 @@ class FilmController
 
     function deleteFilm($id)
     {
-        $filePath = getFiles($id);                  //We will use the filePath var to retrive filepath and if there is one
+        $filePath = $this->getFilePath($id);                  //We will use the filePath var to retrive filepath and if there is one
         $filePath = $filePath[0];                   //the model function will have unlick so we delete the file
         $isEmptyPathfile = false;
         if (empty($filePath)) $isEmptyPathfile = true;

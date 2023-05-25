@@ -39,8 +39,9 @@ use Controllers\Math;
 use Controllers\RealController;
 use Controllers\RoleController;
 use Controllers\StatsActeursController;
-use Controllers\Derived;
-use Controllers\RequireView;
+use Controllers\StatsGenreController;
+use Controllers\StatsRealsController;
+// use Controllers\StatsFilmController;
 
 
 spl_autoload_register(function ($class_name)
@@ -58,6 +59,8 @@ $controllerHomepage = new HomepageController();
 $controllerReal = new RealController();
 $controllerRole = new RoleController();
 $controllerStatsActeurs = new StatsActeursController();
+$controllerStatsGenre = new StatsGenreController();
+$controllerStatsReal = new StatsRealsController();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -130,17 +133,16 @@ if (isset($_GET["action"]))
             $controllerFilmsGenre->displayFilmsGenres();
             break;
         case "displayStatsFilms":
-            displayStatsFilms();
+            // displayStatsFilms();
             break;
         case "displayStatsReals":
-            displayStatsReals();
+            $controllerStatsReal->displayStatsReals();
             break;
         case "displayStatsActeurs":
             $controllerStatsActeurs->displayStatsActeurs();
             break;
         case "displayStatsGenres":
-            $display = new StatsGenreController();
-            $display->displayStatsGenres();
+            $controllerStatsGenre->displayStatsGenres();
             break;
         case "displayStatsRoles":
         case "displayStatsCastings":
@@ -242,11 +244,11 @@ if (isset($_GET["action"]))
             break;
         case "getRealsStats":
             $id = $_POST["id_realisateur"];
-            displayStatsOneReal($id);        
+            $controllerStatsReal->displayStatsOneReal($id);        
             break;
         case "getRealsStatsActorCheck":
             $id = $_POST["id_realisateur"];
-            displayStatsOneRealIsActor($id);
+            $controllerStatsReal->displayStatsOneRealIsActor($id);
             break;
         case "getActorFilm"://USED TO DISPLAY WICH ACTOR HAS PLAYED IN WICH FILM 
             $id = $_POST["id_acteur"];
