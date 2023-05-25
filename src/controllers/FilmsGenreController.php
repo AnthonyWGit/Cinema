@@ -8,18 +8,33 @@ use Models\Connect;
 
 class FilmsGenreController
 {
+
+    function getFilms()
+    {
+        $mySQLconnection = Connect::connexion();
+        $sqlQuery = 'SELECT * FROM film'; 
+        $stmt = $mySQLconnection->prepare($sqlQuery);
+        $stmt->execute();
+        $data = $stmt->fetchAll();
+        return $data;
+    }
+
+    function getGenres()
+    {
+        //----------------------------------------------------------------------
+        //----------SQL PART-----------------------
+        $mySQLconnection = Connect::connexion();
+        $sqlQuery = 'SELECT * FROM genre'; 
+        $stmt = $mySQLconnection->prepare($sqlQuery);
+        $stmt->execute();
+        $genres = $stmt->fetchAll();
+        return $genres;
+        //----------------------------------------------------------------        
+    }
     function displayFilmsGenres()
     {
-        $films = getFilms();
-        //----------------------------------------------------------------------
-                //----------SQL PART-----------------------
-                $mySQLconnection = Connect::connexion();
-                $sqlQuery = 'SELECT * FROM genre'; 
-                $stmt = $mySQLconnection->prepare($sqlQuery);
-                $stmt->execute();
-                $genres = $stmt->fetchAll();
-            
-        //----------------------------------------------------------------
+        $films = $this->getFilms();
+        $genres = $this->getGenres();
         $genresFilmsList = [];
         $filmsList = [];
         //------------Building a new array of genres for dropdown-----------------
