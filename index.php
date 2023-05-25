@@ -33,7 +33,10 @@ use Controllers\FilmsGenreController;
 use Controllers\GenreController;
 use Controllers\ActeurController;
 use Controllers\AfficheController;
+use Controllers\HomepageController;
 use Controllers\CastingController;
+use Controllers\Math;
+use Controllers\RealController;
 
 spl_autoload_register(function ($class_name)
 {
@@ -46,6 +49,8 @@ $controllerFilm = new FilmController();
 $controllerActeur = new ActeurController();
 $controllerAffiche = new AfficheController();
 $controllerCasting = new CastingController();
+$controllerHomepage = new HomepageController();
+$controllerReal = new RealController();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -67,7 +72,7 @@ if (isset($_GET["action"]))
         case "updateRealisateur":
             $dataReals = $_POST;
             $id = $_GET["id_real"];
-            updateReal($dataReals, $id); 
+            $controllerReal->updateReal($dataReals, $id); 
             break;
         case "updateRole":
             $dataRoles = $_POST;
@@ -81,8 +86,10 @@ if (isset($_GET["action"]))
         case "updateCasting":
             $dataCasting = $_POST;
             $id = $_GET["id_film"];
-            $champ_casting= $_GET["champ_casting"];
-            $controllerCasting->updateCasting($dataCasting, $id, $champ_casting); 
+            $id_acteur = $_GET["id_acteur"];
+            $champ_casting = $_GET["champ_casting"];
+            var_dump($dataCasting);
+            $controllerCasting->updateCasting($dataCasting, $id, $id_acteur, $champ_casting); 
             break;    
         case "updateFilmGenre";
             $oldID = $_GET["oldID"];
@@ -100,7 +107,7 @@ if (isset($_GET["action"]))
             $controllerActeur->displayActeurs();
             break;
         case "displayReals":
-            displayReals();
+            $controllerReal->displayReals();
             break;
         case "displayRoles";
             displayRoles();
@@ -145,7 +152,7 @@ if (isset($_GET["action"]))
             break;
         case "addReal":
             $realData = $_POST;
-            addReal($realData);
+            $controllerReal->addReal($realData);
             break;
         case "addRole":
             $roleData = $_POST;
@@ -178,7 +185,7 @@ if (isset($_GET["action"]))
             break;
         case "deleteReal":
             $id = $_GET["id_real"];
-            deleteReal($id);    
+            $controllerReal->deleteReal($id);    
             break;
         case "deleteRole":
             $id = $_GET["id_role"];
@@ -242,5 +249,5 @@ if (isset($_GET["action"]))
 // ---------------------------------DEFAULT : HOMEPAGE--------------------------------
 else //page when landing on site 
 {
-    landingOnWebsite();
+    $controllerHomepage->landingOnWebsite();
 }
