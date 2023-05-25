@@ -21,7 +21,7 @@ class StatsRealsController
     }
     function getStatsReals()
     {
-        $mySQLconnexion = connexion();
+        $mySQLconnexion = Connect::connexion();
         $sql = 'SELECT COUNT(film.id_film) AS "Nombre films", personne.nom, personne.prenom FROM personne
                 INNER JOIN realisateur ON personne.id_personne = realisateur.id_personne
                 INNER JOIN film ON realisateur.id_realisateur = film.id_realisateur
@@ -35,7 +35,7 @@ class StatsRealsController
 
     function getStatsIsActor($id)
     {
-        $mySQLconnexion = connexion();
+        $mySQLconnexion = Connect::connexion();
         $sql = 'SELECT personne.nom, personne.prenom, personne.sexe, film.titre_film FROM personne
                 INNER JOIN acteur ON personne.id_personne = acteur.id_personne
                 INNER JOIN realisateur ON personne.id_personne = realisateur.id_personne
@@ -50,7 +50,7 @@ class StatsRealsController
 
     function getStatsNumberFilms($id)
     {
-        $mySQLconnexion = connexion();
+        $mySQLconnexion = Connect::connexion();
         $sql = 'SELECT COUNT(film.id_film) AS "Nombre films", personne.nom, personne.prenom FROM personne
                 INNER JOIN realisateur ON personne.id_personne = realisateur.id_personne
                 INNER JOIN film ON realisateur.id_realisateur = film.id_realisateur
