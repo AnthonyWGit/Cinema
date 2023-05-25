@@ -1,12 +1,8 @@
 <?php 
 
-// require ("src/models/filmModel.php");
-// require ("src/models/realisateurModel.php");        //Need to retrieve list of reals (=directors)
 namespace Controllers;
 use Models\Connect;
 use Controllers\Math;
-
-require ("src/controllers/math.php");
 
 class FilmController
 {
@@ -36,6 +32,7 @@ class FilmController
         $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
         $stmt->execute();                                                     //The data we retrieve are in array form
         $realisateurs = $stmt->fetchAll();
+        unset($mySQLconnection); //closing PDO connenction
         return $realisateurs;
         //--------------------------------------------------------------
     }
@@ -49,6 +46,7 @@ class FilmController
         $stmt->bindValue('id_film',$id,\PDO::PARAM_STR);
         $stmt->execute();
         $filePath = $stmt->fetchAll();
+        unset($mySQLconnection);
         return $filePath;
     }
     public function displayFilms()
@@ -104,8 +102,7 @@ class FilmController
                         else
                         {
                                 echo "String does not match pattern!";
-                                $permission = false;
-                                var_dump($permission);                        
+                                $permission = false;                    
                         }
                         break;
                     
@@ -207,7 +204,7 @@ class FilmController
             move_uploaded_file($fileData["fileNew"]["tmp_name"], $uploadsDir . basename($newFileName));   //Moving files from local to folder  
         }
         //----------------------------END FILE PART-------------------------------------
-        
+        $bindValuePlus = false;
         $filmData["duree_film"] = Math::filterFourNumbers($filmData["duree_film"]);  //Converting format |For now coverage is only format 4 nb
         $fieldNameValues =[];
         $sqlFilePartInsert = "";
@@ -235,15 +232,16 @@ class FilmController
     public function deleteFilm($id)
     {
         $filePath = $this->getFilePath($id);                  //We will use the filePath var to retrive filepath and if there is one
-        $filePath = $filePath[0];                   //the model public function will have unlick so we delete the file
+        $filePath = $filePath[0]["image_film"];                   //the model public function will have unlick so we delete the file
         $isEmptyPathfile = false;
+        var_dump($filePath);
         if (empty($filePath)) $isEmptyPathfile = true;
 
         //-----------------SQL PART----------------------------------
-        if (!$isEmptyPathfile)            /*Deleting uploaded file under the path and id of the film is*/
+        if ($isEmptyPathfile == false)            /*Deleting uploaded file under the path and id of the film is*/
                                             /*model responsability*/
         {                                                           
-        unlink($filePath["image_film"]);
+        unlink($filePath);
         }
 
         $mySQLconnection = Connect::connexion();
@@ -258,8 +256,7 @@ class FilmController
         $stmt = $mySQLconnection->prepare($sql);
         $stmt->bindValue(':id_film',$id);
         $stmt->execute();
-
-        unset($stmt);
+        unset($mySQLconnection);           //Closing connexion
         //------------------------------------------------------------
     }
 }
