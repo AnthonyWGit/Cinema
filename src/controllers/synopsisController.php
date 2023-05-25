@@ -1,18 +1,37 @@
-<?php 
-require_once ("src/models/filmModel.php");
+<?php
 
-function displaySynopsis($id)
+namespace Controllers;
+use Models\Connect;
+
+class SynopsisController
 {
-    $synopsisIsEmpty = true;
-    $film = getFilms(); // we don't actually display all the films but we need it to get $films["synopsis"];
-    (empty($film[$id]["synopsis"])) ? $synopsisIsEmpty = true : $synopsisIsEmpty = false;
-    require("views/templates/editSynopsis.php");
+    function getFilms()
+    {
+        $controllerFilms = new FilmController;
+        $data = $controllerFilms->getFilms();
+        return $data;
+    }
+    function displaySynopsis($id)
+    {
+        $synopsisIsEmpty = true;
+        $film = $this->getFilms(); // we don't actually display all the films but we need it to get $films["synopsis"];
+        (empty($film[$id]["synopsis"])) ? $synopsisIsEmpty = true : $synopsisIsEmpty = false;
+        require("views/templates/editSynopsis.php");
+    }
+
+    function editSynopsis($textSynopsis, $id)
+    {
+        //-----------------SQL PART---------------------------
+        $mySQLconnection = Connect::connexion();
+        $sql = "UPDATE film SET film.synopsis = :synopsis WHERE id_film = :id_film;";
+        $stmt = $mySQLconnection->prepare($sql);
+        $stmt->bindValue(':synopsis', $textSynopsis);
+        $stmt->bindValue(':id_film', $id);
+        $stmt->execute();
+        unset($mySQLconnection);
+        //-----------------------------------------------------
+        header("Location:index.php?action=displayFilms");
+    }    
 }
 
-function editSynopsis($textSynopsis, $id)
-{
-
-    updateFilmSynopsis($textSynopsis, $id);
-    header("Location:index.php?action=displayFilms");
-}
 
