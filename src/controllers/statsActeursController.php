@@ -45,7 +45,7 @@ class StatsActeursController
     public function getActorsSex()
     {
         //--------------------------------SQL REQUEST NUMBER OF ACTORS BY SEX-----------------------------------
-        $mySQLconnexion = connexion();
+        $mySQLconnexion = Connect::connexion();
         $sql = 'SELECT COUNT(personne.sexe) AS "nombre", personne.sexe FROM acteur INNER JOIN personne ON acteur.id_personne=personne.id_personne
                 WHERE ((personne.sexe LIKE "H%") OR (personne.sexe LIKE "F%")  OR (personne.sexe LIKE "A%"))
                 GROUP BY personne.sexe';
