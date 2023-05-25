@@ -46,7 +46,7 @@ class AfficheController
         //---------------------------------------------------------
 
         //------------------SQL ONE FILM CASTING-----------------
-        $mySQLconnection = connexion();
+        $mySQLconnection = Connect::connexion();
         $sqlQuery = 'SELECT * FROM casting 
                     INNER JOIN acteur ON casting.id_acteur = acteur.id_acteur
                     INNER JOIN personne ON personne.id_personne = acteur.id_personne
@@ -58,7 +58,7 @@ class AfficheController
         $castings = $stmt->fetchAll();
         unset($mySQLconnection);
         //--------------------------------------------------------
-        
+
         if (in_array(!empty($pathFile[0]["image_film"]),$pathFile)) $thereIsAFile = true; else $thereIsAFile = false;
         require_once("views/templates/affiche.php");
     }    
