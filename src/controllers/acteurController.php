@@ -176,7 +176,7 @@ class ActeurController
     function deleteActeur($id)
     {
         //--------------------------------SQL BEGIN------------------------------------
-        $mySQLconnection = connexion();
+        $mySQLconnection = Connect::connexion();
         $sql = 'DELETE FROM casting
                 WHERE id_film = :id_acteur';
         $stmt = $mySQLconnection->prepare($sql);
