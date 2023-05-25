@@ -74,7 +74,7 @@ class RealController
         if($permission)
         {
             //----------------------------------SQL PART--------------------------------
-            $mySQLconnection = connexion();
+            $mySQLconnection = Connect::connexion();
             $sqlQuery = 'UPDATE realisateur INNER JOIN personne ON realisateur.id_personne=personne.id_personne 
                         SET '. $fieldname . ' = :'.$fieldname.' WHERE id_realisateur = :id_realisateur';
             $stmt = $mySQLconnection->prepare($sqlQuery);
@@ -136,7 +136,7 @@ class RealController
             //-------------------------SQL------------------------------
 
             $nom = "";
-            $mySQLconnection = connexion();
+            $mySQLconnection = Connect::connexion();
             $sqlQuery = "INSERT INTO personne (personne.nom, personne.prenom, personne.dateDeNaissance, personne.sexe)
                         VALUES (:nom, :prenom, :dateDeNaissance, :sexe)";
             $fieldNameValues = [];
@@ -164,10 +164,9 @@ class RealController
     function deleteReal($id)
     {
         //------------------------------SQL PART--------------------------------------------
-        $mySQLconnection = connexion(); //Below innerjoin because we need to delete date in personne table and the id linked with the 
+        $mySQLconnection = Connect::connexion(); //Below innerjoin because we need to delete date in personne table and the id linked with the 
         //personne entry so we doin a join
-
-        $mySQLconnection = connexion();         //Deleting associated films first to avoid errors 
+        //Deleting associated films first to avoid errors      
         $sql = 'DELETE FROM film
         WHERE id_realisateur = :id_realisateur';
         $stmt = $mySQLconnection->prepare($sql);
