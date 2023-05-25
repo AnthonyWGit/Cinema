@@ -5,8 +5,6 @@ use Models\Connect;
 
 class ActeurController
 {
-
-
     public function displayActeurs()
     {
         //-------------------------SQL PART--------------------------------------

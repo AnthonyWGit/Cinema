@@ -21,6 +21,21 @@ class CastingController
         //--------------------------------------------------------------
         return $castings;
     }
+
+    public function getRoles($dataCasting)          //Won't be used but needed for casting
+    {
+        //------------------------SQL request-----------------------------------
+        $mySQLconnection = Connect::connexion();
+        $sqlQuery = 'SELECT * FROM role
+                    WHERE nom_role = :nom_role'; 
+        $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
+        $stmt->bindValue(':nom_role', $dataCasting);
+        $stmt->execute();                                                     //The data we retrieve are in array form
+        $role = $stmt->fetchAll();
+        return $role;
+        unset($stmt);
+    }
+
     public function displayCastings()
     {
 
@@ -28,16 +43,18 @@ class CastingController
         require "views/templates/castingListing.php";
     }
 
-    public function updateCasting($dataCasting, $id, $id_acteur,$champ_casting)
+    public function updateCasting($dataCasting, $id, $id_acteur, $idrole ,$champ_casting)
     {
+        var_dump($idrole);
         foreach ($dataCasting as $fieldName=>$value)    //using foreach to get the fieldName because we will use it in SQL request 
         {
             $filteredValue = filter_var($value, FILTER_SANITIZE_FULL_SPECIAL_CHARS);    //Sanitizing value in array
             $datacasting[$fieldName] = $filteredValue;                                     //replacing original values by sanitized
         }
+        var_dump($dataCasting);
 //______________________________________________________________________
-        //------------SPECIAL CASE ABOUT ACTORS --------------------------
-        if (isset($id_acteur) && !empty($id_acteur))    //Actor is special case because we have to use the name and forename to retrive associated id
+        //------------SPECIAL CASE ACTOR-------------------------------
+        if (!empty($dataCasting["nom"]) && !empty($dataCasting["prenom"]))    //Actor is special case because we have to use the name and forename to retrive associated id
         {
             $mySQLconnection = Connect::connexion();             //there is no id_casting so to target a specific row we will point at the old value at :cahmp_casting
             $sqlQuery = 'SELECT * FROM personne INNER JOIN acteur ON personne.id_personne = acteur.id_personne
@@ -47,40 +64,77 @@ class CastingController
             $stmt->bindValue(':prenom',$dataCasting["prenom"]);
             $stmt->bindValue(':nom',$dataCasting["nom"]);
             $stmt->execute();
-            $newActorId = $stmt->fetch(\PDO::FETCH_ASSOC);
-            $newActorId = $newActorId["id_acteur"];
-            
+            $newActorId = $stmt->fetchALL();
+            $newActorId = $newActorId[0]["id_acteur"];
+
             $mySQLconnection = Connect::connexion();             //there is no id_casting so to target a specific row we will point at the old value at :cahmp_casting
             $sqlQuery = 'UPDATE casting 
-                        INNER JOIN film ON casting.id_film = film.id_film
-                        INNER JOIN acteur ON casting.id_acteur = acteur.id_acteur
-                        INNER JOIN role ON casting.id_role = role.id_role
-                        INNER JOIN personne ON acteur.id_personne = personne.id_personne 
-                        SET casting.id_acteur = :placeholder
-                        WHERE casting.id_acteur = :champ_casting';
+                        SET id_acteur = :placeholder
+                        WHERE id_acteur = :id_acteur
+                        AND id_film = :id_film
+                        AND id_role = :id_role';
             $stmt =  $mySQLconnection->prepare($sqlQuery);
-            $stmt->bindValue(':placeholder',$newActorId);
-            $stmt->bindValue(':champ_casting',$id_acteur);
+            $stmt->bindValue(':placeholder',$newActorId,\PDO::PARAM_INT);
+            $stmt->bindValue(':id_acteur',$id_acteur);
+            $stmt->bindValue(':id_film',$id);
+            $stmt->bindValue(':id_role',$idrole);
             $stmt->execute();
-            unset($stmt);
+            echo "DONE";
+            unset($mySQLconnection);
+            
         }
-//_____________________________________________________________________________________
-        //------------------------SQL PART---------------------------------------------
-        $mySQLconnection = Connect::connexion();             //there is no id_casting so to target a specific row we will point at the old value at :cahmp_casting
-        $sqlQuery = 'UPDATE casting 
-                    INNER JOIN film ON casting.id_film = film.id_film
-                    INNER JOIN acteur ON casting.id_acteur = acteur.id_acteur
-                    INNER JOIN role ON casting.id_role = role.id_role
-                    INNER JOIN personne ON acteur.id_personne = personne.id_personne 
-                    SET '.$fieldName.' = :placeholder
-                    WHERE '.$fieldName.' = :champ_casting';
-        $stmt =  $mySQLconnection->prepare($sqlQuery);
-        $stmt->bindValue(':placeholder',$filteredValue);
-        $stmt->bindValue(':champ_casting',$champ_casting);
-        $stmt->execute();
-        unset($stmt);
+        else if(isset($dataCasting["nom_role"])&& !empty($dataCasting["nom_role"]))
+        {
+            $dataCasting = $dataCasting["nom_role"];
+            $role = $this->getRoles($dataCasting);
+            $roleID = $role[0]["id_role"];
+            //_____________________________________________________________________________________
+                    //------------------------SQL PART---------------------------------------------
+                    $mySQLconnection = Connect::connexion();             //there is no id_casting so to target a specific row we will point at the old value at :cahmp_casting
+                    $sqlQuery = 'UPDATE casting 
+                                SET id_role = :placeholder
+                                WHERE casting.id_acteur = :id_acteur
+                                AND casting.id_film = :id_film
+                                AND casting.id_role = :id_role';
+                    $stmt =  $mySQLconnection->prepare($sqlQuery);
+                    $stmt->bindValue(':placeholder',$roleID);
+                    $stmt->bindValue(':id_acteur',$id_acteur);
+                    $stmt->bindValue(':id_film',$id);
+                    $stmt->bindValue(':id_role',$idrole);
+                    $stmt->execute();
+                    echo "AAA";
+                    unset($stmt);
 
-        //-------------------------END SQL---------------------------------------------
+                    //-------------------------END SQL---------------------------------------------  
+        }
+        else
+        {
+            $newControllerFilm = new FilmController();
+            $listF = $newControllerFilm->getFilms();
+            var_dump($dataCasting);
+            foreach ($listF as $value)
+            {
+                if ($value["titre_film"] == $dataCasting["titre_film"])
+                {
+                    echo"o";
+                    $mySQLconnection = Connect::connexion();             //there is no id_casting so to target a specific row we will point at the old value at :cahmp_casting
+                    $sqlQuery = 'UPDATE casting 
+                                SET id_film = :placeholder
+                                WHERE casting.id_acteur = :id_acteur
+                                AND casting.id_film = :id_film
+                                AND casting.id_role = :id_role';
+                    $stmt =  $mySQLconnection->prepare($sqlQuery);
+                    $stmt->bindValue(':placeholder',$value["id_film"]);
+                    $stmt->bindValue(':id_acteur',$id_acteur);
+                    $stmt->bindValue(':id_film',$id);
+                    $stmt->bindValue(':id_role',$idrole);
+                    $stmt->execute();
+                    echo "AAA";
+                    unset($stmt);
+                }
+            }
+        }
+
     }
     public function addCasting($castingData)
     {

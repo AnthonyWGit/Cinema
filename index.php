@@ -75,10 +75,11 @@ if (isset($_GET["action"]))
         case "updateCasting":
             $dataCasting = $_POST;
             $id = $_GET["id_film"];
+            $idrole = $_GET["idrole"];
             $id_acteur = $_GET["id_acteur"];
-            $champ_casting = $_GET["champ_casting"];
-            var_dump($dataCasting);
-            $controllerCasting->updateCasting($dataCasting, $id, $id_acteur, $champ_casting); 
+            var_dump($idrole);
+            isset($_GET["champ_casting"]) ? $champ_casting = $_GET["champ_casting"] : $champ_casting="";
+            $controllerCasting->updateCasting($dataCasting, $id, $id_acteur, $idrole, $champ_casting); 
             break;    
         case "updateFilmGenre";
             $oldID = $_GET["oldID"];

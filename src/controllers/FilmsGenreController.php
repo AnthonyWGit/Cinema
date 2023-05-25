@@ -15,8 +15,8 @@ class FilmsGenreController
         $sqlQuery = 'SELECT * FROM film'; 
         $stmt = $mySQLconnection->prepare($sqlQuery);
         $stmt->execute();
-        $data = $stmt->fetchAll();
-        return $data;
+        $films = $stmt->fetchAll();
+        return $films;
     }
 
     public function getGenres()
@@ -84,8 +84,8 @@ class FilmsGenreController
                         WHERE genrer.id_film = :id_film
                         AND genrer.id_genre = :id_genreOLD'; 
             $stmt = $mySQLconnection->prepare($sqlQuery);                        
-            $stmt->bindValue(':id_genre',$id_genre);
-            $stmt->bindValue(':id_film',$id_film);
+            $stmt->bindValue(':id_genre',$id_genre_f);
+            $stmt->bindValue(':id_film',$id_film_f);
             $stmt->bindValue(':id_genreOLD',$oldID);
             $stmt->execute();                                                     
         }
@@ -95,8 +95,8 @@ class FilmsGenreController
             $sqlQuery = 'INSERT INTO genrer (id_film, id_genre)
                         VALUES (:id_film, :id_genre)'; 
             $stmt = $mySQLconnection->prepare($sqlQuery);                        
-            $stmt->bindValue(':id_film',$id_film);
-            $stmt->bindValue(':id_genre',$id_genre);
+            $stmt->bindValue(':id_film',$id_film_f);
+            $stmt->bindValue(':id_genre',$id_genre_f);
             $stmt->execute();                                                           
             var_dump($stmt);
         }

@@ -119,6 +119,7 @@ class FilmController
                         break;                 
                 }
             }
+        //-----END FOREACH------
             if ($permission && $permissionInt)
             {
                 $mySQLconnection = Connect::connexion();
@@ -241,7 +242,7 @@ class FilmController
         if ($isEmptyPathfile == false)            /*Deleting uploaded file under the path and id of the film is*/
                                             /*model responsability*/
         {                                                           
-        unlink($filePath);
+            unlink($filePath);
         }
 
         $mySQLconnection = Connect::connexion();

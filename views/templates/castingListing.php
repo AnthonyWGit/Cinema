@@ -22,7 +22,7 @@
             </td>
             
             
-            <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&champ_casting=<?=$casting["titre_film"]?>">
+            <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&champ_casting=<?=$casting["titre_film"]?>&id_acteur=<?=$casting["id_acteur"]?>&idrole=<?=$casting["id_role"]?>">
                 <td>  
                     <label><?=$casting["titre_film"]?></label>
                     <input type="text" name="titre_film" value="Titre du film">
@@ -30,7 +30,7 @@
                 </td>
             </form>
 
-            <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&id_acteur=<?=$casting["id_acteur"]?>">
+            <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&id_acteur=<?=$casting["id_acteur"]?>&idrole=<?=$casting["id_role"]?>">
                 <td>  
                     <label><?=$casting["nom"]?></label>
                     <input type="text" name="nom" value="nom">
@@ -44,7 +44,7 @@
                 </td>
             </form>
 
-            <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&champ_casting=<?=$casting["nom_role"]?>">
+            <form method="post" action="index.php?action=updateCasting&id_film=<?=$casting["id_film"]?>&champ_casting=<?=$casting["nom_role"]?>&id_acteur=<?=$casting["id_acteur"]?>&idrole=<?=$casting["id_role"]?>">
                 <td>  
                     <label><?=$casting["nom_role"]?></label>
                     <input type="text" name="nom_role" value="nom du rôle">

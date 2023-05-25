@@ -6,6 +6,7 @@ use Models\Connect;
 
 class RoleController
 {
+
     public function displayRoles()
     {
         //------------------------SQL request-----------------------------------
