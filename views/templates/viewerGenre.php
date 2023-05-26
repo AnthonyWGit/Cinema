@@ -8,11 +8,7 @@
 
                 <div class="card"> 
                     <p>
-                        <h3>Titre : <?= $film["titre_film"]?></h3>
-                        <h3>Genre : </h3>
-                        <ul>
-
-                        </ul>
+                        <h3>Réalisateur/trice : <?= $film["nom"]?></h3>
 
                         <a href="index.php?action=goToAffiche&id=<?=$film["id_film"]?>">
                             <img src="<?= !empty($film["image_film"]) ? $film["image_film"] : "img/filmPlaceholder.jpg" ?>"/>

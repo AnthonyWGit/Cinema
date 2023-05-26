@@ -39,8 +39,8 @@ class FilmVisitorByRealController
 
     public function displayFilms($id_real)
     {
-        $filmctrl = new FilmController;
         $filmsList = $this->getFilms($id_real);
+
         require("views/templates/viewerReal.php");
     }
 
