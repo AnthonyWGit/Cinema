@@ -11,12 +11,14 @@
             <li><a href ="index.php?action=displayRoles">Roles</a></li>
             <li><a href ="index.php?action=displayCastings">Casting</a></li>
             <li>Statistiques</li>
-            <li><a href ="index.php?action=displayStatsFilms">Films</a></li>
-            <li><a href ="index.php?action=displayStatsReals">Réalisateur / Réalisatrices</a></li>
-            <li><a href ="index.php?action=displayStatsActeurs">Acteurs / Actrices</a></li>
-            <li><a href ="index.php?action=displayStatsGenres">Genres</a></li>
-            <li><a href ="index.php?action=displayStatsRoles">Roles</a></li>
-            <li><a href ="index.php?action=displayStatsCastings">Casting</a></li>
+            <select name="forma" onchange="location = this.value;">
+            <option value ="index.php?action=displayStatsFilms">Films</option>
+            <option value ="index.php?action=displayStatsReals">Réalisateur / Réalisatrices</option>
+            <option value ="index.php?action=displayStatsActeurs">Acteurs / Actrices</option>
+            <option value ="index.php?action=displayStatsGenres">Genres</option>
+            <option value ="index.php?action=displayStatsRoles">Roles</option>
+            <option value ="index.php?action=displayStatsCastings">Castings</option>
+            </select>
         </ul>
     </div>
 </div>
