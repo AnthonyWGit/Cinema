@@ -84,9 +84,9 @@ class FilmsGenreController
                         WHERE genrer.id_film = :id_film
                         AND genrer.id_genre = :id_genreOLD'; 
             $stmt = $mySQLconnection->prepare($sqlQuery);                        
-            $stmt->bindValue(':id_genre',$id_genre_f);
-            $stmt->bindValue(':id_film',$id_film_f);
-            $stmt->bindValue(':id_genreOLD',$oldID);
+            $stmt->bindValue(':id_genre',$id_genre_f,\PDO::PARAM_INT);
+            $stmt->bindValue(':id_film',$id_film_f,\PDO::PARAM_INT);
+            $stmt->bindValue(':id_genreOLD',$oldID,\PDO::PARAM_INT);
             $stmt->execute();                                                     
         }
         else //This case means we want to add a genre to a film having none. This means it has currently no filmID and genreID entries in genrer table.
@@ -95,8 +95,8 @@ class FilmsGenreController
             $sqlQuery = 'INSERT INTO genrer (id_film, id_genre)
                         VALUES (:id_film, :id_genre)'; 
             $stmt = $mySQLconnection->prepare($sqlQuery);                        
-            $stmt->bindValue(':id_film',$id_film_f);
-            $stmt->bindValue(':id_genre',$id_genre_f);
+            $stmt->bindValue(':id_film',$id_film_f,\PDO::PARAM_INT);
+            $stmt->bindValue(':id_genre',$id_genre_f,\PDO::PARAM_INT);
             $stmt->execute();                                                           
             var_dump($stmt);
         }
@@ -111,8 +111,8 @@ class FilmsGenreController
         $sqlQuery = 'INSERT INTO genrer (id_film, id_genre)
                     VALUES (:id_film, :id_genre)'; 
         $stmt = $mySQLconnection->prepare($sqlQuery);                        
-        $stmt->bindValue(':id_film',$id_film);
-        $stmt->bindValue(':id_genre',$id_genre);
+        $stmt->bindValue(':id_film',$id_film,\PDO::PARAM_INT);
+        $stmt->bindValue(':id_genre',$id_genre,\PDO::PARAM_INT);
         $stmt->execute();     
         //-----------------------------------END SQL---------------------------------------
     }

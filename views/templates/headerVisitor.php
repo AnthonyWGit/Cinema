@@ -3,7 +3,10 @@
         <div class="logo">
             <h2>LOGO</h2>
         </div>
-        <p><a href="index.php?action=displayVisitorFilm">Version visiteur</a></p>
+        <ul>
+            <li><a href="index.php?action=displayVisitorFilm">Menu</a></li>
+            <li><a href="index.php?action=Homepage">Admin interface</a></li>
+        </ul>
         <div class="lang">
             <h2>FR</h2>
         </div>

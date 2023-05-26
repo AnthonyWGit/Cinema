@@ -102,3 +102,8 @@ select
     height: 5em;
     width: 8em;
 }
+
+th, td
+{
+    text-align: center;
+}

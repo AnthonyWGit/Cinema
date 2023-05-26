@@ -42,7 +42,7 @@ class StatsRealsController
                 INNER JOIN film ON realisateur.id_realisateur = film.id_realisateur
                 WHERE realisateur.id_realisateur = :id_realisateur';
         $stmt = $mySQLconnexion->prepare($sql);
-        $stmt->bindValue('id_realisateur', $id);    
+        $stmt->bindValue('id_realisateur', $id,\PDO::PARAM_INT);    
         $stmt->execute();
         $data = $stmt->fetchAll();
         return $data;
@@ -56,7 +56,7 @@ class StatsRealsController
                 INNER JOIN film ON realisateur.id_realisateur = film.id_realisateur
                 WHERE realisateur.id_realisateur = :id_realisateur';
         $stmt = $mySQLconnexion->prepare($sql);
-        $stmt->bindValue('id_realisateur', $id);    
+        $stmt->bindValue('id_realisateur', $id,\PDO::PARAM_INT);    
         $stmt->execute();
         $data = $stmt->fetchAll();
         return $data;

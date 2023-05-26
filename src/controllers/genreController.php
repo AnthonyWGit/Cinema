@@ -5,7 +5,7 @@ use Models\Connect;
 
 class GenreController
 {
-    public function displayGenres()
+    public function getGenres()
     {
         //----------SQL PART-----------------------
         $mySQLconnection = Connect::connexion();
@@ -15,11 +15,17 @@ class GenreController
         $genres = $stmt->fetchAll();
     
         //-----------------------------------------
-
-        require "views/templates/genreListing.php";
         return $genres;        
     }
     
+    public function displayGenres()
+    {
+        $genres = $this->getGenres();
+        require "views/templates/genreListing.php";
+   
+    }
+    
+
     public function addGenre($genreData)
     {
         $filteredGenreData = filter_var($genreData["nom_genre"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);

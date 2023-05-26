@@ -170,7 +170,7 @@ class RealController
         $sql = 'DELETE FROM film
         WHERE id_realisateur = :id_realisateur';
         $stmt = $mySQLconnection->prepare($sql);
-        $stmt->bindValue(':id_realisateur',$id);
+        $stmt->bindValue(':id_realisateur',$id,\PDO::PARAM_INT);
         $stmt->execute();
 
         $sqlQuery = 'DELETE realisateur, personne

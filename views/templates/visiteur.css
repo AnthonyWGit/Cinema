@@ -1,0 +1,56 @@
+select
+{
+    background-color:  #180023;
+}
+
+button
+{
+    background-color: blue;
+    min-height: 5em;
+    min-width: 5em;
+}
+
+.row
+{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    gap: 1em;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.col
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.card
+{
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    height: 300px;
+    background-color: rgb(14, 63, 63);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row img
+{
+    width: 150px;
+    height: 150px;
+}
+
+.banner li
+{
+    display: inline-block;
+}

@@ -1,5 +1,5 @@
 <?php
-//____________________________CONTROLLER MAIN______________________________
+//____________________________CONTROLLER MAIN ADMIN______________________________
 use Controllers\FilmController;
 use Controllers\FilmsGenreController;
 use Controllers\GenreController;
@@ -10,6 +10,10 @@ use Controllers\CastingController;
 use Controllers\Math;
 use Controllers\RealController;
 use Controllers\RoleController;
+
+//__________________CONTROLLER MAIN VISITOR_______________________
+
+use Controllers\FilmVisitorController;
 //__________________________CONTROLLERS STATS__________________________
 use Controllers\StatsActeursController;
 use Controllers\statsFilmsController;
@@ -17,6 +21,7 @@ use Controllers\StatsGenreController;
 use Controllers\StatsRealsController;
 use Controllers\StatsRaCC;
 use Controllers\SynopsisController;
+use Controllers\FilmVisitorByRealController;
 //_________________________________AUTOLOAD_____________________________________
 spl_autoload_register(function ($class_name)
 {
@@ -33,12 +38,17 @@ $controllerCasting = new CastingController();
 $controllerHomepage = new HomepageController();
 $controllerReal = new RealController();
 $controllerRole = new RoleController();
+//____________________________________________________________
 $controllerStatsActeurs = new StatsActeursController();
 $controllerStatsGenre = new StatsGenreController();
 $controllerStatsReal = new StatsRealsController();
 $controllerStatsFilms = new statsFilmsController();
 $controllerStatsRaCC = new StatsRaCC();
 $controllerSynopsis = new SynopsisController();
+//__________________________________________________________________________________
+
+$x = new FilmVisitorController();
+$controllerVisitorFilmByActor = new FilmVisitorByRealController();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -49,7 +59,9 @@ if (isset($_GET["action"]))
         case "updateFilms":
             $dataFilm = $_POST;
             $idZ = $_GET["id_film"];
+            var_dump($_POST);
             $controllerFilm->updateFilms($dataFilm, $idZ);
+
             break;
 
         case "updateActeur":
@@ -101,7 +113,7 @@ if (isset($_GET["action"]))
             break;
         case "displayRoles";
             $controllerRole->displayRoles();
-            break;
+            break;  
         case "displayGenres":
             $controllerGenre->displayGenres();
             break;
@@ -122,6 +134,13 @@ if (isset($_GET["action"]))
             break;
         case "displayStatsGenres":
             $controllerStatsGenre->displayStatsGenres();
+            break;
+        case "displayVisitorFilm":         
+            $x->displayFilms();
+            break;
+        case "displayVisitorFilmsByReal":
+            $id_real = $_POST;
+            $controllerVisitorFilmByActor->displayFilms($id_real);
             break;
         case "displayStatsRoles":
         case "displayStatsCastings":
@@ -232,7 +251,10 @@ if (isset($_GET["action"]))
         case "getActorFilm"://USED TO DISPLAY WICH ACTOR HAS PLAYED IN WICH FILM 
             $id = $_POST["id_acteur"];
             $controllerStatsActeurs->displayFilmActor($id); 
-            break;                                    
+            break;      
+        case "Homepage"://USED TO DISPLAY WICH ACTOR HAS PLAYED IN WICH FILM 
+            $controllerHomepage->landingOnWebsite();
+            break;                                 
     }
 }
 // ---------------------------------DEFAULT : HOMEPAGE--------------------------------

@@ -98,9 +98,9 @@ class CastingController
                                 AND casting.id_role = :id_role';
                     $stmt =  $mySQLconnection->prepare($sqlQuery);
                     $stmt->bindValue(':placeholder',$roleID);
-                    $stmt->bindValue(':id_acteur',$id_acteur);
-                    $stmt->bindValue(':id_film',$id);
-                    $stmt->bindValue(':id_role',$idrole);
+                    $stmt->bindValue(':id_acteur',$id_acteur,\PDO::PARAM_INT);
+                    $stmt->bindValue(':id_film',$id,\PDO::PARAM_INT);
+                    $stmt->bindValue(':id_role',$idrole,\PDO::PARAM_INT);
                     $stmt->execute();
                     echo "AAA";
                     unset($stmt);
@@ -125,9 +125,9 @@ class CastingController
                                 AND casting.id_role = :id_role';
                     $stmt =  $mySQLconnection->prepare($sqlQuery);
                     $stmt->bindValue(':placeholder',$value["id_film"]);
-                    $stmt->bindValue(':id_acteur',$id_acteur);
-                    $stmt->bindValue(':id_film',$id);
-                    $stmt->bindValue(':id_role',$idrole);
+                    $stmt->bindValue(':id_acteur',$id_acteur,\PDO::PARAM_INT);
+                    $stmt->bindValue(':id_film',$id,\PDO::PARAM_INT);
+                    $stmt->bindValue(':id_role',$idrole,\PDO::PARAM_INT);
                     $stmt->execute();
                     echo "AAA";
                     unset($stmt);
@@ -219,9 +219,9 @@ class CastingController
             $mySQLconnection = Connect::connexion();
             $sqlQuery = 'INSERT INTO casting (id_film, id_acteur, id_role) VALUES (:id_film, :id_acteur, :id_role)';
             $stmt = $mySQLconnection->prepare($sqlQuery);
-            $stmt->bindValue(':id_film',$ids[0]);    
-            $stmt->bindValue(':id_acteur',$ids[1]);
-            $stmt->bindValue(':id_role', $ids[2]);
+            $stmt->bindValue(':id_film',$ids[0],\PDO::PARAM_INT);    
+            $stmt->bindValue(':id_acteur',$ids[1],\PDO::PARAM_INT);
+            $stmt->bindValue(':id_role', $ids[2],\PDO::PARAM_INT);
             $stmt->execute();
         }
 

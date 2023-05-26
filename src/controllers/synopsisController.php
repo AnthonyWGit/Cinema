@@ -26,7 +26,7 @@ class SynopsisController
         $sql = "UPDATE film SET film.synopsis = :synopsis WHERE id_film = :id_film;";
         $stmt = $mySQLconnection->prepare($sql);
         $stmt->bindValue(':synopsis', $textSynopsis);
-        $stmt->bindValue(':id_film', $id);
+        $stmt->bindValue(':id_film', $id,\PDO::PARAM_INT);
         $stmt->execute();
         unset($mySQLconnection);
         //-----------------------------------------------------
