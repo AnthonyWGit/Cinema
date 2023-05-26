@@ -49,6 +49,7 @@ class FilmController
         unset($mySQLconnection);
         return $filePath;
     }
+
     public function displayFilms()
     {
 
@@ -106,9 +107,10 @@ class FilmController
                         }
                         break;
                     
-                        case "id_realisateur";
-                        $isIdRAnInt = filter_var($fieldName["id"], FILTER_VALIDATE_INT);
+                        case "id_realisateur";                 
+                        $isIdRAnInt = filter_var($value, FILTER_VALIDATE_INT);
                         if (!$isIdRAnInt) $permissionInt = false;
+                        $permission =true;
                         break;
 
                     default:
@@ -122,15 +124,16 @@ class FilmController
         //-----END FOREACH------
             if ($permission && $permissionInt)
             {
+                var_dump($fieldName);
+                var_dump($idZ);
                 $mySQLconnection = Connect::connexion();
                 foreach ($datafilm as $fieldName => $values)
                 {
-                    $sqlQuery = 'UPDATE film JOIN realisateur ON film.id_realisateur = realisateur.id_realisateur
-                    INNER JOIN personne ON realisateur.id_personne = personne.id_personne 
+                    $sqlQuery = 'UPDATE film 
                     SET '. $fieldName . ' = :'.$fieldName.' WHERE id_film = :id_film';
                     $stmt = $mySQLconnection->prepare($sqlQuery);
                     $stmt->bindValue($fieldName, $values);
-                    $stmt->bindValue('id_film',$idZ);
+                    $stmt->bindValue('id_film',$idZ,\PDO::PARAM_INT);
                     $stmt->execute();
                 }
                 unset($mySQLconnection);    
@@ -171,7 +174,7 @@ class FilmController
             var_dump($filePath);
             echo "</br></br> UUP </br></br>";
             $stmt->bindValue(':filePath', $filePath);
-            $stmt->bindValue(':id_film', $id);
+            $stmt->bindValue(':id_film', $id,\PDO::PARAM_INT);
             $stmt->execute();
             unset($mySQLconnection);
             //-------------------------------------------------------------------------------------
@@ -249,13 +252,13 @@ class FilmController
         $sql = 'DELETE FROM casting
         WHERE id_film = :id_film';
         $stmt = $mySQLconnection->prepare($sql);
-        $stmt->bindValue(':id_film',$id);
+        $stmt->bindValue(':id_film',$id,\PDO::PARAM_INT);
         $stmt->execute();
 
         $sql = 'DELETE FROM film
         WHERE id_film = :id_film';
         $stmt = $mySQLconnection->prepare($sql);
-        $stmt->bindValue(':id_film',$id);
+        $stmt->bindValue(':id_film',$id,\PDO::PARAM_INT);
         $stmt->execute();
         unset($mySQLconnection);           //Closing connexion
         //------------------------------------------------------------

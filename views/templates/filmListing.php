@@ -80,29 +80,20 @@
 
             <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
                 <td>
+                <label> <?= $film["nom"]. " " .$film["prenom"]?></label>
+                <select name="id_realisateur" id="real-select">
+                        <?php 
+                        foreach($realisateursList as $real)
+                        { var_dump($filmsList);
+                        ?>
+            <option value="<?=$real["id"]?>"><?=$real["forename"]?> <?=$real["name"]?></option>
+                        <?php
+                        }
+                        ?>
 
-                    <?= $film["nom"]?> <?= $film["prenom"]?>
-                    <div class="buttonHover">
-                        <button type="submit" class="updateButton">Envoyer</button>
-                    </div>
+                    </select>
 
-                    <input name="nom" type="text" id="nom_<?=$film["id_film"]?>" value="<?= $film["nom"]?>">
-                    <input name="prenom" type="text" id="prenom_<?=$film["id_film"]?>" value="<?= $film["prenom"]?>">
-
-                </td>
-            </form>
-
-            <form method="post" action="index.php?action=updateFilms&id_film=<?=$film["id_film"] ?>">
-                <td>
-
-                    <?= $film["nom"]?> <?= $film["prenom"]?>
-                    <div class="buttonHover">
-                        <button type="submit" class="updateButton">Envoyer</button>
-                    </div>
-
-                    <input name="nom" type="text" id="nom_<?=$film["id_film"]?>" value="<?= $film["nom"]?>">
-                    <input name="prenom" type="text" id="prenom_<?=$film["id_film"]?>" value="<?= $film["prenom"]?>">
-
+                        <button type="submit" class="updateButton">Envoyer</button>                          
                 </td>
             </form>
 
