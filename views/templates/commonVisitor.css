@@ -6,31 +6,14 @@
     color: white;
     text-decoration: none;
 }
-/* trying to fix bug on mobile cutting bottom*/
-body 
-{
-    min-height: 100svh;
-}
-  
-  /* Avoid Chrome to see Safari hack */
-  @supports (-webkit-touch-callout: none) {
-    body {
-      /* The hack for Safari */
-      height: -webkit-fill-available;
-    }
-  }
 
-html
-{
-    height: 100svh;
-    -webkit-overflow-scrolling: touch;
-}
+
 .wrapper
 {
     display: flex;
     min-width: 100%;
     flex-direction: column;
-    min-height: 100svh;
+    min-height: 100dvh;
     flex: 1;
     background-color: #180023;
     position: relative;
@@ -57,7 +40,7 @@ html
     color: white;
     min-width: 100%;
     min-height: 5em;
-    background-color: rgb(32,38,37);
+    background: linear-gradient(to top, rgb(32,38,37) 95%,#180023 ); 
 }
 
 .insideFooter
@@ -68,10 +51,11 @@ html
 .header 
 {
     min-width: 100%;
-    min-height: 5svh;
+    min-height: 5dvh;
     display: flex;
     color: white;
-    background-color: rgb(32,38,37);
+    background: linear-gradient(to bottom,rgb(32,38,37) 95% , #180023 );
+    /* background-color: rgb(32,38,37); */
 }
 
 .banner
@@ -80,26 +64,6 @@ html
     flex-grow: 1;
     justify-content: space-between;
     align-items: center;
-}
-.sidebar
-{
-    display: flex;
-    width:20%;
-    height: 40%;
-    flex-direction: column;
-    background-color: rgb(45, 30, 58);
-    align-items: center;
-    position: sticky;
-    right: 0;
-    top: 15%;
-    border-radius:20px;
-    -webkit-border-radius:20px;
-    -moz-border-radius:20px;
-    -ms-border-radius:20px;
-    -o-border-radius:20px;
-    -webkit-border-radius:20px;
-    padding: 10px 0 10px 0;
-    margin: 0.5em;
 }
 
 .list
@@ -118,12 +82,22 @@ html
 {
     color : rgba(255,215,0,0.75);
 }
-
-/******DROPDOWN**********/
-
-
-/*****************/
-
+.toggleBtn
+{
+    min-width: 2em;
+    min-height: 2em;
+    border-radius: 25%;
+    -webkit-border-radius: 25%;
+    -moz-border-radius: 25%;
+    -ms-border-radius: 25%;
+    -o-border-radius: 25%;
+    background-color: transparent;
+    border-color: inherit;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+/*----------LIGHT MODE STUFF----------------*/
 
 
 .wrapper.light-mode
@@ -132,11 +106,11 @@ html
 }
 .footer.light-mode
 {
-    background-color: hsl(170, 94%, 94%);
+    background: linear-gradient(to top, hsl(170, 100%, 93%) 95%,hsl(282, 100%, 90%) );
 }
 .header.light-mode
 {
-    background-color: hsl(170, 100%, 93%);
+    background: linear-gradient(hsl(170, 100%, 93%) 95%,hsl(282, 100%, 90%) );
 }
 .banner.light-mode  *
 {
@@ -146,4 +120,17 @@ html
 #sun-moon
 {
     font-size: 1.5em;
+    color: gold !important;
+}
+#sun-moon.light-mode
+{
+    font-size: 1.5em;
+    color: rgb(0, 0, 0) !important;
+}
+
+/*--------------MEDIA QUERIES-------------*/
+
+@media (max-width: 600px) 
+{
+
 }

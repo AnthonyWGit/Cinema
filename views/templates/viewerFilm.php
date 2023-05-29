@@ -1,16 +1,15 @@
 
 <?php ob_start(); ?>
 
-<div class="statsFlex">
-    <div class="col">
+<div class="row">
+    <div class="col img">
         <p>
             Choisissez le fim dont vous voulez voir le détail :
         </p>
 
-        <p>
             <form method="post" action="index.php?action=displayVisitorFilmsByReal">
-            Films par Réalisateur :
-            <select name="id_real">
+            <label>Films par Réalisateur :</label>
+            <select class="transparentSelect" name="id_real">
 
 
                 <?php
@@ -24,18 +23,12 @@
                 ?>
 
             </select>
-            <button type="submit">GO</button>
-            
+                <button type="submit">GO</button>
             </form>
-        </p>
-    </div>
 
-    <div class="col">
-    <p>
-        Films par Genres:
         <form method="post" action="index.php?action=displayVisitorFilmsByGenre">
-
-            <select name="id_genre">
+        <label>Films par Genres:</label>            
+            <select class="transparentSelect" name="id_genre">
 
 
                 <?php
@@ -49,11 +42,10 @@
                 ?>
 
             </select>
-            <button type="submit">GO</button>
+                <button type="submit">GO</button>
         </form>
-    </p>
     </div>
 </div>
 <?php $content = ob_get_clean(); ?>
 
-<?php require ("layoutVisiteur.php");?>
+<?php require ("layoutVisiteurAccueil.php");?>

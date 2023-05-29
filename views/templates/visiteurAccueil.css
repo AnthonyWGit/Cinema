@@ -1,0 +1,129 @@
+
+
+.row
+{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    gap: 1em;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.col
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+    min-width: 400px;
+    min-height: 400px;
+    margin: 10px;
+    position: relative;
+    padding: 10px;
+}
+
+.col *
+{
+    position: relative;
+}
+
+.col::before
+{
+    content:" ";
+    background-image: url('../../img/yuniverse.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 10px;
+    border-radius: 25%;
+    -webkit-border-radius: 25%;
+    -moz-border-radius: 25%;
+    -ms-border-radius: 25%;
+    -o-border-radius: 25%;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    box-shadow:0 0 5px 7.5px  midnightblue;
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+}
+
+.row img
+{
+    width: 150px;
+    height: 150px;
+}
+
+.banner li
+{
+    display: inline-block;
+}
+
+.col button
+{
+    color:white;
+    width: 2.5em;
+    height: 2.5em;
+    background-color: rgba(25, 25, 112,0.5);    
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;    
+    position: relative;
+    cursor: pointer;    
+}
+
+
+.col button:hover
+{
+    background-color: rgba(25, 25, 112,1);
+    transition: 1s;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+
+}
+
+.transparentSelect
+{
+    background: transparent;
+}
+
+.transparentSelect option
+{
+    background-color: #180023;
+}
+
+.yasso::before
+{
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/*--------------MEDIA QUERIES-------------*/
+
+@media (max-width: 600px) 
+{
+    .col
+    {
+        min-width: 200px;
+    }
+    .col::before.light-mode
+    {
+        opacity: 1;
+    }
+}

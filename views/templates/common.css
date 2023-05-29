@@ -57,7 +57,7 @@ html
     color: white;
     min-width: 100%;
     min-height: 5em;
-    background-color: rgb(32,38,37);
+    background: linear-gradient(to top, rgb(32,38,37) 95%,#180023 );
 }
 
 .insideFooter
@@ -125,7 +125,83 @@ html
     background-color:  #180023;
 }
 
-/******DROPDOWN**********/
+/*----------LIGHT MODE STUFF----------------*/
 
 
-/*****************/
+.wrapper.light-mode
+{
+    background-color: hsl(282, 100%, 90%);
+}
+.footer.light-mode
+{
+    background: linear-gradient(to top, hsl(170, 100%, 93%) 95%,hsl(282, 100%, 90%) );
+}
+.header.light-mode
+{
+    background: linear-gradient(hsl(170, 100%, 93%) 95%,hsl(282, 100%, 90%) );
+}
+.banner.light-mode  *
+{
+    color: gold;
+}
+
+#sun-moon
+{
+    font-size: 1.5em;
+    color: gold !important;
+}
+#sun-moon.light-mode
+{
+    font-size: 1.5em;
+    color: rgb(0, 0, 0) !important;
+}
+
+@media (max-width: 600px) 
+{
+    .sidebar
+    {
+        flex-direction: row;
+        min-width: 100%;
+        min-height:auto;
+        padding: 0;
+        margin: 0;
+        order: 1;
+        position: unset;
+    }
+    .list
+    {
+        flex-direction: row;
+        gap: 0.5em;
+        min-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    .sidebar ul
+    {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-width: 100%;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+    }
+    .listFilms
+    {
+        order: 2;
+    }
+    .footer
+    {
+        order: 3;
+    }
+    
+    .grille
+    {
+        order: 2;
+    }
+    .wrapperInside
+    {
+        align-items: center;
+    }
+}
+  

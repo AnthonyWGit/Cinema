@@ -107,3 +107,16 @@ th, td
 {
     text-align: center;
 }
+
+
+/*---------------------------LIGHT MODE STUFF-------------------------------*/
+
+select.light-mode
+{
+    background-color:  #817a85;
+}
+
+input.light-mode
+{
+    background-color: transparent;
+}
