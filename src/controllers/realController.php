@@ -8,15 +8,21 @@ class RealController
 {
     public function displayReals()
     {
-        //-----------------SQL PART----------------------------------------------------
-        $mySQLconnection = Connect::connexion();
-        $sqlQuery = 'SELECT * FROM realisateur INNER JOIN personne ON realisateur.id_personne = personne.id_personne'; //priceF means priceFormated
-        $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
-        $stmt->execute();                                                     //The data we retrieve are in array form
-        $reals = $stmt->fetchAll();
-
-        //-------------------------------------------------------------------------------------
+        $reals = $this->getReals();
         require "views/templates/realsListing.php";
+    }
+
+    public function getReals()
+    {
+                //-----------------SQL PART----------------------------------------------------
+                $mySQLconnection = Connect::connexion();
+                $sqlQuery = 'SELECT * FROM realisateur INNER JOIN personne ON realisateur.id_personne = personne.id_personne'; //priceF means priceFormated
+                $stmt = $mySQLconnection->prepare($sqlQuery);                        //Prepare, execute, then fetch to retrieve data
+                $stmt->execute();                                                     //The data we retrieve are in array form
+                $reals = $stmt->fetchAll();
+        
+                //-------------------------------------------------------------------------------------
+                return $reals;
     }
     public function updateReal($dataReals,$id)
     {
