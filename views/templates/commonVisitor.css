@@ -123,3 +123,27 @@ html
 
 
 /*****************/
+
+
+
+.wrapper.light-mode
+{
+    background-color: hsl(282, 100%, 90%);
+}
+.footer.light-mode
+{
+    background-color: hsl(170, 94%, 94%);
+}
+.header.light-mode
+{
+    background-color: hsl(170, 100%, 93%);
+}
+.banner.light-mode  *
+{
+    color: gold;
+}
+
+#sun-moon
+{
+    font-size: 1.5em;
+}
