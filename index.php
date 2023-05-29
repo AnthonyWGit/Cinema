@@ -22,6 +22,7 @@ use Controllers\StatsRealsController;
 use Controllers\StatsRaCC;
 use Controllers\SynopsisController;
 use Controllers\FilmVisitorByRealController;
+use Controllers\FilmVisitorByGenreController;
 //_________________________________AUTOLOAD_____________________________________
 spl_autoload_register(function ($class_name)
 {
@@ -48,7 +49,8 @@ $controllerSynopsis = new SynopsisController();
 //__________________________________________________________________________________
 
 $x = new FilmVisitorController();
-$controllerVisitorFilmByActor = new FilmVisitorByRealController();
+$controllerVisitorFilmByReal = new FilmVisitorByRealController();
+$controllerVisitorFilmByGenre = new FilmVisitorByGenreController();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -140,7 +142,11 @@ if (isset($_GET["action"]))
             break;
         case "displayVisitorFilmsByReal":
             $id_real = $_POST;
-            $controllerVisitorFilmByActor->displayFilms($id_real);
+            $controllerVisitorFilmByReal->displayFilms($id_real);
+            break;
+        case "displayVisitorFilmsByGenre":
+            $id_genre = $_POST;
+            $controllerVisitorFilmByGenre->displayFilms($id_genre);
             break;
         case "displayStatsRoles":
         case "displayStatsCastings":

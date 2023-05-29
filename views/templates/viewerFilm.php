@@ -33,20 +33,24 @@
     <div class="col">
     <p>
         Films par Genres:
-        <select>
+        <form method="post" action="index.php?action=displayVisitorFilmsByGenre">
+
+            <select name="id_genre">
 
 
-            <?php
-            foreach ($genres as $genre)
-            {?>
+                <?php
+                foreach ($genres as $genre)
+                {?>
 
-                <option value=""><?= $genre["nom_genre"]?></option>
+                    <option value="<?=$genre["id_genre"]?>"><?= $genre["nom_genre"]?></option>
 
-            <?php
-            }
-            ?>
+                <?php
+                }
+                ?>
 
-        </select>
+            </select>
+            <button type="submit">GO</button>
+        </form>
     </p>
     </div>
 </div>
