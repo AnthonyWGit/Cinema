@@ -31,8 +31,8 @@ class FilmVisitorByRealController
     {
         $gerelst = [];
         $genresctrl = new GenreController();
-        $pete = $genresctrl->getGenres();
-        foreach ($pete as $genre)
+        $genresGet = $genresctrl->getGenres();
+        foreach ($genresGet as $genre)
         {
                 $gerelst[$genre["id_genre"]] =
                 [
