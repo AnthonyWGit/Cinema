@@ -8,6 +8,12 @@
             <li><a href="index.php?action=Homepage">Admin interface</a></li>
         </ul>
             <button id="mode-select" class="toggleBtn" onclick='myFunction()'><i class="bi bi-sun" id="sun-moon"></i></button>
+            <div class="div">
+                <h5><a href="index.php?action=goToLogin">Login</a></h5>
+            </div>
+            <div class="div">
+                <h5><a href="index.php?action=goToRegister">S'inscrire</a></h5>
+            </div>
         <div class="lang">
             <h2>FR</h2>
         </div>

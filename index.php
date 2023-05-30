@@ -23,6 +23,8 @@ use Controllers\StatsRaCC;
 use Controllers\SynopsisController;
 use Controllers\FilmVisitorByRealController;
 use Controllers\FilmVisitorByGenreController;
+
+use Controllers\RegisterController;
 //_________________________________AUTOLOAD_____________________________________
 spl_autoload_register(function ($class_name)
 {
@@ -51,6 +53,7 @@ $controllerSynopsis = new SynopsisController();
 $x = new FilmVisitorController();
 $controllerVisitorFilmByReal = new FilmVisitorByRealController();
 $controllerVisitorFilmByGenre = new FilmVisitorByGenreController();
+$controllerRegister = new RegisterController();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -260,7 +263,12 @@ if (isset($_GET["action"]))
             break;      
         case "Homepage"://USED TO DISPLAY WICH ACTOR HAS PLAYED IN WICH FILM 
             $controllerHomepage->landingOnWebsite();
-            break;                                 
+            break;  
+        case "goToLogin":
+        case "goToRegister":
+            $controllerRegister->displayPage();
+            break;
+
     }
 }
 // ---------------------------------DEFAULT : HOMEPAGE--------------------------------
