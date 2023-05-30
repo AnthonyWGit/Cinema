@@ -51,58 +51,73 @@ class RegisterController
     
     function checkPostData($data)
     {
-        $permission3 = false;  //check username DB
         $permission0 = false;  //Check email DB
-        $permission1 = false;  //Check form is valid
+        $permissionName = false;  //Check if name is valid
+        $permissionForename = false;  //Check if forename is valid
+        $permissionUsername = false; //check if username is ok
+        $permissionPwd = false; 
         $permission2 = false;  //Check if pwd matches confirm pwd
-        $errorMsg ="";
-        $validMsg= "";
+        $permission3 = false;  //check username DB        
+        $msg ="";
         $pwd ="";
         $listEmails = $this->getEmails();
         $listUsername = $this->getUserNames();
 
+        foreach ($data as $fielname=>$value)
+        {
+            if (empty($value))
+            {
+                $msg = "Vous ne pouvez pas evoyer un formulaire avec un ou des champs vides";
+            }
+        }
+
+        //Case when the db is empty and we want to avoid displaying errors
         if (empty($listEmails))
         {
             $permission0 = true;
+            echo "XXXXXXXX";
         }
 
         if (empty($listUsername))
         {
             $permission3 = true;
-        }
-
-        
-        echo "</br></br></br></br>";
-        foreach ($listEmails as $email)
-        {
-            if ($email["email"] == $data["email"])
-            {
-                $errMsg = "Cet email est déjà utilisé";
-            }
-            else
-            {
-                $permission0 = true;
-                $validMsg = "L'email est libre";
-            }
+            echo "YYYYYYYYY";
         }
 
         //_________________________________FORM-CHECK______________________________________________
         foreach($data as $field=>$fieldValue)
         {
-            var_dump($fieldValue);
             switch ($field)
             {
                 case "name":
-                case "forename":
-                case "username":
-                    if (strlen($fieldValue) > 3 && !preg_match('/[^a-zA-Z0-9]/', $fieldValue && isset($fieldValue)))
+                    if (!preg_match('/[^a-zA-Z0-9]/', $fieldValue && isset($fieldValue)))
                     {
-                        $permission = true;
-                        $validMsg = " Pseudo/nom/prénom OK";
+                        $permissionName = true;
                     }
                     else
                     {
-                        $errorMsg .= "Nom/Prénom/Pseudo plus que 3 lettres svp";                        
+                        $permissionName = false;
+                    }
+                break;
+                case "forename":
+                    if (!preg_match('/[^a-zA-Z0-9]/', $fieldValue && isset($fieldValue)))
+                    {
+                        $permissionForename = true;
+                    }
+                    else
+                    {
+                        $permissionForename = false;
+                    }
+                break;
+                case "username":
+                    if (strlen($fieldValue) > 3 && !preg_match('/[^a-zA-Z0-9]/', $fieldValue && isset($fieldValue)))
+                    {
+                        $permissionUsername = true;
+                        $msg = " username OK";
+                    }
+                    else
+                    {
+                        $msg .= "Nom/Prénom/Pseudo plus que 3 lettres svp";                    
                     }
                 break;
 
@@ -111,12 +126,12 @@ class RegisterController
                     if (strlen($fieldValue) >= 8 && preg_match('/[A-Z]/', $fieldValue) && preg_match('/[a-z]/', $fieldValue) 
                     && preg_match('/[0-9]/', $fieldValue) && preg_match('/[^a-zA-Z0-9]/', $fieldValue) && isset($fieldValue))
                     {
-                        $permission1 = true;
+                        $permissionPwd = true;
                         $pwd = $fieldValue; //stocking password in value
                     }
                     else 
                     {
-                        $errorMsg .=    "<p>La sécurité du MdP est trop faible.
+                        $msg .=     "<p>La sécurité du MdP est trop faible.
                                         Prenez un mot de passe contenant :</p> 
                                         <ul>
                                             <li>Une lettre majuscule</li>
@@ -136,40 +151,36 @@ class RegisterController
                         }
                         else 
                         {
-                            $errorMsg .= "<p>Les mots de passes ne sont pas identiques</p>";
+                            $msg .= "<p>Les mots de passes ne sont pas identiques</p>";
                         }
                     break;
             }
         }
 
-        if ($permission1 && $permission2)
-        {
-            echo "Formulaire bien rempli";
-        }
-        else
-        {
-            echo $errorMsg;
-        }
         //_____________________EMAIL CHECK________________________________
         foreach ($listEmails as $email)
         {
+
             if ($email["email"] == $data["email"])
             {
-                $errMsg = "Cet email est déjà utilisé";
+                $msg = "Cet email est déjà utilisé";            //At this point it means that at least on field is incorrect
+                break;                                          //That means 
             }
             else
             {
                 $permission0 = true;
-                $validMsg = "L'email est libre";
+                $msg = "L'email est libre";
             }
         }
         //_________________________Username Check________________________________
 
         foreach ($listUsername as $username)
         {
+
             if ($username["username"] == $data["username"])
             {
-                $errMsg = "Ce nom d'utilisateur est déjà utilisé";
+                $msg = "Ce nom d'utilisateur est déjà utilisé";
+                break;
             }
             else
             {
@@ -194,10 +205,22 @@ class RegisterController
 
         //____________________IF EVERYTHING OK SQL INSERT INTO USER DB___________________
 
-        if ($permission0 && $permission1 && $permission2 && $permission3)
+        if ($permission0 == true &&
+            $permissionName == true &&
+            $permissionForename == true &&
+            $permissionUsername == true &&
+            $permissionPwd == true &&
+            $permission2 == true &&
+            $permission3 == true)
+
         {
             $this->registerDB($data);
-            echo "Registered";
+            $msg = "Vous êtes inscrit";
+            require_once ("views/templates/registerEnd.php");
+        }
+        else
+        {
+            require_once ("views/templates/registerEnd.php");
         }
     }
 }
