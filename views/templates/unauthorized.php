@@ -3,7 +3,15 @@
 <div class="row">
     <div class="col">
         <p>
-            <?= $_SESSION["msg"] ?>
+            Action non autorisée.
+        </p>
+        <p>
+            Cause(s) :
+            <ul>
+
+             <?= $_SESSION["msg"] ?>
+             
+            </ul>
         </p>
     </div>
 </div>

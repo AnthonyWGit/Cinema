@@ -15,8 +15,14 @@ class ActeurController
         $acteurs = $stmt->fetchAll();
         unset($mySQLconnection);
         //--------------------------------------------------------------------------
-
-        require "views/templates/acteursListing.php";
+        if (isset($_SESSION["privilege"]) && ($_SESSION["privilege"] = "admin"))
+        {
+            require "views/templates/acteursListing.php";            
+        }
+        else
+        {
+            require_once "views/templates/unauthorized.php";
+        }
     }
 
     public function updateActeur($dataActeurs,$id)

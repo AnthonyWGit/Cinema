@@ -40,7 +40,11 @@ class CastingController
     {
 
         $castings = $this->getCastings();
-        require "views/templates/castingListing.php";
+        if (isset($_SESSION["privilege"]) && ($_SESSION["privilege"] = "admin"))
+        {
+            require "views/templates/castingListing.php";            
+        }
+
     }
 
     public function updateCasting($dataCasting, $id, $id_acteur, $idrole ,$champ_casting)

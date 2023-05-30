@@ -10,6 +10,10 @@ class RegisterController
         require_once ("views/templates/register.php");
     }
 
+    function displaySuccess()
+    {
+        require_once("views/templates/registerEnd.php");
+    }
     function getUserNames()
     {
         //----------SQL PART-----------------------
@@ -58,7 +62,7 @@ class RegisterController
         $permissionPwd = false; 
         $permission2 = false;  //Check if pwd matches confirm pwd
         $permission3 = false;  //check username DB        
-        $msg ="";
+        $_SESSION["msg"] ="";
         $pwd ="";
         $listEmails = $this->getEmails();
         $listUsername = $this->getUserNames();
@@ -67,7 +71,7 @@ class RegisterController
         {
             if (empty($value))
             {
-                $msg = "Vous ne pouvez pas evoyer un formulaire avec un ou des champs vides";
+                $_SESSION["msg"] = "Vous ne pouvez pas evoyer un formulaire avec un ou des champs vides";
             }
         }
 
@@ -97,12 +101,14 @@ class RegisterController
                     else
                     {
                         $permissionName = false;
+                        $_SESSION["msg"] .= "<li>Pas de caractères spéciaux dans le nom</li>";
                     }
                 break;
                 case "forename":
                     if (!preg_match('/[^a-zA-Z0-9]/', $fieldValue && isset($fieldValue)))
                     {
                         $permissionForename = true;
+                        $_SESSION["msg"] .= "<li>Pas de caractères spéciaux dans le prénom nom</li>";
                     }
                     else
                     {
@@ -113,11 +119,11 @@ class RegisterController
                     if (strlen($fieldValue) > 3 && !preg_match('/[^a-zA-Z0-9]/', $fieldValue && isset($fieldValue)))
                     {
                         $permissionUsername = true;
-                        $msg = " username OK";
+                        $_SESSION["msg"] .= " username OK";
                     }
                     else
                     {
-                        $msg .= "Nom/Prénom/Pseudo plus que 3 lettres svp";                    
+                        $_SESSION["msg"] .= "Pseudo de plus de 3 lettres requis. Pas de caractères spéciaux";                    
                     }
                 break;
 
@@ -131,7 +137,7 @@ class RegisterController
                     }
                     else 
                     {
-                        $msg .=     "<p>La sécurité du MdP est trop faible.
+                        $_SESSION["msg"] .=     "<p>La sécurité du MdP est trop faible.
                                         Prenez un mot de passe contenant :</p> 
                                         <ul>
                                             <li>Une lettre majuscule</li>
@@ -151,7 +157,7 @@ class RegisterController
                         }
                         else 
                         {
-                            $msg .= "<p>Les mots de passes ne sont pas identiques</p>";
+                            $_SESSION["msg"] .= "<p>Les mots de passes ne sont pas identiques</p>";
                         }
                     break;
             }
@@ -163,14 +169,14 @@ class RegisterController
 
             if ($email["email"] == $data["email"])
             {
-                $msg = "Cet email est déjà utilisé";            //At this point it means that at least on field is incorrect
+                $_SESSION["msg"] = "Cet email est déjà utilisé";            //At this point it means that at least on field is incorrect
                 $permission0 = false;                           //The previous value in the array could be good so when we land 
                 break;                                          //on used emails we go out of loop and permission is still false
             }
             else
             {
                 $permission0 = true;
-                $msg = "L'email est libre";
+                $_SESSION["msg"] = "L'email est libre";
             }
         }
         //_________________________Username Check________________________________
@@ -180,14 +186,14 @@ class RegisterController
 
             if ($username["username"] == $data["username"])
             {
-                $msg = "Ce nom d'utilisateur est déjà utilisé";
+                $_SESSION["msg"] = "Ce nom d'utilisateur est déjà utilisé";
                 $permission3 = false;
                 break;
             }
             else
             {
                 $permission3 = true;
-                $validMsg = "Le nom d'utilisateur est libre";
+                $_SESSION["msg"] = "Le nom d'utilisateur est libre";
             }
         }
 
@@ -212,12 +218,12 @@ class RegisterController
 
         {
             $this->registerDB($data);
-            $msg = "Vous êtes inscrit";
-            require_once ("views/templates/registerEnd.php");
+            $_SESSION["msg"] = "Vous êtes inscrit";
+            header ("Location:index.php?action=registerOK");
         }
         else
         {
-            require_once ("views/templates/registerEnd.php");
+            header("Location:index.php?action=unauthorized");
         }
     }
 }

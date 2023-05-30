@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col">
         <p>
-            <?= $msg ?>
+            <?= $_SESSION["msg"] ?>
         </p>
     </div>
 </div>

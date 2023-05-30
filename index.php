@@ -1,4 +1,5 @@
 <?php
+session_start();
 //____________________________CONTROLLER MAIN ADMIN______________________________
 use Controllers\FilmController;
 use Controllers\FilmsGenreController;
@@ -27,6 +28,7 @@ use Controllers\FilmVisitorByGenreController;
 
 use Controllers\RegisterController;
 use Controllers\LoginController;
+use Controllers\UnauthorizedController;
 //_________________________________AUTOLOAD_____________________________________
 spl_autoload_register(function ($class_name)
 {
@@ -59,6 +61,7 @@ $controllerVisitorFilmByGenre = new FilmVisitorByGenreController();
 $controllerRegister = new RegisterController();
 $controllerLogin = new LoginController();
 $controllerDisconnect = new DisconnectController();
+$controllerUnauthorized = new UnauthorizedController();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -258,6 +261,16 @@ if (isset($_GET["action"]))
         case "disconnect":
             $controllerDisconnect->Disconnect();
             break;
+        case "unauthorized":
+            $controllerUnauthorized->displayUnauthorized();
+            break;
+        case "registerOK":
+            $controllerRegister->displaySuccess();
+            break;
+        case "loginOK":
+            $controllerLogin->displaySuccess();
+            break;
+        
 //-------------------------------MISC--------------------------------------------------
 
         case "goToSynopsis":
