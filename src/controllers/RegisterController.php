@@ -164,7 +164,8 @@ class RegisterController
             if ($email["email"] == $data["email"])
             {
                 $msg = "Cet email est déjà utilisé";            //At this point it means that at least on field is incorrect
-                break;                                          //That means 
+                $permission0 = false;                           //The previous value in the array could be good so when we land 
+                break;                                          //on used emails we go out of loop and permission is still false
             }
             else
             {
@@ -180,6 +181,7 @@ class RegisterController
             if ($username["username"] == $data["username"])
             {
                 $msg = "Ce nom d'utilisateur est déjà utilisé";
+                $permission3 = false;
                 break;
             }
             else
@@ -205,13 +207,8 @@ class RegisterController
 
         //____________________IF EVERYTHING OK SQL INSERT INTO USER DB___________________
 
-        if ($permission0 == true &&
-            $permissionName == true &&
-            $permissionForename == true &&
-            $permissionUsername == true &&
-            $permissionPwd == true &&
-            $permission2 == true &&
-            $permission3 == true)
+        if ($permission0 == true && $permissionName == true && $permissionForename == true &&
+            $permissionUsername == true && $permissionPwd == true && $permission2 == true && $permission3 == true)
 
         {
             $this->registerDB($data);
