@@ -2,23 +2,13 @@
 
 <div class="row">
 
-            <form method="post" action="index.php?action=checkInfos" id="form-register" name="registration">
+            <form method="post" action="index.php?action=VerifyInfos" id="form-login" name="login">
 
                 <div class="formDiv">
                     
                         <div class="col">
                             <label>Nom d'utilisateur</label>
                             <input type="text" name="username" id="username-input" placeholder="Entrez votre nom d'utilisateur ici" required>
-                        </div>
-
-                        <div class="col">
-                            <label>Nom</label>
-                            <input type="text" name="name" id="name-input" placeholder="Entrez votre nom ici" required>
-                        </div>
-
-                        <div class="col">
-                            <label>Prénom</label>
-                            <input type="text" name="forename" id="forename-input" placeholder="Entrez votre prénom" required>
                         </div>
 
                         <div class="col">
@@ -31,12 +21,6 @@
                             <input type="password" name="password" id="password-input" placeholder="Password" required>
                         </div>
 
-                        
-                        <div class="col">
-                            <label>Confirmez le mot de passe</label>
-                            <input type="password" name="password-confirm" id="password-input-confirm" placeholder="Password" required>
-                        </div>
-                        
                         <div class="divBtn">
                             <button type="submit">Valider</button>
                         </div>

@@ -25,6 +25,7 @@ use Controllers\FilmVisitorByRealController;
 use Controllers\FilmVisitorByGenreController;
 
 use Controllers\RegisterController;
+use Controllers\LoginController;
 //_________________________________AUTOLOAD_____________________________________
 spl_autoload_register(function ($class_name)
 {
@@ -53,7 +54,9 @@ $controllerSynopsis = new SynopsisController();
 $x = new FilmVisitorController();
 $controllerVisitorFilmByReal = new FilmVisitorByRealController();
 $controllerVisitorFilmByGenre = new FilmVisitorByGenreController();
+
 $controllerRegister = new RegisterController();
+$controllerLogin = new LoginController();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -234,6 +237,22 @@ if (isset($_GET["action"]))
 
 //-----------------------------------END ACTION UPLOAD FILE ------------------------------------
 
+//----------------------------- ACCOUNT | SESSION related stuff---------------------------
+
+        case "goToLogin":
+            $controllerLogin->displayLogin();
+            break;
+        case "goToRegister":
+            $controllerRegister->displayPage();
+            break;
+        case "checkInfos":
+            $data = $_POST;
+            $controllerRegister->checkPostData($data);
+            break;
+        case "VerifyInfos":
+            $data = $_POST;
+            $controllerLogin->checkPostData($data);
+            break;
 //-------------------------------MISC--------------------------------------------------
 
         case "goToSynopsis":
@@ -264,10 +283,6 @@ if (isset($_GET["action"]))
         case "Homepage"://USED TO DISPLAY WICH ACTOR HAS PLAYED IN WICH FILM 
             $controllerHomepage->landingOnWebsite();
             break;  
-        case "goToLogin":
-        case "goToRegister":
-            $controllerRegister->displayPage();
-            break;
 
     }
 }

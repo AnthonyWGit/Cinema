@@ -15,9 +15,9 @@ class HomepageController
         $sql = 'SELECT 
         TABLE_NAME AS TableName, 
         update_time AS LastUpdated 
-    FROM 
+        FROM 
         information_schema.tables 
-    WHERE 
+        WHERE 
         table_schema = "cinema" ';
         $stmt = $mySQLconnexion->prepare($sql);
         $stmt->execute();
