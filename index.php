@@ -7,6 +7,7 @@ use Controllers\ActeurController;
 use Controllers\AfficheController;
 use Controllers\HomepageController;
 use Controllers\CastingController;
+use Controllers\DisconnectController;
 use Controllers\Math;
 use Controllers\RealController;
 use Controllers\RoleController;
@@ -57,6 +58,7 @@ $controllerVisitorFilmByGenre = new FilmVisitorByGenreController();
 
 $controllerRegister = new RegisterController();
 $controllerLogin = new LoginController();
+$controllerDisconnect = new DisconnectController();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -252,6 +254,9 @@ if (isset($_GET["action"]))
         case "VerifyInfos":
             $data = $_POST;
             $controllerLogin->checkPostData($data);
+            break;
+        case "disconnect":
+            $controllerDisconnect->Disconnect();
             break;
 //-------------------------------MISC--------------------------------------------------
 
