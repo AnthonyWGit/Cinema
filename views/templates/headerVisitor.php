@@ -11,7 +11,7 @@
             <div class="div">
                 <h5><a href="index.php?action=goToLogin">Login</a></h5>
             </div>
-            <div class="div">
+            <div class="div"></div>
                 <h5><a href="index.php?action=goToRegister">S'inscrire</a></h5>
             </div>
         <div class="lang">
