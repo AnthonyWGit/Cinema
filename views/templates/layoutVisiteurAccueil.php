@@ -21,7 +21,7 @@
                 <?php require_once("footer.php");?>
         </div> 
     </body>
-    <script src="public\js\dlModeSwitch.js"></script>
+    <script src="public\js\dlModeBase.js"></script>
     <script src="public\js\dlModeAccueil.js"></script>
     <script src="public\js\dlPerformSpecial.js"></script>
 </html>
