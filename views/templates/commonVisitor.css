@@ -66,6 +66,10 @@
     align-items: center;
 }
 
+.banner li
+{
+    display: inline-block;
+}
 .list
 {
     display: flex;

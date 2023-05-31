@@ -6,31 +6,14 @@
     color: white;
     text-decoration: none;
 }
-/* trying to fix bug on mobile cutting bottom*/
-body 
-{
-    min-height: 100svh;
-}
-  
-  /* Avoid Chrome to see Safari hack */
-  @supports (-webkit-touch-callout: none) {
-    body {
-      /* The hack for Safari */
-      height: -webkit-fill-available;
-    }
-  }
 
-html
-{
-    height: 100svh;
-    -webkit-overflow-scrolling: touch;
-}
+
 .wrapper
 {
     display: flex;
     min-width: 100%;
     flex-direction: column;
-    min-height: 100svh;
+    min-height: 100dvh;
     flex: 1;
     background-color: #180023;
     position: relative;
@@ -57,7 +40,7 @@ html
     color: white;
     min-width: 100%;
     min-height: 5em;
-    background: linear-gradient(to top, rgb(32,38,37) 95%,#180023 );
+    background: linear-gradient(to top, rgb(32,38,37) 95%,#180023 ); 
 }
 
 .insideFooter
@@ -68,10 +51,11 @@ html
 .header 
 {
     min-width: 100%;
-    min-height: 5svh;
+    min-height: 5dvh;
     display: flex;
     color: white;
-    background-color: rgb(32,38,37);
+    background: linear-gradient(to bottom,rgb(32,38,37) 95% , #180023 );
+    /* background-color: rgb(32,38,37); */
 }
 
 .banner
@@ -81,6 +65,44 @@ html
     justify-content: space-between;
     align-items: center;
 }
+
+.banner li
+{
+    display: inline-block;
+}
+
+.list
+{
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;    
+}
+
+.list > ul
+{
+    list-style: none;
+}
+
+.yellow
+{
+    color : rgba(255,215,0,0.75);
+}
+.toggleBtn
+{
+    min-width: 2em;
+    min-height: 2em;
+    border-radius: 25%;
+    -webkit-border-radius: 25%;
+    -moz-border-radius: 25%;
+    -ms-border-radius: 25%;
+    -o-border-radius: 25%;
+    background-color: transparent;
+    border-color: inherit;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
 .sidebar
 {
     display: flex;
@@ -102,6 +124,12 @@ html
     margin: 0.5em;
 }
 
+.selectSidebar
+{
+    color : white;
+    background-color:  #180023;
+    width: 50%;
+}
 .list
 {
     display: flex;
@@ -113,18 +141,6 @@ html
 {
     list-style: none;
 }
-
-.yellow
-{
-    color : rgba(255,215,0,0.75);
-}
-
-.selectSidebar
-{
-    color : white;
-    background-color:  #180023;
-}
-
 /*----------LIGHT MODE STUFF----------------*/
 
 
@@ -155,6 +171,10 @@ html
     font-size: 1.5em;
     color: rgb(0, 0, 0) !important;
 }
+
+
+
+/*--------------MEDIA QUERIES-------------*/
 
 @media (max-width: 600px) 
 {
