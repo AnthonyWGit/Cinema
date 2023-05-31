@@ -23,8 +23,15 @@ class HomepageController
         $stmt->execute();
         $dateTime = $stmt->fetchAll();
 
-
-        require("views/templates/homepage.php") ;
+        if (isset($_SESSION["privilege"]) && ($_SESSION["privilege"] = "admin"))
+        {
+            require("views/templates/homepage.php") ;        
+        }
+        else
+        {
+            $_SESSION["msg"] = "<li>Accès non autorisé.</li>";
+            require_once "views/templates/unauthorized.php";
+        }
         //--------------------------END SQL-------------------------------------
     }
 }

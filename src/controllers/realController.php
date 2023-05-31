@@ -9,7 +9,15 @@ class RealController
     public function displayReals()
     {
         $reals = $this->getReals();
-        require "views/templates/realsListing.php";
+        if (isset($_SESSION["privilege"]) && ($_SESSION["privilege"] = "admin"))
+        {
+            require "views/templates/realsListing.php";     
+        }
+        else
+        {
+            $_SESSION["msg"] = "<li>Accès non autorisé.</li>";
+            require_once "views/templates/unauthorized.php";
+        }
     }
 
     public function getReals()

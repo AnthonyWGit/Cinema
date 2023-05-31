@@ -66,7 +66,16 @@ class FilmController
             ];
         }
         $realisateursList = array_unique($realisateursList, SORT_REGULAR); //We don't need duplicates
-        require("views/templates/filmListing.php");
+
+        if (isset($_SESSION["privilege"]) && ($_SESSION["privilege"] = "admin"))
+        {
+            require("views/templates/filmListing.php");            
+        }
+        else
+        {
+            $_SESSION["msg"] = "<li>Accès non autorisé.</li>";
+            require_once "views/templates/unauthorized.php";
+        }
     }
 
     public function updateFilms($datafilm, $idZ)

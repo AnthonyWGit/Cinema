@@ -21,6 +21,7 @@ class ActeurController
         }
         else
         {
+            $_SESSION["msg"] = "<li>Accès non autorisé.</li>";
             require_once "views/templates/unauthorized.php";
         }
     }

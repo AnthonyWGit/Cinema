@@ -44,6 +44,11 @@ class CastingController
         {
             require "views/templates/castingListing.php";            
         }
+        else
+        {
+            $_SESSION["msg"] = "<li>Accès non autorisé.</li>";
+            require_once "views/templates/unauthorized.php";
+        }
 
     }
 

@@ -64,7 +64,15 @@ class StatsActeursController
         $statsActeurs = $this->getStatsActeurs();
         $acteursList = $this->getAllActors();
         $actorsSex = $this->getActorsSex();
-        require_once("views/templates/statsActeurs.php");
+        if (isset($_SESSION["privilege"]) && ($_SESSION["privilege"] = "admin"))
+        {
+            require_once("views/templates/statsActeurs.php");
+        }
+        else
+        {
+            $_SESSION["msg"] = "<li>Accès non autorisé.</li>";
+            require_once "views/templates/unauthorized.php";
+        }
 
     }
         public function displayFilmActor($id)
@@ -101,7 +109,15 @@ class StatsActeursController
             $msg ="La personne n'a joué dans aucun film présent dans la DB";
         }
 
-        require_once("views/templates/statsActeurs.php"); 
+        if (isset($_SESSION["privilege"]) && ($_SESSION["privilege"] = "admin"))
+        {
+            require_once("views/templates/statsActeurs.php");
+        }
+        else
+        {
+            $_SESSION["msg"] = "<li>Accès non autorisé.</li>";
+            require_once "views/templates/unauthorized.php";
+        }
     }
 
     // }    

@@ -61,8 +61,16 @@ class FilmsGenreController
         $stmt->execute();                                                     //The data we retrieve are in array form
         $filmsGenres = $stmt->fetchAll();
         //-------------------------------------------------------------------------------------
- 
-        require "views/templates/genresFilmsList.php";
+        
+        if (isset($_SESSION["privilege"]) && ($_SESSION["privilege"] = "admin"))
+        {
+            require "views/templates/genresFilmsList.php";            
+        }
+        else
+        {
+            $_SESSION["msg"] = "<li>Accès non autorisé.</li>";
+            require_once "views/templates/unauthorized.php";
+        }
     }
 
     public function updateFilmGenre($id_genre,$id_film,$oldID)
