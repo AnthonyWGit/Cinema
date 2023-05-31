@@ -12,6 +12,7 @@
             <li><a href ="index.php?action=displayCastings">Casting</a></li>
             <li>Statistiques</li>
             <select name="forma"  class="selectSidebar" onchange="location = this.value;">
+            <option>Sélectionnez la catégorie</option>
             <option value ="index.php?action=displayStatsFilms">Films</option>
             <option value ="index.php?action=displayStatsReals">Réalisateur / Réalisatrices</option>
             <option value ="index.php?action=displayStatsActeurs">Acteurs / Actrices</option>
