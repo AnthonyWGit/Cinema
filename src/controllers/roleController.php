@@ -18,6 +18,8 @@ class RoleController
 
         unset($stmt);
         //-----------------------------------------------------------------
+
+        $count = 1;
         require "views/templates/roleListing.php";
     }
 

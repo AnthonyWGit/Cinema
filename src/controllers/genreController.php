@@ -21,7 +21,7 @@ class GenreController
     public function displayGenres()
     {
         $genres = $this->getGenres();
-
+        $count = 1;
         if (isset($_SESSION["privilege"]) && ($_SESSION["privilege"] = "admin"))
         {
             require "views/templates/genreListing.php";            

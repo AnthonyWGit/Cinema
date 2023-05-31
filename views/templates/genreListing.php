@@ -9,7 +9,7 @@
             <th>Genre de film</th>
         </tr>
     
-        <?php 
+        <?php
         foreach($genres as $genre)
         { 
         ?>
@@ -21,7 +21,7 @@
             </td>
 
             <td>  
-                <?=$genre["id_genre"]?>
+                <?= $count ?>
             </td>
 
 
@@ -36,6 +36,7 @@
         </tr>
 
         <?php
+        $count++;
         }
         ?>
         <!-- LAST LINE OF TABLE -->

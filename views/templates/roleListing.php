@@ -21,7 +21,7 @@
             </td>
 
             <td>  
-                <?=$role["id_role"]?>
+                <?=$count ?>
             </td>
 
 
@@ -36,6 +36,7 @@
         </tr>
 
         <?php
+        $count++;
         }
         ?>
         <!-- LAST LINE OF TABLE -->
