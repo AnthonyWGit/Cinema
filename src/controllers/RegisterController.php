@@ -71,7 +71,7 @@ class RegisterController
         {
             if (empty($value))
             {
-                $_SESSION["msg"] = "Vous ne pouvez pas evoyer un formulaire avec un ou des champs vides";
+                $_SESSION["msg"] .= "Vous ne pouvez pas evoyer un formulaire avec un ou des champs vides";
             }
         }
 
@@ -169,14 +169,13 @@ class RegisterController
 
             if ($email["email"] == $data["email"])
             {
-                $_SESSION["msg"] = "Cet email est déjà utilisé";            //At this point it means that at least on field is incorrect
+                $_SESSION["msg"] .= "Cet email est déjà utilisé";            //At this point it means that at least on field is incorrect
                 $permission0 = false;                           //The previous value in the array could be good so when we land 
                 break;                                          //on used emails we go out of loop and permission is still false
             }
             else
             {
                 $permission0 = true;
-                $_SESSION["msg"] = "L'email est libre";
             }
         }
         //_________________________Username Check________________________________
@@ -186,14 +185,13 @@ class RegisterController
 
             if ($username["username"] == $data["username"])
             {
-                $_SESSION["msg"] = "Ce nom d'utilisateur est déjà utilisé";
+                $_SESSION["msg"] .= "Ce nom d'utilisateur est déjà utilisé";
                 $permission3 = false;
                 break;
             }
             else
             {
                 $permission3 = true;
-                $_SESSION["msg"] = "Le nom d'utilisateur est libre";
             }
         }
 
@@ -217,6 +215,7 @@ class RegisterController
             $permissionUsername == true && $permissionPwd == true && $permission2 == true && $permission3 == true)
 
         {
+
             $this->registerDB($data);
             $_SESSION["msg"] = "Vous êtes inscrit";
             header ("Location:index.php?action=registerOK");

@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <link href="css/azerty.css" rel="stylesheet" />
         <link href="views/templates/commonVisitor.css" rel="stylesheet" />
         <link href="views/templates/register.css" rel="stylesheet" />
         <style>

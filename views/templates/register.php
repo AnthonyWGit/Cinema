@@ -2,7 +2,7 @@
 
 <div class="row">
 
-            <form method="post" action="index.php?action=checkInfos" id="form-register" name="registration">
+            <form method="post" action="index.php?action=checkInfos" class="yyy" id="form-register" name="registration">
 
                 <div class="formDiv">
                     
@@ -37,15 +37,46 @@
                             <input type="password" name="password-confirm" id="password-input-confirm" placeholder="Password" required>
                         </div>
                         
-                        <div class="divBtn">
-                            <button type="submit">Valider</button>
-                        </div>
+                        <noscript>
+                            <div class="divBtn">
+                                <button type="submit">Valider</button>
+                            </div>
+                        </noscript>
 
+                    <!-- Button trigger modal -->
+                    <div class="divBtn2">
+                        <button  id="registration" value="registration" name="registration" class="btn btn-primary" id="password-input-confirm-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Valider
+                        </input>
+                    </div>
                 </div>
+
+
 
             </form>
 
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <?= var_dump($_POST) ?>
+                        <iframe src="index.php?action=checkInfos" name="iframe" id="iframe" frameborder="0" width="100%" height="300px"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
 </div>
+<script src="public\js\test.js"></script>
 
 <?php
 $content = ob_get_clean(); 

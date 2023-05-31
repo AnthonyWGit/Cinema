@@ -55,6 +55,17 @@ select
     display: flex;
     justify-content: center;
 }
+.divBtn2
+{
+    display: flex;
+    justify-content: center;
+}
+#form-register .divBtn2 button
+{
+    background-color: rgba(25, 25, 112,0.5);
+    width: 5em;
+    height: 5em;
+}
 .formDiv
 {
     display: flex;
@@ -75,3 +86,12 @@ input
     color: midnightblue;
 }
 
+.modal.fade button
+{
+    background-color: rgba(25, 25, 112,0.5);    
+}
+
+.modal-body , .modal-title,  .modal-footer
+{
+    color : gold;
+}
