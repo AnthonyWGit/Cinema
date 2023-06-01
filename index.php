@@ -27,8 +27,10 @@ use Controllers\FilmVisitorByRealController;
 use Controllers\FilmVisitorByGenreController;
 
 use Controllers\RegisterController;
+use Controllers\RegisterControllerModal;
 use Controllers\LoginController;
 use Controllers\UnauthorizedController;
+use Controllers\UnauthorizedControllerModal;
 //_________________________________AUTOLOAD_____________________________________
 spl_autoload_register(function ($class_name)
 {
@@ -59,9 +61,11 @@ $controllerVisitorFilmByReal = new FilmVisitorByRealController();
 $controllerVisitorFilmByGenre = new FilmVisitorByGenreController();
 
 $controllerRegister = new RegisterController();
+$controllerRegisterModal = new RegisterControllerModal();
 $controllerLogin = new LoginController();
 $controllerDisconnect = new DisconnectController();
 $controllerUnauthorized = new UnauthorizedController();
+$controllerUnauthorizedModal = new UnauthorizedControllerModal();
 
 //---------------------- ACTIONS UPDATE---------------------------------------
 
@@ -254,6 +258,16 @@ if (isset($_GET["action"]))
             $data = $_POST;
             $controllerRegister->checkPostData($data);
             break;
+        case "checkInfosModalVide":
+            $data = $_POST;
+            $controllerRegisterModal->setSessionEmpty();
+            $controllerRegisterModal->checkPostData($data);
+            unset($_SESSION["vide"]);
+            break;
+        case "checkInfosModal":
+            $data = $_POST;
+            $controllerRegisterModal->checkPostData($data);
+            break;
         case "VerifyInfos":
             $data = $_POST;
             $controllerLogin->checkPostData($data);
@@ -264,8 +278,14 @@ if (isset($_GET["action"]))
         case "unauthorized":
             $controllerUnauthorized->displayUnauthorized();
             break;
+        case "unauthorizedModal":
+            $controllerUnauthorizedModal->displayUnauthorizedModal();
+            break;
         case "registerOK":
             $controllerRegister->displaySuccess();
+            break;
+        case "registerOKModal":
+            $controllerRegisterModal->displaySuccessModal();
             break;
         case "loginOK":
             $controllerLogin->displaySuccess();

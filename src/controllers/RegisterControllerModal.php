@@ -3,18 +3,12 @@
 namespace Controllers;
 use Models\Connect;
 
-class RegisterController
+class RegisterControllerModal
 {
-    function displayPage()
+    function displaySuccessModal()
     {
-        require_once ("views/templates/register.php");
+        require_once("views/templates/registerEndModal.php");
     }
-
-    function displaySuccess()
-    {
-        require_once("views/templates/registerEnd.php");
-    }
-
     function getUserNames()
     {
         //----------SQL PART-----------------------
@@ -53,6 +47,11 @@ class RegisterController
         unset($mySQLconnection);
         //-----------------------------------------
     }
+
+    function setSessionEmpty()
+    {
+        $_SESSION["vide"] = true;
+    }
     
     function checkPostData($data)
     {
@@ -67,15 +66,6 @@ class RegisterController
         $pwd ="";
         $listEmails = $this->getEmails();
         $listUsername = $this->getUserNames();
-
-        foreach ($data as $fielname=>$value)
-        {
-            if (empty($value))
-            {
-                $_SESSION["vide"] = true;
-                break;
-            }
-        }
 
         //Case when the db is empty and we want to avoid displaying errors
         if (empty($listEmails))
@@ -162,15 +152,15 @@ class RegisterController
                             $_SESSION["msg"] .= "<p>Les mots de passes ne sont pas identiques</p>";
                         }
                     break;
-
                     case "email":
-                        if (filter_var($email, FILTER_VALIDATE_EMAIL)) 
+                        if (filter_var($fieldValue, FILTER_VALIDATE_EMAIL)) 
                         {
                             $permission0 = true;
                         } 
                         else 
                         {
                             $permission0 = false;
+                            var_dump($fieldValue);
                             $_SESSION["msg"] .= "<li>Email pas bon</li>";
                         }
                         break;
@@ -232,15 +222,17 @@ class RegisterController
 
             $this->registerDB($data);
             $_SESSION["msg"] = "Vous êtes inscrit";
-            header ("Location:index.php?action=registerOK");
+            header ("Location:index.php?action=registerOKModal");
         }
         else
         {
+
             if ($_SESSION["vide"])
             {
                 $_SESSION["msg"] = "Vous ne pouvez pas evoyer un formulaire avec un ou des champs vides";
             }
-            header("Location:index.php?action=unauthorized");
+                header ("Location:index.php?action=unauthorizedModal");
+                
         }
     }
 }
