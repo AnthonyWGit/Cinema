@@ -1,16 +1,32 @@
 document.addEventListener("DOMContentLoaded", function() { //waiting for all content to load
 
+  function checkFormInputsNotEmpty() {        //loop trough all the inputs
+    for (var i = 0; i < inputs.length; i++) {
+      if (inputs[i].value.trim() === "") {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function checkInputsAndToggleModal() {
+    if (!checkFormInputsNotEmpty()) {
+      // alert("Please fill in all form fields.");
+    } else {
+      iframe.src = "index.php?action=checkInfos"; // Set the URL here
+    }
+  }
+
+;
   const iframe = document.getElementById("iframe");
   const form = document.querySelector("#form-register");
   const modalButton = document.getElementById("password-input-confirm-modal");
-  var inputs = form.querySelectorAll("input");
+  const inputs = form.querySelectorAll("input")
 
-  iframe.src = "index.php?action=checkInfos"; // Set the URL here
   form.target = "iframe"
   modalButton.addEventListener("click", checkInputsAndToggleModal);
 
-  inputs.forEach(function(input)                  //If used has js remove required because it messes with view 
-  {
+  inputs.forEach(function(input) {
     input.removeAttribute("required");
   });
 
