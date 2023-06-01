@@ -45,15 +45,15 @@
 
                     <!-- Button trigger modal -->
                     <div class="divBtn2">
-                        <button  id="registration" value="registration" name="registration" class="btn btn-primary" id="password-input-confirm-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <!-- <button value="registration" class="btn btn-primary" id="password-input-confirm-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Valider
-                        </input>
+                        </input> -->
                     </div>
                 </div>
-
-
-
             </form>
+
+</div>
+
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -64,8 +64,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <?= var_dump($_POST) ?>
-                        <iframe src="index.php?action=checkInfos" name="iframe" id="iframe" frameborder="0" width="100%" height="300px"></iframe>
+                        <iframe src="" name="iframe" id="iframe" frameborder="0" width="100%" height="300px"></iframe>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -74,9 +73,6 @@
                     </div>
                 </div>
                 </div>
-
-</div>
-<script src="public\js\test.js"></script>
 
 <?php
 $content = ob_get_clean(); 
