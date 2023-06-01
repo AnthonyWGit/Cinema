@@ -37,17 +37,17 @@
                             <input type="password" name="password-confirm" id="password-input-confirm" placeholder="Password" required>
                         </div>
                         
-                        <noscript>
+                        <!-- <noscript>
                             <div class="divBtn">
                                 <button type="submit">Valider</button>
                             </div>
-                        </noscript>
+                        </noscript> -->
 
                     <!-- Button trigger modal -->
                     <div class="divBtn2">
-                        <!-- <button value="registration" class="btn btn-primary" id="password-input-confirm-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button value="registration" class="btn btn-primary" id="password-input-confirm-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Valider
-                        </input> -->
+                        </input>
                     </div>
                 </div>
             </form>
@@ -57,7 +57,7 @@
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
