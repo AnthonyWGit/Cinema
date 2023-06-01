@@ -1,31 +1,24 @@
-var form = document.querySelector("#form-register");
-var modalButton = document.getElementById("password-input-confirm-modal");
+document.addEventListener("DOMContentLoaded", function() { //waiting for all content to load
 
-modalButton.addEventListener("click", function(event) {
-  // Prevent the default behavior of the button click
-  event.preventDefault();
+  const iframe = document.getElementById("iframe");
+  const form = document.querySelector("#form-register");
+  const modalButton = document.getElementById("password-input-confirm-modal");
+  var inputs = form.querySelectorAll("input");
 
-  // Perform form validation before showing the modal
-  if (isFormValid()) {
-    // Set the target attribute of the form to the iframe
-    form.setAttribute("target", "iframe");
-    // Submit the form
-    form.submit();
-    // Trigger the modal
-    var modal = new bootstrap.Modal(document.getElementById("exampleModal"));
-    modal.show();
-  }
+  iframe.src = "index.php?action=checkInfos"; // Set the URL here
+  form.target = "iframe"
+  modalButton.addEventListener("click", checkInputsAndToggleModal);
+
+  inputs.forEach(function(input)                  //If used has js remove required because it messes with view 
+  {
+    input.removeAttribute("required");
+  });
+
 });
 
-function isFormValid() {
-    var inputs = form.querySelectorAll("input[required]");
-    var isValid = true;
-  
-    inputs.forEach(function(input) {
-      if (input.value.trim() === "") { //must be stricly equal to empty 
-        isValid = false;
-      }
-    });
-  
-    return isValid;
-  }
+
+
+
+
+
+
