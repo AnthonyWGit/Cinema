@@ -12,6 +12,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
         </style>
         <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous" defer></script>
+        <script src="public/js/dlModeBase.js" defer></script>
+        <script src="public/js/dlModeElements.js" defer></script>
+        <script src="public/js/dlPerform.js" defer></script>
+        <script src="public/js/test.js" defer></script>
     </head>
     <body>
         <div class="wrapper">
@@ -21,9 +28,6 @@
             </div>                    
                 <?php require_once("footer.php");?>
         </div> 
+
     </body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script src="public\js\dlModeBase.js"></script>
-    <script src="public\js\dlModeElements.js"></script>
-    <script src="public\js\dlPerform.js"></script>
 </html>
