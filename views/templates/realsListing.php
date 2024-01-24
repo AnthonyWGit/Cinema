@@ -10,14 +10,13 @@
             <th>Date de naissance</th>
             <th>sexe</th>
         </tr>
-    
+
         <?php 
         foreach($reals as $realisateur)
         { 
         ?>
 
         <tr>
-            
             <td>
                 <button class="deleteButton"><a href="index.php?action=deleteReal&id_real=<?=$realisateur["id_realisateur"]?>">Supprimer</a></button>
             </td>
