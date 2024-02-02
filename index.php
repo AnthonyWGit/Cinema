@@ -34,7 +34,7 @@ use Controllers\UnauthorizedControllerModal;
 //_________________________________AUTOLOAD_____________________________________
 spl_autoload_register(function ($class_name)
 {
-    include 'src\\'.$class_name . '.php';
+    include 'src'.DIRECTORY_SEPARATOR. str_replace('\\',DIRECTORY_SEPARATOR, $class_name) . '.php';
 });
 
 //__________________________INSTANCIATE CONTROLLERS_____________________________________

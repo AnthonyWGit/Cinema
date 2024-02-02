@@ -71,13 +71,13 @@ class RegisterControllerModal
         if (empty($listEmails))
         {
             $permission0 = true;
-            echo "XXXXXXXX";
+            // echo "XXXXXXXX";
         }
 
         if (empty($listUsername))
         {
             $permission3 = true;
-            echo "YYYYYYYYY";
+            // echo "YYYYYYYYY";
         }
 
         //_________________________________FORM-CHECK______________________________________________
@@ -227,7 +227,7 @@ class RegisterControllerModal
         else
         {
 
-            if ($_SESSION["vide"])
+            if (isset($_SESSION["vide"]))
             {
                 $_SESSION["msg"] = "Vous ne pouvez pas evoyer un formulaire avec un ou des champs vides";
             }
